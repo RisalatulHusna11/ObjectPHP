@@ -1,0 +1,88 @@
+/* DRAG AND DROP */
+.kode-box {
+  background-color: #f8f9ff;
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 10px;
+  font-family: monospace;
+  white-space: pre-wrap; /* sudah oke */
+  overflow-x: auto;      /* ⬅ penting agar horizontal scroll muncul jika butuh */
+  word-wrap: break-word; /* ⬅ agar kode tidak keluar kotak */
+  max-width: 100%;       /* ⬅ pastikan tidak melebihi container */
+  font-size: 14px;
+  overflow: auto;
+  max-height: 350px;
+}
+
+.drop-zone {
+  display: inline-block;
+  min-width: 50px; /* ⬅ lebih kecil */
+  padding: 2px 4px;
+  margin: 3px;
+  border: 2px dashed #aaa;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.4;
+}
+
+.drop-zone:hover {
+  background-color: #f1f1f1;
+}
+
+.drag-item {
+  background-color: #eef;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  cursor: grab;
+  border-radius: 5px;
+  font-family: monospace;
+  font-size: 14px;
+  border: 1px solid #99c;
+  width: fit-content;
+}
+
+.drag-item.dragging {
+  opacity: 0.6;
+}
+
+
+/* ISIAN */
+.input-fill.auto {
+  width: 60px !important; /* Ukuran tetap */
+  font-size: 13px;
+  padding: 2px 4px;
+  margin: 0 2px;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Perbaikan tombol */
+.quiz-actions .btn {
+  font-size: 14px;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.quiz-actions .btn-success {
+  background-color: #6f42c1;
+  border-color: #6f42c1;
+  color: white;
+}
+
+.quiz-actions .btn-success:hover {
+  background-color: #5a379f;
+}
+
+.quiz-actions .btn-secondary {
+  background-color: #d6c2f0;
+  border-color: #d6c2f0;
+  color: #333;
+}
+
+.quiz-actions .btn-secondary:hover {
+  background-color: #c3ace7;
+}

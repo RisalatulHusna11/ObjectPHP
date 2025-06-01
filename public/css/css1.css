@@ -1,0 +1,343 @@
+/* Bagian navigasi */
+.all-navbar nav {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.container-fluid {
+    background-color: #ffffff;
+}
+
+main {
+    padding-top: 0px;
+}
+
+.collapse-navbar-collapse {
+    float: right;
+}
+
+.logo {
+    max-width: 80px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    float: left;
+}
+
+.menu_nav {
+    font-weight: bold;
+    color: #1e293b;
+    font-family: 'Quicksand', 'Segoe UI', sans-serif;
+}
+
+#nama {
+    margin-right: 12px;
+    font-weight: bold;
+    color: #1e293b;
+    font-family: 'Quicksand', 'Segoe UI', sans-serif;
+}
+
+.menu_nav:hover {
+    color: #9d4edd !important;
+}
+
+
+/* LANDING PAGE */
+.grid-container1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    max-width: 2000px;
+    margin: 0 auto;
+    padding-top: 150px;
+}
+
+.textBox {
+    padding-left: 40px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.gambar img {
+    width: 70%;
+    height: auto;
+    margin-top: -50px;
+    margin-left: 100px;
+}
+
+.textBox h2 {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 10px;
+    color: #9d4edd;
+}
+
+.textBox p {
+    color: #1e293b;
+    font-family: 'Quicksand', sans-serif;
+    text-align: justify;
+    margin-bottom: 12px;
+}
+
+.btn-success {
+    background-color: #9d4edd;
+    border-color: #9d4edd;
+    display: inline-block;
+    margin-top: 10px;
+    color: #ffffff;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+}
+
+.btn-success:hover {
+    background-color: #d4a8f8;
+    border-color: #d4a8f8;
+    color: #1e293b;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+.isi {
+    background-color: #ffffff;
+    float: left;
+    padding: 40px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+/* FITUR SECTION */
+.fitur {
+    padding-top: 100px;
+    padding-bottom: 80px;
+    background: linear-gradient(to bottom, #ffffff, #f9fafb);
+}
+
+.textBox2 h2 {
+    color: #9C59D1;
+    text-align: center;
+    padding-bottom: 30px;
+    font-family: 'Quicksand', 'Segoe UI', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.kontainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 20px 40px;
+}
+
+.card {
+    width: 250px;
+    height: 320px;
+    perspective: 1000px;
+    position: relative;
+}
+
+.face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(157, 89, 209, 0.1);
+    transition: transform 0.6s ease;
+}
+
+.face1 {
+    background-color: #ffffff;
+    transform: rotateY(0deg);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    font-family: 'Quicksand', 'Segoe UI', sans-serif;
+}
+
+.face1 img {
+    max-width: 80px;
+    margin-bottom: 15px;
+}
+
+.face1 h3 {
+    font-size: 1.2rem;
+    font-family: 'Quicksand', 'Segoe UI', sans-serif;
+    color: #9C59D1;
+    text-align: center;
+}
+
+.face2 {
+    background-color: #e0e7ff;
+    transform: rotateY(180deg);
+    z-index: 1;
+    padding: 20px;
+    color: #1e293b;
+    font-family: 'Quicksand', 'Segoe UI', sans-serif;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: justify;
+    border-radius: 15px;
+}
+
+.card:hover .face1 {
+    transform: rotateY(-180deg);
+}
+
+.card:hover .face2 {
+    transform: rotateY(0deg);
+    z-index: 2;
+}
+
+.paragraf-muncul {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition-delay: 0.3s;
+}
+
+.card:hover .face2 .paragraf-muncul {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+/* KONTAK */
+.kontak-container {
+    text-align: center;
+    max-width: 1400px;
+    padding-top: 120px;
+    padding-bottom: 0px;
+    font-family: 'Quicksand', 'Segoe UI', sans-serif;
+}
+
+.kontak-container h2 {
+    color: #9C59D1;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.kontak-container p {
+    color: #1e293b;
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.kontak-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.kontak-item {
+    flex-basis: 45%;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    background-color: #f9fafb;
+    transition: background-color 0.3s ease;
+    font-family: 'Quicksand', 'Segoe UI', sans-serif;
+}
+
+.kontak-item:hover {
+    background-color: #e0e7ff;
+}
+
+.kontak-item a {
+    text-decoration: none;
+    color: #1e293b;
+    display: block;
+}
+
+.kontak-item i {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #9C59D1;
+}
+
+.kontak-item p {
+    font-size: 1.2em;
+    color: #1e293b;
+    margin: 0;
+}
+
+/* FOOTER */
+.footer {
+    background-color: #ffffff;
+    color: #1e293b;
+    text-align: center;
+    padding: 10px;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Quicksand', 'Segoe UI', sans-serif;
+    font-weight: 500;
+}
+
+
+
+
+/* DASHBOARD USER */
+.grid-container3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 2000px;
+    margin: 0 auto;
+    padding: 5px;
+    font-family: 'Quicksand', 'Segoe UI', sans-serif;
+}
+
+
+
+
+/* TAMPILAN PROGRES SESUAI WARNA UNGU TEMA */
+.progress-container {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background-color: #ffffff;
+}
+
+.progress-title {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.progress {
+  height: 20px;
+  background-color: #e9ecef;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background-color: #8A56DC; 
+  background-image: linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2) 75%, transparent 75%, transparent);
+  background-size: 1rem 1rem;
+  text-align: center;
+  transition: width 1s ease-in-out;
+}
+
+.progress-text {
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+}

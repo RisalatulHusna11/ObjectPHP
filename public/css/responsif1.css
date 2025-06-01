@@ -1,0 +1,76 @@
+/* RESPONSIF */
+@media (max-width: 768px) {
+  .grid-container1 {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .textBox {
+    padding-left: 10px;
+  }
+
+  .textBox h2{
+    text-align: center;
+  }
+
+  .gambar img {
+    margin-left: 0;
+    margin-top: 0;
+    width: 90%;
+  }
+
+  .kontainer {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .card {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  .kontak-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .kontak-item {
+    flex-basis: 90%;
+  }
+
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .menu_nav {
+    padding: 10px 0;
+  }
+}
+
+
+/* FIX KHUSUS URUTAN DASHBOARD DI MOBILE */
+@media (max-width: 768px) {
+  section#home.grid-container1 {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  section#home .gambar {
+    order: 1;
+  }
+
+  section#home .textBox {
+    order: 2;
+    padding: 10px;
+  }
+
+  section#home .gambar img {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
