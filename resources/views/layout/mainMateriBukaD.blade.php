@@ -45,20 +45,7 @@
     .navbar-brand:hover {
       color: #EDE2FF;
     }
-
-    .btn-logout {
-      background-color: #ffffff;
-      color: #6f42c1;
-      font-weight: 600;
-      border: 1px solid #c5a7ff;
-    }
-
-    .btn-logout:hover {
-      background-color: #6f42c1;
-      color: white;
-    }
-    
-    /* .btn-logout {
+    .btn-keluar-iobject {
   background-color: #ffffff;
   color: #6f42c1;
   font-weight: 600;
@@ -68,26 +55,33 @@
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
 
-.btn-logout:hover {
+.btn-keluar-iobject:hover {
   background-color: #99a8db;
   color: white;
 }
 
 @media (max-width: 768px) {
-  .btn-logout {
-    font-size: 1.1rem;
-    padding: 5px 10px;
+  .btn-keluar-iobject {
+    font-size: 1.2rem;
+    padding: 8px 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     justify-content: center;
   }
 
-  .btn-logout i {
+  .btn-keluar-iobject i {
     font-size: 1.3rem;
   }
-} */
+}
+
 
 
     .sidebar2 {
@@ -225,22 +219,32 @@
     <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
   <i class="bi bi-list"></i>
 </button>
-    <div class="me-3">
+    <div class="me-3 d-flex align-items-center">
   @php use Illuminate\Support\Facades\Auth; @endphp
 
   @guest
-    <a href="./" class="btn btn-logout">Keluar</a>
+    <!-- Desktop -->
+    <a href="./" class="btn-keluar-iobject d-none d-md-inline-flex">Keluar</a>
+    <!-- Mobile -->
+    <a href="./" class="btn-keluar-iobject d-inline-flex d-md-none" title="Keluar">
+      <i class="bi bi-box-arrow-right"></i>
+    </a>
   @else
-    @if (Auth::user()->role === 'mahasiswa')
-      <a href="{{ route('dashboard.mahasiswa') }}" class="btn btn-logout">Keluar</a>
-    @elseif (Auth::user()->role === 'dosen')
-      <!-- <a href="{{ route('dashboard.dosen') }}" class="btn btn-logout">Keluar</a> -->
-      <a href="{{ route('dashboard.dosen') }}" class="btn btn-logout btn-sm">Keluar</a>
-    @else
-      <a href="./" class="btn btn-logout">Keluar</a>
-    @endif
+    @php
+      $logoutRoute = Auth::user()->role === 'mahasiswa'
+          ? route('dashboard.mahasiswa')
+          : (Auth::user()->role === 'dosen'
+              ? route('dashboard.dosen')
+              : './');
+    @endphp
+
+    <a href="{{ $logoutRoute }}" class="btn-keluar-iobject d-none d-md-inline-flex">Keluar</a>
+    <a href="{{ $logoutRoute }}" class="btn-keluar-iobject d-inline-flex d-md-none" title="Keluar">
+      <i class="bi bi-box-arrow-right"></i>
+    </a>
   @endguest
 </div>
+
 
   </header> 
 
