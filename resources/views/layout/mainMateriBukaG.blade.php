@@ -45,23 +45,42 @@
     .navbar-brand:hover {
       color: #EDE2FF;
     }
-    .btn-logout {
-      background-color: #e0e7ff;
-      color: #1e293b;
-      border: 1.5px solid #99a8db;
-      border-radius: 6px;
-      font-weight: 600 !important;
-      padding: 5px !important;
-      font-size: 2 rem !important;
-      text-align: center !important;
-      height: 40px !important;
-      width: 100px !important;
-      margin-top: 20px;
-    }
-    .btn-logout:hover {
-      background-color: #aabbf3;
-      color: #ffffff;
-    }
+    .btn-keluar-iobject {
+  background-color: #ffffff;
+  color: #6f42c1;
+  font-weight: 600;
+  border: 1px solid #c5a7ff;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.btn-keluar-iobject:hover {
+  background-color: #99a8db;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .btn-keluar-iobject {
+    font-size: 1.2rem;
+    padding: 8px 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    justify-content: center;
+  }
+
+  .btn-keluar-iobject i {
+    font-size: 1.3rem;
+  }
+}
     .sidebar2 {
       background-color: #F7F7F7;
       border-right: 1px solid #E2E8F0;
@@ -197,27 +216,31 @@
     <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
   <i class="bi bi-list"></i>
 </button>
-    <div class="me-3">
-      @php
-        use Illuminate\Support\Facades\Auth;
-      @endphp
+    <div class="me-3 d-flex align-items-center">
+  @php use Illuminate\Support\Facades\Auth; @endphp
 
-      @guest
-        <a href="./" class="btn btn-logout">Keluar</a>
-      @else
-        @if (Auth::user()->role === 'mahasiswa')
-          <a href="{{ route('dashboard.mahasiswa') }}" class="btn btn-logout">Keluar</a>
-        @elseif (Auth::user()->role === 'dosen')
-          <a href="{{ route('dashboard.dosen') }}" class="btn btn-logout">Keluar</a>
-        @else
-          <a href="./" class="btn btn-logout">Keluar</a>
-        @endif
-      @endguest
+  @guest
+    <!-- Desktop -->
+    <a href="./" class="btn-keluar-iobject d-none d-md-inline-flex">Keluar</a>
+    <!-- Mobile -->
+    <a href="./" class="btn-keluar-iobject d-inline-flex d-md-none" title="Keluar">
+      <i class="bi bi-box-arrow-right"></i>
+    </a>
+  @else
+    @php
+      $logoutRoute = Auth::user()->role === 'mahasiswa'
+          ? route('dashboard.mahasiswa')
+          : (Auth::user()->role === 'dosen'
+              ? route('dashboard.dosen')
+              : './');
+    @endphp
 
-      @php
-        $currentUrl = request()->path();
-      @endphp
-    </div>
+    <a href="{{ $logoutRoute }}" class="btn-keluar-iobject d-none d-md-inline-flex">Keluar</a>
+    <a href="{{ $logoutRoute }}" class="btn-keluar-iobject d-inline-flex d-md-none" title="Keluar">
+      <i class="bi bi-box-arrow-right"></i>
+    </a>
+  @endguest
+</div>
   </header> 
 
   <div class="berandaMateri" style="padding-top:56px;">
