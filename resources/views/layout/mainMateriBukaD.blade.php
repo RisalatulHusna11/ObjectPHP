@@ -46,35 +46,36 @@
       color: #EDE2FF;
     }
     .btn-logout {
-  background-color: #e0e7ff;
-  color: #1e293b;
-  border: 1.5px solid #99a8db;
-  border-radius: 6px;
+  background-color: #ffffff;
+  color: #6f42c1;
   font-weight: 600;
+  border: 1px solid #c5a7ff;
   padding: 6px 12px;
   font-size: 0.9rem;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  border-radius: 6px;
 }
 
 .btn-logout:hover {
-  background-color: #aabbf3;
+  background-color: #99a8db;
   color: white;
 }
 
 @media (max-width: 768px) {
   .btn-logout {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     padding: 5px 10px;
     justify-content: center;
   }
 
   .btn-logout i {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 }
+
 
     .sidebar2 {
       background-color: #F7F7F7;
@@ -212,37 +213,21 @@
   <i class="bi bi-list"></i>
 </button>
     <div class="me-3">
-      @php
-          use Illuminate\Support\Facades\Auth;
-      @endphp
+  @php use Illuminate\Support\Facades\Auth; @endphp
 
-      @guest
-        {{-- Versi teks untuk layar besar --}}
-        <a href="./" class="btn btn-logout d-none d-md-inline-block">Keluar</a>
-        {{-- Versi ikon untuk layar kecil --}}
-        <a href="./" class="btn btn-logout d-inline-block d-md-none" title="Keluar">
-          <i class="bi bi-box-arrow-right"></i>
-        </a>
-      @else
-        @if (Auth::user()->role === 'mahasiswa')
-          <a href="{{ route('dashboard.mahasiswa') }}" class="btn btn-logout d-none d-md-inline-block">Keluar</a>
-          <a href="{{ route('dashboard.mahasiswa') }}" class="btn btn-logout d-inline-block d-md-none" title="Keluar">
-            <i class="bi bi-box-arrow-right"></i>
-          </a>
-        @elseif (Auth::user()->role === 'dosen')
-          <a href="{{ route('dashboard.dosen') }}" class="btn btn-logout d-none d-md-inline-block">Keluar</a>
-          <a href="{{ route('dashboard.dosen') }}" class="btn btn-logout d-inline-block d-md-none" title="Keluar">
-            <i class="bi bi-box-arrow-right"></i>
-          </a>
-        @else
-          <a href="./" class="btn btn-logout d-none d-md-inline-block">Keluar</a>
-          <a href="./" class="btn btn-logout d-inline-block d-md-none" title="Keluar">
-            <i class="bi bi-box-arrow-right"></i>
-          </a>
-        @endif
-      @endguest
+  @guest
+    <a href="./" class="btn btn-logout">Keluar</a>
+  @else
+    @if (Auth::user()->role === 'mahasiswa')
+      <a href="{{ route('dashboard.mahasiswa') }}" class="btn btn-logout">Keluar</a>
+    @elseif (Auth::user()->role === 'dosen')
+      <a href="{{ route('dashboard.dosen') }}" class="btn btn-logout">Keluar</a>
+    @else
+      <a href="./" class="btn btn-logout">Keluar</a>
+    @endif
+  @endguest
+</div>
 
-    </div>
   </header> 
 
   <div class="berandaMateri" style="padding-top:56px;">
