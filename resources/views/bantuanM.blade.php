@@ -52,12 +52,12 @@
         <div class="accordion-item">
           <h2 class="accordion-header" id="heading1">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
-              📚 Apa itu ObjectPHP?
+              📚 Apa itu i-ObjectPHP?
             </button>
           </h2>
           <div id="collapse1" class="accordion-collapse collapse show">
             <div class="accordion-body">
-              <p><b>ObjectPHP</b> adalah media pembelajaran berbasis web yang bertujuan membantu mahasiswa memahami konsep <b>Object-Oriented Programming (OOP)</b> dalam bahasa PHP secara bertahap dan interaktif.</p>
+              <p><b>i-ObjectPHP</b> adalah media pembelajaran berbasis web yang bertujuan membantu mahasiswa memahami konsep <b>Object-Oriented Programming (OOP)</b> dalam bahasa PHP secara bertahap dan interaktif.</p>
               <p>Mahasiswa dapat membaca materi, mengerjakan latihan, mengikuti kuis interaktif, dan menyelesaikan evaluasi. Setiap progres akan disimpan secara otomatis dan ditampilkan dalam dashboard.</p>
             </div>
           </div>

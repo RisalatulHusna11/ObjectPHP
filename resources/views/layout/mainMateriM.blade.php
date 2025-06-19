@@ -10,6 +10,14 @@
   }
 
   $progressPersen = round(($jumlahSelesai / $totalHalaman) * 100);
+
+  function linkAktif($pattern) {
+    return request()->is($pattern) ? 'active' : '';
+  }
+
+  function collapseAktif($pattern) {
+    return request()->is($pattern) ? 'show' : '';
+  }
 @endphp
 
 <!doctype html>
@@ -17,7 +25,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ObjectPHP</title>
+  <title>i-ObjectPHP</title>
 
   <link rel="icon" type="image/png" href="{{ asset('images/logo3.png') }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -207,7 +215,7 @@
 </head>
 <body>
   <header class="navbar fixed-top d-flex align-items-center justify-content-between">
-    <a class="navbar-brand ms-3" href="#">ObjectPHP</a>
+    <a class="navbar-brand ms-3" href="#">i-ObjectPHP</a>
     <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
   <i class="bi bi-list"></i>
 </button>
@@ -248,218 +256,224 @@
             <h6 class="text-uppercase px-3 mb-2 text-muted" style="text-align:center;"><b>Daftar Materi</b></h6>
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link" href="./b00-peta">Peta Konsep</a>
-              </li>
-              
-              <li class="nav-item">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#babA" role="button">A. Pengenalan</a>
-                <div class="collapse" id="babA">
-                  <ul class="nav flex-column ms-3">
-                    <!-- <li class="nav-item"><a class="nav-link" href="./b11-object">1. Object</a></li> -->
-                    <li class="nav-item">
-                      @sudahSelesai('b00-peta')
-                        <a class="nav-link" href="./b11-object">1. Object</a>
-                      @else
-                        <a class="nav-link locked" href="#">1. Object <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                    <li class="nav-item">
-                      @sudahSelesai('b11-object')
-                        <a class="nav-link" href="./b12-terminologi">2. Terminologi</a>
-                      @else
-                        <a class="nav-link locked" href="#">2. Terminologi <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                    <li class="nav-item">
-                      @sudahSelesai('b12-terminologi')
-                        <a class="nav-link" href="./b13-membuatobject">3. Membuat Object</a>
-                      @else
-                        <a class="nav-link locked" href="#">3. Membuat Object <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                    <li class="nav-item">
-                      @sudahSelesai('b13-membuatobject')
-                        <a class="nav-link" href="./b14-mengaksesp&m">4. Mengakses Properties</a>
-                      @else
-                        <a class="nav-link locked" href="#">4. Mengakses Properties <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                    <li class="nav-item">
-                      @sudahSelesai('b14-mengaksesp&m')
-                        <a class="nav-link" href="./b15-pkuis">Kuis</a>
-                      @else
-                        <a class="nav-link locked" href="#">Kuis <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                  </ul>
-                </div>
-              </li>
+        <a class="nav-link {{ linkAktif('b00-peta') }}" href="{{ url('b00-peta') }}">Peta Konsep</a>
+      </li>
 
-              <li class="nav-item">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#babB" role="button">B. Mendeklarasikan Class</a>
-                <div class="collapse" id="babB">
-                  <ul class="nav flex-column ms-3">
-                    <li class="nav-item">
-                      @sudahSelesai('b17-hkuis')
-                        <a class="nav-link" href="./b21-mendeklarasikanm">1. Methods</a>
-                      @else
-                        <a class="nav-link locked" href="#">1. Methods <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                    <li class="nav-item">
-                      @sudahSelesai('b21-mendeklarasikanm')
-                        <a class="nav-link" href="./b22-mendeklarasikanp">2. Properties</a>
-                      @else
-                        <a class="nav-link locked" href="#">2. Properties <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                    <li class="nav-item">
-                      @sudahSelesai('b22-mendeklarasikanp')
-                        <a class="nav-link" href="./b23-mendeklarasikanc">3. Constants</a>
-                      @else
-                        <a class="nav-link locked" href="#">3. Constants <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                    <li class="nav-item">
-                      @sudahSelesai('b23-mendeklarasikanc')
-                        <a class="nav-link" href="./b24-inheritance">4. Inheritance</a>
-                      @else
-                        <a class="nav-link locked" href="#">4. Inheritance <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                    <li class="nav-item">
-                      @sudahSelesai('b24-inheritance')
-                        <a class="nav-link" href="./b25-interface">5. Interfaces</a>
-                      @else
-                        <a class="nav-link locked" href="#">5. Interfaces <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                    <li class="nav-item">
-                      @sudahSelesai('b25-interface')
-                        <a class="nav-link" href="./b26-traits">6. Traits</a>
-                      @else
-                        <a class="nav-link locked" href="#">6. Traits <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                    <li class="nav-item">
-                      @sudahSelesai('b26-traits')
-                        <a class="nav-link" href="./b27-abstractm">7. Abstract Methods</a>
-                      @else
-                        <a class="nav-link locked" href="#">7. Abstract Methods <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                    <li class="nav-item">
-                      @sudahSelesai('b27-abstractm')
-                        <a class="nav-link" href="./b28-constructors">8. Constructors</a>
-                      @else
-                        <a class="nav-link locked" href="#">8. Constructors <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                    <li class="nav-item">
-                      @sudahSelesai('b28-constructors')
-                        <a class="nav-link" href="./b29-destructor">9. Destructors</a>
-                      @else
-                        <a class="nav-link locked" href="#">9. Destructors <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                    <li class="nav-item">
-                      @sudahSelesai('b29-destructor')
-                        <a class="nav-link" href="./b210-pkuis">Kuis</a>
-                      @else
-                        <a class="nav-link locked" href="#">Kuis <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                  </ul>
-                </div>
-              </li>
+      <!-- Bab A -->
+      <li class="nav-item">
+        <a class="nav-link dropdown-toggle {{ linkAktif('b1*') }}" data-bs-toggle="collapse" href="#babA" role="button">A. Pengenalan</a>
+        <div class="collapse {{ collapseAktif('b1*') }}" id="babA">
+          <ul class="nav flex-column ms-3">
+            <li class="nav-item">
+              @sudahSelesai('b00-peta')
+              <a class="nav-link {{ linkAktif('b11-object') }}" href="{{ url('b11-object') }}">1. Object</a>
+              @else
+              <a class="nav-link locked" href="#">1. Object <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+            <li class="nav-item">
+              @sudahSelesai('b11-object')
+              <a class="nav-link {{ linkAktif('b12-terminologi') }}" href="{{ url('b12-terminologi') }}">2. Terminologi</a>
+              @else
+              <a class="nav-link locked" href="#">2. Terminologi <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+            <li class="nav-item">
+              @sudahSelesai('b12-terminologi')
+              <a class="nav-link {{ linkAktif('b13-membuatobject') }}" href="{{ url('b13-membuatobject') }}">3. Membuat Object</a>
+              @else
+              <a class="nav-link locked" href="#">3. Membuat Object <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+            <li class="nav-item">
+              @sudahSelesai('b13-membuatobject')
+              <a class="nav-link {{ linkAktif('b14-mengaksesp&m') }}" href="{{ url('b14-mengaksesp&m') }}">4. Mengakses Properties</a>
+              @else
+              <a class="nav-link locked" href="#">4. Mengakses Properties <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+            <li class="nav-item">
+              @sudahSelesai('b14-mengaksesp&m')
+              <a class="nav-link {{ linkAktif('b15-pkuis') }}" href="{{ url('b15-pkuis') }}">Kuis</a>
+              @else
+              <a class="nav-link locked" href="#">Kuis <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+          </ul>
+        </div>
+      </li>
 
-              <li class="nav-item">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#babC" role="button">C. Anonymous Classes</a>
-                <div class="collapse" id="babC">
-                  <ul class="nav flex-column ms-3">
-                    <li class="nav-item">
-                      @sudahSelesai('b212-hkuis')
-                        <a class="nav-link" href="./b31-konsepd">Konsep Dasar</a>
-                      @else
-                        <a class="nav-link locked" href="#">Konsep Dasar <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                    <li class="nav-item">
-                      @sudahSelesai('b31-konsepd')
-                        <a class="nav-link" href="./b32-pkuis">Kuis</a>
-                      @else
-                        <a class="nav-link locked" href="#">Kuis <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                  </ul>
-                </div>
-              </li>
+      <!-- Bab B -->
+      <li class="nav-item">
+        <a class="nav-link dropdown-toggle {{ linkAktif('b2*') }}" data-bs-toggle="collapse" href="#babB" role="button">B. Mendeklarasikan Class</a>
+        <div class="collapse {{ collapseAktif('b2*') }}" id="babB">
+          <ul class="nav flex-column ms-3">
+            <li class="nav-item">
+              @sudahSelesai('b17-hkuis')
+              <a class="nav-link {{ linkAktif('b21-mendeklarasikanm') }}" href="{{ url('b21-mendeklarasikanm') }}">1. Methods</a>
+              @else
+              <a class="nav-link locked" href="#">1. Methods <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+            <li class="nav-item">
+              @sudahSelesai('b21-mendeklarasikanm')
+              <a class="nav-link {{ linkAktif('b22-mendeklarasikanp') }}" href="{{ url('b22-mendeklarasikanp') }}">2. Properties</a>
+              @else
+              <a class="nav-link locked" href="#">2. Properties <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+            <li class="nav-item">
+              @sudahSelesai('b22-mendeklarasikanp')
+              <a class="nav-link {{ linkAktif('b23-mendeklarasikanc') }}" href="{{ url('b23-mendeklarasikanc') }}">3. Constants</a>
+              @else
+              <a class="nav-link locked" href="#">3. Constants <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+            <li class="nav-item">
+              @sudahSelesai('b23-mendeklarasikanc')
+              <a class="nav-link {{ linkAktif('b24-inheritance') }}" href="{{ url('b24-inheritance') }}">4. Inheritance</a>
+              @else
+              <a class="nav-link locked" href="#">4. Inheritance <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+            <li class="nav-item">
+              @sudahSelesai('b24-inheritance')
+              <a class="nav-link {{ linkAktif('b25-interface') }}" href="{{ url('b25-interface') }}">5. Interfaces</a>
+              @else
+              <a class="nav-link locked" href="#">5. Interfaces <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+            <li class="nav-item">
+              @sudahSelesai('b25-interface')
+              <a class="nav-link {{ linkAktif('b26-traits') }}" href="{{ url('b26-traits') }}">6. Traits</a>
+              @else
+              <a class="nav-link locked" href="#">6. Traits <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+            <li class="nav-item">
+              @sudahSelesai('b26-traits')
+              <a class="nav-link {{ linkAktif('b27-abstractm') }}" href="{{ url('b27-abstractm') }}">7. Abstract Methods</a>
+              @else
+              <a class="nav-link locked" href="#">7. Abstract Methods <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+            <li class="nav-item">
+              @sudahSelesai('b27-abstractm')
+              <a class="nav-link {{ linkAktif('b28-constructors') }}" href="{{ url('b28-constructors') }}">8. Constructors</a>
+              @else
+              <a class="nav-link locked" href="#">8. Constructors <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+            <li class="nav-item">
+              @sudahSelesai('b28-constructors')
+              <a class="nav-link {{ linkAktif('b29-destructor') }}" href="{{ url('b29-destructor') }}">9. Destructors</a>
+              @else
+              <a class="nav-link locked" href="#">9. Destructors <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+            <li class="nav-item">
+              @sudahSelesai('b29-destructor')
+              <a class="nav-link {{ linkAktif('b210-pkuis') }}" href="{{ url('b210-pkuis') }}">Kuis</a>
+              @else
+              <a class="nav-link locked" href="#">Kuis <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+          </ul>
+        </div>
+      </li>
 
-              <li class="nav-item">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#babD" role="button">D. Introspection</a>
-                <div class="collapse" id="babD">
-                  <ul class="nav flex-column ms-3">
-                    <li class="nav-item">
-                      @sudahSelesai('b34-hkuis')
-                        <a class="nav-link" href="./b41-memeriksac">1. Memeriksa Classes</a>
-                      @else
-                        <a class="nav-link locked" href="#">1. Memeriksa Classes <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                    <li class="nav-item">
-                      @sudahSelesai('b41-memeriksac')
-                        <a class="nav-link" href="./b42-memeriksao">2. Memeriksa Object</a>
-                      @else
-                        <a class="nav-link locked" href="#">2. Memeriksa Object <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                    <li class="nav-item">
-                      @sudahSelesai('b42-memeriksao')
-                        <a class="nav-link" href="./b43-contohpi">3. Contoh Program</a>
-                      @else
-                        <a class="nav-link locked" href="#">3. Contoh Program <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                    <li class="nav-item">
-                      @sudahSelesai('b43-contohpi')
-                        <a class="nav-link" href="./b44-pkuis">Kuis</a>
-                      @else
-                        <a class="nav-link locked" href="#">Kuis <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                  </ul>
-                </div>
-              </li>
+      <!-- Bab C -->
+      <li class="nav-item">
+        <a class="nav-link dropdown-toggle {{ linkAktif('b3*') }}" data-bs-toggle="collapse" href="#babC" role="button">C. Anonymous Classes</a>
+        <div class="collapse {{ collapseAktif('b3*') }}" id="babC">
+          <ul class="nav flex-column ms-3">
+            <li class="nav-item">
+              @sudahSelesai('b212-hkuis')
+              <a class="nav-link {{ linkAktif('b31-konsepd') }}" href="{{ url('b31-konsepd') }}">Konsep Dasar</a>
+              @else
+              <a class="nav-link locked" href="#">Konsep Dasar <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+            <li class="nav-item">
+              @sudahSelesai('b31-konsepd')
+              <a class="nav-link {{ linkAktif('b32-pkuis') }}" href="{{ url('b32-pkuis') }}">Kuis</a>
+              @else
+              <a class="nav-link locked" href="#">Kuis <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+          </ul>
+        </div>
+      </li>
 
-              <li class="nav-item">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#babE" role="button">E. Serialization</a>
-                <div class="collapse" id="babE">
-                  <ul class="nav flex-column ms-3">
-                    <li class="nav-item">
-                      @sudahSelesai('b46-hkuis')
-                        <a class="nav-link" href="./b51-konsepd">Konsep Dasar</a>
-                      @else
-                        <a class="nav-link locked" href="#">Konsep Dasar <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                    <li class="nav-item">
-                      @sudahSelesai('b51-konsepd')
-                        <a class="nav-link" href="./b52-pkuis">Kuis</a>
-                      @else
-                        <a class="nav-link locked" href="#">Kuis <i class="bi bi-lock"></i></a>
-                      @endsudahSelesai
-                    </li>
-                  </ul>
-                </div>
-              </li>
+      <!-- Bab D -->
+      <li class="nav-item">
+        <a class="nav-link dropdown-toggle {{ linkAktif('b4*') }}" data-bs-toggle="collapse" href="#babD" role="button">D. Introspection</a>
+        <div class="collapse {{ collapseAktif('b4*') }}" id="babD">
+          <ul class="nav flex-column ms-3">
+            <li class="nav-item">
+              @sudahSelesai('b34-hkuis')
+              <a class="nav-link {{ linkAktif('b41-memeriksac') }}" href="{{ url('b41-memeriksac') }}">1. Memeriksa Classes</a>
+              @else
+              <a class="nav-link locked" href="#">1. Memeriksa Classes <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+            <li class="nav-item">
+              @sudahSelesai('b41-memeriksac')
+              <a class="nav-link {{ linkAktif('b42-memeriksao') }}" href="{{ url('b42-memeriksao') }}">2. Memeriksa Object</a>
+              @else
+              <a class="nav-link locked" href="#">2. Memeriksa Object <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+            <li class="nav-item">
+              @sudahSelesai('b42-memeriksao')
+              <a class="nav-link {{ linkAktif('b43-contohpi') }}" href="{{ url('b43-contohpi') }}">3. Contoh Program</a>
+              @else
+              <a class="nav-link locked" href="#">3. Contoh Program <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+            <li class="nav-item">
+              @sudahSelesai('b43-contohpi')
+              <a class="nav-link {{ linkAktif('b44-pkuis') }}" href="{{ url('b44-pkuis') }}">Kuis</a>
+              @else
+              <a class="nav-link locked" href="#">Kuis <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+          </ul>
+        </div>
+      </li>
 
-              <li class="nav-item">
-                @sudahSelesai('b54-hkuis')
-                  <a class="nav-link" href="./b61-peval">Evaluasi</a>
-                @else
-                  <a class="nav-link locked" href="#">Evaluasi <i class="bi bi-lock"></i></a>
-                @endsudahSelesai
-              </li>
+      <!-- Bab E -->
+      <li class="nav-item">
+        <a class="nav-link dropdown-toggle {{ linkAktif('b5*') }}" data-bs-toggle="collapse" href="#babE" role="button">E. Serialization</a>
+        <div class="collapse {{ collapseAktif('b5*') }}" id="babE">
+          <ul class="nav flex-column ms-3">
+            <li class="nav-item">
+              @sudahSelesai('b46-hkuis')
+              <a class="nav-link {{ linkAktif('b51-konsepd') }}" href="{{ url('b51-konsepd') }}">Konsep Dasar</a>
+              @else
+              <a class="nav-link locked" href="#">Konsep Dasar <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+            <li class="nav-item">
+              @sudahSelesai('b51-konsepd')
+              <a class="nav-link {{ linkAktif('b52-pkuis') }}" href="{{ url('b52-pkuis') }}">Kuis</a>
+              @else
+              <a class="nav-link locked" href="#">Kuis <i class="bi bi-lock"></i></a>
+              @endsudahSelesai
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <!-- Evaluasi -->
+      <li class="nav-item">
+        @sudahSelesai('b54-hkuis')
+        <a class="nav-link {{ linkAktif('b61-peval') }}" href="{{ url('b61-peval') }}">Evaluasi</a>
+        @else
+        <a class="nav-link locked" href="#">Evaluasi <i class="bi bi-lock"></i></a>
+        @endsudahSelesai
+      </li>
+
             </ul>
           </div>
         </nav>
@@ -469,7 +483,7 @@
             @yield('container')
           </div>
           <footer class="footer py-3 text-center">
-            &copy; 2025 <strong>ObjectPHP</strong>
+            &copy; 2025 <strong>i-ObjectPHP</strong>
           </footer>
         </main>
       </div>
@@ -675,7 +689,5 @@ document.addEventListener('DOMContentLoaded', function() {
 //   document.getElementById("output-" + id).textContent = "Output akan tampil di sini...";
 // }
 </script>
-
-  
 </body>
 </html>

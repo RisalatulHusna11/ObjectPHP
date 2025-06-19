@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ObjectPHP</title>
+  <title>i-ObjectPHP</title>
 
   <link rel="icon" type="image/png" href="{{ asset('images/logo3.png') }}">
 
@@ -105,7 +105,7 @@
   <!-- ======= HEADER ======= -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid d-flex justify-content-between align-items-center">
-      <a class="navbar-brand ms-2" href="#">ObjectPHP</a>
+      <a class="navbar-brand ms-2" href="#">i-ObjectPHP</a>
       <div class="d-flex align-items-center gap-3 me-3">
         <span class="nav-profile">{{ Auth::user()->name }}</span>
         <a href="{{ route('dashboard.dosen') }}" class="btn btn-logout btn-sm">Keluar</a>
@@ -120,33 +120,36 @@
       <nav class="col-md-3 col-lg-2 sidebar">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link" href="/d11-dashboard">
+            <a class="nav-link {{ request()->is('d11-dashboard') ? 'active' : '' }}" href="/d11-dashboard">
               <i class="bi bi-house-door-fill me-2"></i> Beranda
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/d12-data-mahasiswa">
+            <a class="nav-link {{ request()->is('d12-data-mahasiswa') ? 'active' : '' }}" href="/d12-data-mahasiswa">
               <i class="bi bi-people-fill me-2"></i> Data Mahasiswa
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/d13-data-nilai">
+            <a class="nav-link {{ request()->is('d13-data-nilai') ? 'active' : '' }}" href="/d13-data-nilai">
               <i class="bi bi-clipboard-data-fill me-2"></i> Data Nilai
             </a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="/d14-data-statistika">
+          <!-- Contoh jika kamu aktifkan nanti -->
+          {{-- 
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('d14-data-statistika') ? 'active' : '' }}" href="/d14-data-statistika">
               <i class="bi bi-bar-chart-line-fill me-2"></i> Statistik
             </a>
-          </li> -->
-                    <li class="nav-item">
-            <a class="nav-link" href="/d15-pengaturan">
+          </li>
+          --}}
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('d15-pengaturan') ? 'active' : '' }}" href="/d15-pengaturan">
               <i class="bi bi-gear-fill me-2"></i> Pengaturan
             </a>
-
           </li>
         </ul>
       </nav>
+
 
       <!-- Content -->
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -154,7 +157,7 @@
           @yield('container')
         </div>
         <footer>
-          &copy; 2025 <strong>ObjectPHP</strong> | Dashboard Dosen
+          &copy; 2025 <strong>i-ObjectPHP</strong> | Dashboard Dosen
         </footer>
       </main>
     </div>
@@ -162,5 +165,7 @@
 
   <!-- JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  
 </body>
 </html>

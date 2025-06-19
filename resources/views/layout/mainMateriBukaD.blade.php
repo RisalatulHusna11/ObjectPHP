@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ObjectPHP</title>
+  <title>i-ObjectPHP</title>
 
   <link rel="icon" type="image/png" href="{{ asset('images/logo3.png') }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -193,7 +193,7 @@
 </head>
 <body>
   <header class="navbar fixed-top d-flex align-items-center justify-content-between">
-    <a class="navbar-brand ms-3" href="#">ObjectPHP</a>
+    <a class="navbar-brand ms-3" href="#">i-ObjectPHP</a>
     <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
   <i class="bi bi-list"></i>
 </button>
@@ -221,95 +221,96 @@
       <div class="row">
         <nav id="sidebarMenu" class="sidebar2 col-md-3 col-lg-2 collapse d-md-block sidebar">
           <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
-            <h6 class="text-uppercase px-3 mb-2 text-muted" style="text-align:center;"><b>Daftar Materi</b></h6>
+            <h6 class="text-uppercase px-3 mb-2 text-muted text-center"><b>Daftar Materi</b></h6>
             <ul class="nav flex-column">
-            <!-- BAB A -->
-            <li class="nav-item">
-              <a class="nav-link" href="./b00-peta">Peta Konsep</a>
-            </li>
 
-            <li class="nav-item">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#babA" role="button">A. Pengenalan</a>
-              <div class="collapse" id="babA">
-                <ul class="nav flex-column ms-3">
-                  <li class="nav-item"><a class="nav-link" href="./b11-object">1. Object</a></li>
-                  <li class="nav-item"><a class="nav-link" href="./b12-terminologi">2. Terminologi</a></li>
-                  <li class="nav-item"><a class="nav-link" href="./b13-membuatobject">3. Membuat Object</a></li>
-                  <li class="nav-item"><a class="nav-link" href="./b14-mengaksesp&m">4. Mengakses Properties</a></li>
-                  <li class="nav-item"><a class="nav-link" href="./b15-pkuis">Kuis</a></li>
-                </ul>
-              </div>
-            </li>
+              <!-- BAB A -->
+              <li class="nav-item">
+                <a class="nav-link {{ request()->is('b00-peta') ? 'active' : '' }}" href="{{ url('b00-peta') }}">Peta Konsep</a>
+              </li>
 
-            <!-- BAB B -->
-            <li class="nav-item">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#babB" role="button">B. Mendeklarasikan Class</a>
-              <div class="collapse" id="babB">
-                <ul class="nav flex-column ms-3">
-                  <li class="nav-item"><a class="nav-link" href="b21-mendeklarasikanm">1. Methods</a></li>
-                  <li class="nav-item"><a class="nav-link" href="b22-mendeklarasikanp">2. Properties</a></li>
-                  <li class="nav-item"><a class="nav-link" href="b23-mendeklarasikanc">3. Constants</a></li>
-                  <li class="nav-item"><a class="nav-link" href="b24-inheritance">4. Inheritance</a></li>
-                  <li class="nav-item"><a class="nav-link" href="b25-interface">5. Interfaces</a></li>
-                  <li class="nav-item"><a class="nav-link" href="b26-traits">6. Traits</a></li>
-                  <li class="nav-item"><a class="nav-link" href="b27-abstractm">7. Abstract Methods</a></li>
-                  <li class="nav-item"><a class="nav-link" href="b28-constructors">8. Constructors</a></li>
-                  <li class="nav-item"><a class="nav-link" href="b29-destructor">9. Destructors</a></li>
-                  <li class="nav-item"><a class="nav-link" href="b210-pkuis">Kuis</a></li>
-                </ul>
-              </div>
-            </li>
+              <li class="nav-item">
+                <a class="nav-link dropdown-toggle {{ request()->is('b1*') ? 'active' : '' }}" data-bs-toggle="collapse" href="#babA" role="button">A. Pengenalan</a>
+                <div class="collapse {{ request()->is('b1*') ? 'show' : '' }}" id="babA">
+                  <ul class="nav flex-column ms-3">
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b11-object') ? 'active' : '' }}" href="{{ url('b11-object') }}">1. Object</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b12-terminologi') ? 'active' : '' }}" href="{{ url('b12-terminologi') }}">2. Terminologi</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b13-membuatobject') ? 'active' : '' }}" href="{{ url('b13-membuatobject') }}">3. Membuat Object</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b14-mengaksesp&m') ? 'active' : '' }}" href="{{ url('b14-mengaksesp&m') }}">4. Mengakses Properties</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b15-pkuis') ? 'active' : '' }}" href="{{ url('b15-pkuis') }}">Kuis</a></li>
+                  </ul>
+                </div>
+              </li>
 
-            <!-- BAB C -->
-            <li class="nav-item">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#babC" role="button">C. Anonymous Classes</a>
-              <div class="collapse" id="babC">
-                <ul class="nav flex-column ms-3">
-                  <li class="nav-item"><a class="nav-link" href="b31-konsepd">Konsep Dasar</a></li>
-                  <li class="nav-item"><a class="nav-link" href="b32-pkuis">Kuis</a></li>
-                </ul>
-              </div>
-            </li>
+              <!-- BAB B -->
+              <li class="nav-item">
+                <a class="nav-link dropdown-toggle {{ request()->is('b2*') ? 'active' : '' }}" data-bs-toggle="collapse" href="#babB" role="button">B. Mendeklarasikan Class</a>
+                <div class="collapse {{ request()->is('b2*') ? 'show' : '' }}" id="babB">
+                  <ul class="nav flex-column ms-3">
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b21-mendeklarasikanm') ? 'active' : '' }}" href="{{ url('b21-mendeklarasikanm') }}">1. Methods</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b22-mendeklarasikanp') ? 'active' : '' }}" href="{{ url('b22-mendeklarasikanp') }}">2. Properties</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b23-mendeklarasikanc') ? 'active' : '' }}" href="{{ url('b23-mendeklarasikanc') }}">3. Constants</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b24-inheritance') ? 'active' : '' }}" href="{{ url('b24-inheritance') }}">4. Inheritance</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b25-interface') ? 'active' : '' }}" href="{{ url('b25-interface') }}">5. Interfaces</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b26-traits') ? 'active' : '' }}" href="{{ url('b26-traits') }}">6. Traits</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b27-abstractm') ? 'active' : '' }}" href="{{ url('b27-abstractm') }}">7. Abstract Methods</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b28-constructors') ? 'active' : '' }}" href="{{ url('b28-constructors') }}">8. Constructors</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b29-destructor') ? 'active' : '' }}" href="{{ url('b29-destructor') }}">9. Destructors</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b210-pkuis') ? 'active' : '' }}" href="{{ url('b210-pkuis') }}">Kuis</a></li>
+                  </ul>
+                </div>
+              </li>
 
-            <!-- BAB D -->
-            <li class="nav-item">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#babD" role="button">D. Introspection</a>
-              <div class="collapse" id="babD">
-                <ul class="nav flex-column ms-3">
-                  <li class="nav-item"><a class="nav-link" href="b41-memeriksac">1. Memeriksa Classes</a></li>
-                  <li class="nav-item"><a class="nav-link" href="b42-memeriksao">2. Memeriksa Object</a></li>
-                  <li class="nav-item"><a class="nav-link" href="b43-contohpi">3. Contoh Program</a></li>
-                  <li class="nav-item"><a class="nav-link" href="b44-pkuis">Kuis</a></li>
-                </ul>
-              </div>
-            </li>
+              <!-- BAB C -->
+              <li class="nav-item">
+                <a class="nav-link dropdown-toggle {{ request()->is('b3*') ? 'active' : '' }}" data-bs-toggle="collapse" href="#babC" role="button">C. Anonymous Classes</a>
+                <div class="collapse {{ request()->is('b3*') ? 'show' : '' }}" id="babC">
+                  <ul class="nav flex-column ms-3">
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b31-konsepd') ? 'active' : '' }}" href="{{ url('b31-konsepd') }}">Konsep Dasar</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b32-pkuis') ? 'active' : '' }}" href="{{ url('b32-pkuis') }}">Kuis</a></li>
+                  </ul>
+                </div>
+              </li>
 
-            <!-- BAB E -->
-            <li class="nav-item">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#babE" role="button">E. Serialization</a>
-              <div class="collapse" id="babE">
-                <ul class="nav flex-column ms-3">
-                  <li class="nav-item"><a class="nav-link" href="b51-konsepd">Konsep Dasar</a></li>
-                  <li class="nav-item"><a class="nav-link" href="b52-pkuis">Kuis</a></li>
-                </ul>
-              </div>
-            </li>
+              <!-- BAB D -->
+              <li class="nav-item">
+                <a class="nav-link dropdown-toggle {{ request()->is('b4*') ? 'active' : '' }}" data-bs-toggle="collapse" href="#babD" role="button">D. Introspection</a>
+                <div class="collapse {{ request()->is('b4*') ? 'show' : '' }}" id="babD">
+                  <ul class="nav flex-column ms-3">
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b41-memeriksac') ? 'active' : '' }}" href="{{ url('b41-memeriksac') }}">1. Memeriksa Classes</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b42-memeriksao') ? 'active' : '' }}" href="{{ url('b42-memeriksao') }}">2. Memeriksa Object</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b43-contohpi') ? 'active' : '' }}" href="{{ url('b43-contohpi') }}">3. Contoh Program</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b44-pkuis') ? 'active' : '' }}" href="{{ url('b44-pkuis') }}">Kuis</a></li>
+                  </ul>
+                </div>
+              </li>
 
-            <!-- Evaluasi -->
-            <li class="nav-item">
-              <a class="nav-link" href="./b61-peval">Evaluasi</a>
-            </li>
-          </ul>
+              <!-- BAB E -->
+              <li class="nav-item">
+                <a class="nav-link dropdown-toggle {{ request()->is('b5*') ? 'active' : '' }}" data-bs-toggle="collapse" href="#babE" role="button">E. Serialization</a>
+                <div class="collapse {{ request()->is('b5*') ? 'show' : '' }}" id="babE">
+                  <ul class="nav flex-column ms-3">
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b51-konsepd') ? 'active' : '' }}" href="{{ url('b51-konsepd') }}">Konsep Dasar</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('b52-pkuis') ? 'active' : '' }}" href="{{ url('b52-pkuis') }}">Kuis</a></li>
+                  </ul>
+                </div>
+              </li>
 
+              <!-- Evaluasi -->
+              <li class="nav-item">
+                <a class="nav-link {{ request()->is('b61-peval') ? 'active' : '' }}" href="{{ url('b61-peval') }}">Evaluasi</a>
+              </li>
+            </ul>
           </div>
         </nav>
+
 
         <main class="konten col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div class="isi">
             @yield('container')
           </div>
           <footer class="footer py-3 text-center">
-            &copy; 2025 <strong>ObjectPHP</strong>
+            &copy; 2025 <strong>i-ObjectPHP</strong>
           </footer>
         </main>
       </div>

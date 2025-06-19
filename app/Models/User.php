@@ -61,4 +61,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(User::class, 'dosen_id');
     }
+
+    public function progressMahasiswas()
+    {
+        return $this->hasMany(ProgressMahasiswa::class, 'user_id');
+    }
+
+    public function user()
+{
+    return $this->belongsTo(User::class, 'user_id');
+}
+
 }

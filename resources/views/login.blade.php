@@ -58,7 +58,7 @@
 </style>
 
 <div class="login-container mx-auto">
-  <h3 class="login-title">Masuk ke ObjectPHP</h3>
+  <h3 class="login-title">Login ke i-ObjectPHP</h3>
 
   {{-- ✅ ALERT FLASH MESSAGE --}}
   @if(session('success'))
@@ -107,7 +107,7 @@
 
     {{-- Submit --}}
     <div class="d-grid gap-2">
-      <button type="submit" class="btn btn-purple">MASUK</button>
+      <button type="submit" class="btn btn-purple">LOGIN</button>
       <button type="reset" class="btn btn-outline-secondary">RESET</button>
     </div>
   </form>

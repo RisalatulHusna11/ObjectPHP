@@ -31,11 +31,19 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
     Route::get('/d11-dashboard', [DashboardController::class, 'dosen']);
     Route::get('/d12-data-mahasiswa', [DashboardController::class, 'showDataMahasiswa'])->name('dashboard.showDataMahasiswa');
     Route::delete('/mahasiswa/{id}', [DashboardController::class, 'destroyMahasiswa'])->name('mahasiswa.destroy');
-    Route::put('/mahasiswa/update-password/{id}', [DashboardController::class, 'updatePassword'])->name('mahasiswa.updatePassword');
+    // Route::put('/mahasiswa/update-password/{id}', [DashboardController::class, 'updatePassword'])->name('mahasiswa.updatePassword');
+    Route::put('/mahasiswa/{id}/update-data', [DashboardController::class, 'updateData'])->name('mahasiswa.updateData');
+    Route::get('mahasiswa/{id}/detail-topik', [DashboardController::class, 'detailTopik'])->name('mahasiswa.detailTopik');
+
+
+
     Route::get('/d13-data-nilai', function () {return view('d13-data-nilai');});
     Route::get('/d13-data-nilai', [DashboardController::class, 'showDataNilai'])->name('dashboard.showDataNilai');
+    Route::get('/nilai/{id}/detail', [DashboardController::class, 'detailNilai'])->name('dashboard.detailNilai');
+    Route::get('/nilai/{user_id}/detail', [DashboardController::class, 'detailNilai'])->name('dashboard.detailNilai');
     Route::get('/export-nilai-pdf', [DashboardController::class, 'exportNilaiPDF'])->name('nilai.exportPdf');
-    Route::get('/export-nilai-excel', [DashboardController::class, 'exportNilaiExcel'])->name('nilai.exportExcel');
+    Route::get('/export-csv', [DashboardController::class, 'exportNilaiCSV'])->name('nilai.exportCsv');
+    // Route::get('/export-nilai-excel', [DashboardController::class, 'exportNilaiExcel'])->name('nilai.exportExcel');
     Route::get('/d14-data-statistik', function () {return view('d14-data-statistik');});
     Route::get('/d15-pengaturan', function () {return view('d15-pengaturan');});
     Route::post('/atur-kkm', [DashboardController::class, 'aturKKM'])->name('dosen.aturKKM')->middleware(['auth', 'role:dosen']);
@@ -182,13 +190,15 @@ Route::get('/b62-eval', function () {
 
     Route::get('/editor', [EditorController::class, 'index'])->name('editor');
     Route::post('/run', [EditorController::class, 'run'])->name('editor.run');
+    Route::get('/editor-wasm', function () {return view('editor-wasm');});
+
 
 
     Route::get('/b00-peta', function () {return view('b00-peta');});
     Route::get('/b11-object', function () {return view('b11-object');});
     Route::get('/b12-terminologi', function () {return view('b12-terminologi');});
     Route::get('/b13-membuatobject', function () {return view('b13-membuatobject');});
-    Route::get('/b14-mengaksesp&m', function () {return view('b14-mengaksesp&m');});
+    Route::get('/b14-mengaksesp&m', function () {return view('b14-mengaksesp&m');});  
     
     Route::get('/b21-mendeklarasikanm', function () {return view('b21-mendeklarasikanm');});
     Route::get('/b22-mendeklarasikanp', function () {return view('b22-mendeklarasikanp');});

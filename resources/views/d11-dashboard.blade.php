@@ -4,11 +4,11 @@
 
 <style>
   .dashboard-header {
-    background: linear-gradient(to right, #b99df0, #a385e3); /* Lebih soft */
+    background: linear-gradient(to right, #b99df0, #a385e3);
     color: white;
     padding: 25px 30px;
     border-radius: 14px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -43,8 +43,8 @@
   .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 24px;
-    margin-bottom: 40px;
+    gap: 20px;
+    margin-bottom: 20px;
   }
 
   .info-card {
@@ -54,12 +54,6 @@
     border-radius: 12px;
     box-shadow: 0 3px 8px rgba(160, 130, 220, 0.07);
     text-align: center;
-    transition: 0.2s ease;
-  }
-
-  .info-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(160, 130, 220, 0.12);
   }
 
   .info-card h6 {
@@ -87,6 +81,44 @@
   .copy-btn:hover {
     background-color: #8c6acc;
   }
+
+  .nilai-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .nilai-card {
+    border-radius: 12px;
+    padding: 20px;
+    color: white;
+    font-size: 0.95rem;
+  }
+
+  .nilai-rerata {
+    background-color: #38bdf8;
+  }
+
+  .nilai-tertinggi {
+    background-color: #4ade80;
+  }
+
+  .nilai-terendah {
+    background-color: #f87171;
+  }
+
+  .nilai-card h6 {
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .nilai-card p {
+    margin: 0;
+    line-height: 1.8;
+  }
+
 </style>
 
 <div class="dashboard-header">
@@ -106,17 +138,39 @@
     <p id="token-text">{{ Auth::user()->token }}</p>
     <button class="copy-btn" onclick="copyToken()">Salin Token</button>
   </div>
+
   <div class="info-card">
-  <h6>Jumlah Mahasiswa</h6>
-  <p>{{ $jumlahMahasiswa }} Orang</p>
-</div>
-<div class="info-card">
-  <h6>Rata-rata Nilai</h6>
-  <p>
-    {{ $rataNilai !== null ? number_format($rataNilai, 2) . ' / 100' : 'Belum ada nilai' }}
-  </p>
+    <h6>Jumlah Mahasiswa</h6>
+    <p>{{ $jumlahMahasiswa }} Orang</p>
+  </div>
+
+  <div class="info-card">
+    <h6>Rata-rata Nilai Kumulatif</h6>
+    <p>{{ $rataNilai !== null ? number_format($rataNilai, 2) . ' / 100' : 'Belum ada nilai' }}</p>
+  </div>
 </div>
 
+<div class="nilai-box">
+  <div class="nilai-card nilai-rerata">
+    <h6><i class="bi bi-bar-chart-line"></i> NILAI RATA-RATA</h6>
+    @foreach ($rataPerKuis as $key => $val)
+      <p>{{ ucfirst(str_replace('_', ' ', $key)) }}: {{ is_numeric($val) ? $val : '-' }}</p>
+    @endforeach
+  </div>
+
+  <div class="nilai-card nilai-tertinggi">
+    <h6><i class="bi bi-graph-up-arrow"></i> NILAI TERTINGGI</h6>
+    @foreach ($nilaiTertinggi as $key => $val)
+      <p>{{ ucfirst(str_replace('_', ' ', $key)) }}: {{ is_numeric($val) ? $val : '-' }}</p>
+    @endforeach
+  </div>
+
+  <div class="nilai-card nilai-terendah">
+    <h6><i class="bi bi-graph-down-arrow"></i> NILAI TERENDAH</h6>
+    @foreach ($nilaiTerendah as $key => $val)
+      <p>{{ ucfirst(str_replace('_', ' ', $key)) }}: {{ is_numeric($val) ? $val : '-' }}</p>
+    @endforeach
+  </div>
 </div>
 
 <script>

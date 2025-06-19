@@ -78,9 +78,26 @@
   }
 </style>
 
-<div class="all-peta">
-  <img class="peta" src="{{ asset('images/petaoop.jpg') }}" alt="Peta Konsep OOP" id="clickable-peta">
+<div class="materi-subbab1">
+    <div class="TIKjudul">
+        <h4>PETA KONSEP</h4>
+    </div>
+
+    <div class="TIK5">
+        <p>Gambar di bawah ini merupakan peta konsep dari materi Object-Oriented Programming (OOP) PHP yang akan dipelajari dalam media pembelajaran ini. Peta konsep ini memberikan gambaran menyeluruh mengenai struktur dan alur materi yang disusun secara sistematis mulai dari pengenalan dasar hingga konsep lanjutan.</p>
+
+        <p>Materi dimulai dari bagian <strong>Pengenalan</strong>, yang membahas dasar-dasar OOP seperti object, istilah-istilah penting, serta cara membuat object, property, dan method. Selanjutnya, mahasiswa akan masuk ke bagian <strong>Mendeklarasikan Class</strong> yang mencakup berbagai komponen dalam class seperti methods, constants, inheritance, interfaces, traits, dan konstruktor/destruktor.</p>
+
+        <p>Setelah memahami struktur class, mahasiswa akan mempelajari <strong>Anonymous Classes</strong> yang digunakan untuk membuat class tanpa nama, kemudian dilanjutkan dengan materi <strong>Introspection</strong> yang mengajarkan bagaimana memeriksa class atau object secara dinamis. Terakhir, materi <strong>Serialization</strong> menyajikan konsep bagaimana object disimpan dan dipulihkan dalam format serial.</p>
+
+        <p>Dengan memahami peta konsep ini, mahasiswa diharapkan memiliki orientasi yang jelas dalam mengikuti proses pembelajaran dan mampu menavigasi setiap topik secara terstruktur.</p>
+
+        <div class="all-peta">
+          <img class="peta" src="{{ asset('images/petaoop.jpg') }}" alt="Peta Konsep OOP" id="clickable-peta">
+        </div>
+    </div>
 </div>
+
 
 <!-- Modal -->
 <div class="modal-img-container" id="modalPeta">

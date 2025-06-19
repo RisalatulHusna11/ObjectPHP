@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-    <title>ObjectPHP</title>
+    <title>i-ObjectPHP</title>
 
     <link rel="icon" type="image/png" href="{{ asset('images/logo3.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -54,7 +54,7 @@
 <div class="all-navbar">
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand ms-3" href="#">ObjectPHP</a>
+      <a class="navbar-brand ms-3" href="#">i-ObjectPHP</a>
 
       <!-- Tombol hamburger di layar kecil -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,7 @@
           <a class="menu_nav nav-link" href="#kontak">Kontak</a>
           <a class="menu_nav nav-link" href="./b00-peta">Materi</a>
           <a class="menu_nav nav-link" href="./register">Daftar</a>
-          <a class="menu_nav nav-link" href="./login">Masuk</a>
+          <a class="menu_nav nav-link" href="./login">Login</a>
           <a class="menu_nav nav-link" href="./bantuanG">Bantuan</a>
         </div>
       </div>
@@ -85,7 +85,7 @@
         </div>
         <div class="footer">
             <footer>
-                <p>&copy; 2025 <b>ObjectPHP</b></b></p>
+                <p>&copy; 2025 <b>i-ObjectPHP</b></b></p>
             </footer>
         </div>
     </main>

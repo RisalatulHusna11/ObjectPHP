@@ -162,17 +162,81 @@
   background-color: #5a32a3;
 }
 
+.btn-edit {
+  background-color: #60a5fa;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .search-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-input, .search-btn, .btn-export {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .table-container {
+    min-width: unset;
+    padding: 15px;
+  }
+
+  .modal-dialog {
+    width: 95% !important;
+    margin: 1rem auto;
+  }
+
+  .modal-body {
+    padding: 0.5rem;
+  }
+
+  .modal-body table {
+    font-size: 0.85rem;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .modal-body th,
+  .modal-body td {
+    padding: 6px 10px;
+  }
+}
+
+
 </style>
 
 <h2 class="section-title">Data Nilai</h2>
 
 <div class="table-actions">
   <form action="{{ route('dashboard.showDataNilai') }}" method="GET" class="search-form">
-    <input type="text" name="cari" value="{{ request('cari') }}" placeholder="Cari" class="search-input">
+    <select name="tipe_nilai" class="search-input" onchange="this.form.submit()">
+      <option value="" disabled {{ request('tipe_nilai') == '' ? 'selected' : '' }}>--- Pilih Nilai ---</option>
+      <option value="kuis_1" {{ request('tipe_nilai') == 'kuis_1' ? 'selected' : '' }}>Kuis 1</option>
+      <option value="kuis_2" {{ request('tipe_nilai') == 'kuis_2' ? 'selected' : '' }}>Kuis 2</option>
+      <option value="kuis_3" {{ request('tipe_nilai') == 'kuis_3' ? 'selected' : '' }}>Kuis 3</option>
+      <option value="kuis_4" {{ request('tipe_nilai') == 'kuis_4' ? 'selected' : '' }}>Kuis 4</option>
+      <option value="kuis_5" {{ request('tipe_nilai') == 'kuis_5' ? 'selected' : '' }}>Kuis 5</option>
+      <option value="evaluasi" {{ request('tipe_nilai') == 'evaluasi' ? 'selected' : '' }}>Evaluasi</option>
+      <option value="rata_rata" {{ request('tipe_nilai') == 'rata_rata' ? 'selected' : '' }}>Rata-rata</option>
+    </select>
+
+    <input type="text" name="cari" value="{{ request('cari') }}" placeholder="Cari..." class="search-input">
     <button type="submit" class="search-btn"><i class="bi bi-search"></i></button>
   </form>
-  <div style="display: flex; gap: 8px;">
-    <a href="{{ route('nilai.exportPdf') }}" class="btn-export"><i class="bi bi-file-earmark-pdf"></i> Export</a>  </div>
+  <a href="{{ route('nilai.exportPdf') }}" class="btn-export">
+    <i class="bi bi-file-earmark-pdf"></i> Export PDF
+  </a>
+  <a href="{{ route('nilai.exportCsv') }}" class="btn-export">
+  <i class="bi bi-filetype-csv"></i> Export CSV
+</a>
+
 </div>
 
 <div class="table-wrapper">
@@ -181,36 +245,43 @@
       <table>
         <thead>
           <tr>
+            <th>No</th>
             <th>Nama</th>
             <th>Email</th>
-            <th>Kuis 1</th>
-            <th>Kuis 2</th>
-            <th>Kuis 3</th>
-            <th>Kuis 4</th>
-            <th>Kuis 5</th>
-            <th>Evaluasi</th>
-            <th>Rata-rata</th>
+            <th>Nilai Terakhir</th>
+            <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($nilai as $item)
+          @forelse ($nilai as $index => $item)
           <tr>
-            <td>
-              <div class="d-flex align-items-center">
-                <div class="avatar-initial">{{ strtoupper(substr($item->nama, 0, 1)) }}</div>
-                {{ $item->nama }}
-              </div>
-            </td>
+            <td>{{ $nilai->firstItem() + $index }}</td>
+            <td>{{ $item->nama }}</td>
             <td>{{ $item->email }}</td>
-            <td>{{ $item->kuis_1 ?? '-' }}</td>
-            <td>{{ $item->kuis_2 ?? '-' }}</td>
-            <td>{{ $item->kuis_3 ?? '-' }}</td>
-            <td>{{ $item->kuis_4 ?? '-' }}</td>
-            <td>{{ $item->kuis_5 ?? '-' }}</td>
-            <td>{{ $item->evaluasi ?? '-' }}</td>
-            <td>{{ number_format($item->rata_rata, 2) }}</td>
+            <td>
+              @if($item->nilai_terakhir === null)
+                -
+              @else
+                {{ is_numeric($item->nilai_terakhir) ? $item->nilai_terakhir : '-' }}
+              @endif
+            </td>
+            <td>
+              <a href="javascript:void(0)" 
+                class="btn btn-sm btn-outline-primary btn-detail-nilai" 
+                data-id="{{ $item->user_id }}" 
+                data-tipe="{{ request('tipe_nilai') }}">
+                <i class="bi bi-eye"></i>
+              </a>
+
+
+
+            </td>
           </tr>
-          @endforeach
+          @empty
+          <tr>
+            <td colspan="5" class="text-center">Tidak ada data nilai.</td>
+          </tr>
+          @endforelse
         </tbody>
       </table>
     </div>
@@ -218,7 +289,76 @@
 </div>
 
 <div class="pagination-wrapper">
-  {{ $nilai->links('vendor.pagination.nextphp') }}
+  {{ $nilai->appends(request()->all())->links('vendor.pagination.nextphp') }}
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalDetailNilai" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Riwayat Nilai Mahasiswa - <span id="namaMahasiswa"></span></h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered">
+          <thead class="table-light">
+            <tr>
+              <th>No.</th>
+              <th>Tanggal</th>
+              <th>Waktu</th>
+              <th>Jawaban Benar</th>
+              <th>Jawaban Salah</th>
+              <th>Nilai</th>
+              <th>Tuntas</th>
+            </tr>
+          </thead>
+          <tbody id="isiDetailNilai">
+            <tr><td colspan="7" class="text-center text-muted">Memuat data...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $('.btn-detail-nilai').click(function () {
+  const userId = $(this).data('id');
+  const tipe = $(this).data('tipe');
+
+  $('#modalDetailNilai').modal('show');
+  $('#isiDetailNilai').html('<tr><td colspan="7" class="text-center">Memuat data...</td></tr>');
+
+  $.get(`/nilai/${userId}/detail?tipe=${tipe}`, function (res) {
+    $('#namaMahasiswa').text(res.nama);
+    let html = '';
+
+    if (res.riwayat.length === 0) {
+      html = '<tr><td colspan="7" class="text-center">Belum ada data nilai.</td></tr>';
+    } else {
+      res.riwayat.forEach((d, i) => {
+        html += `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${d.tanggal}</td>
+            <td>${d.waktu}</td>
+            <td>${d.benar}</td>
+            <td>${d.salah}</td>
+            <td>${d.skor}</td>
+            <td>${d.tuntas ? 'Ya' : 'Tidak'}</td>
+          </tr>
+        `;
+      });
+    }
+
+    $('#isiDetailNilai').html(html);
+  }).fail(function () {
+    $('#isiDetailNilai').html('<tr><td colspan="7" class="text-danger text-center">Gagal memuat data.</td></tr>');
+  });
+});
+
+</script>
 
 @endsection
