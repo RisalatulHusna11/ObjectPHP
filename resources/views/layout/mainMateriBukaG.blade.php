@@ -216,6 +216,9 @@
     <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
   <i class="bi bi-list"></i>
 </button>
+@php
+  $currentUrl = request()->path();
+@endphp
     <div class="me-3 d-flex align-items-center">
   @php use Illuminate\Support\Facades\Auth; @endphp
 
