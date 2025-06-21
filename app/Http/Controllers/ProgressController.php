@@ -38,5 +38,19 @@ class ProgressController extends Controller
         return response()->json(['progress' => $progressPercentage]);
     }
 
+    public function cek(Request $request)
+{
+    $userId = auth()->id();
+    $halaman = $request->input('halaman', []); // array halaman yang dicek
+
+    $selesai = ProgressMahasiswa::where('user_id', $userId)
+                ->whereIn('halaman', $halaman)
+                ->pluck('halaman')
+                ->toArray();
+
+    return response()->json(['selesai' => $selesai]);
 }
+
+}
+
 

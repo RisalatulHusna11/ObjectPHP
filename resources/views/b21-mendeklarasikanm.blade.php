@@ -52,17 +52,15 @@ $selesai = ProgressMahasiswa::where('user_id', auth()->id())->where('halaman', '
   <div class="quiz-header">
     <h1>AYO PAHAMI!</h1><br>
     <p>Petunjuk:</p>
-    <ol>
+    <ol> 
       <li>Perhatikan kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
       <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan.</li>
       <li>Pastikan setiap baris dan struktur penulisan sesuai dengan contoh (termasuk titik koma, kurung, dll).</li>
       <li>Tekan tombol <code>RUN</code> di dalam editor untuk menjalankan program.</li>
-      <li>Perhatikan hasil keluaran di bawah editor. Apa yang ditampilkan?</li>
-    </ol>
-  </div>
+      <li>Amati hasil output program, lalu masukkan hasilnya pada kolom di bawahnya untuk memeriksa output sudah benar atau belum.</li>
 
-  <div class="text-start mb-3">
-    <a href="{{ route('ayoPahami.besar2') }}" class="btn-besar">🔎 LIHAT VERSI LEBIH BESAR</a>
+      <li>Tekan tombol <strong>Periksa Output</strong> untuk mengecek jawabanmu.</li>
+    </ol>
   </div>
 
   <div class="ayo-pahami-grid">
@@ -92,9 +90,17 @@ echo $mobil->getMerk();</code></pre>
     </div>
   </div>
 
-  <p class="mt-3">
-    Pada contoh di atas, method <code>getMerk()</code> dan <code>setMerk()</code> menggunakan <code>$this</code> untuk mengakses dan mengubah properti <code>$merk</code> pada objek yang sedang digunakan.
-  </p>
+  <div class="mt-4">
+    <label for="outputMahasiswa" class="form-label">Masukkan output yang kamu lihat dari program di atas:</label>
+    <small class="text-muted d-block mb-2" style="font-style: italic;">
+    *Tulis output sama persis seperti yang kamu lihat di bagian [Output] diatas.<br>
+    *Jika output menunjukkan pesan error, cukup tulis <strong>"Error"</strong> saja di kolom ini.
+  </small>
+    <textarea id="outputAyo1" class="form-control" rows="4" placeholder="Tulis output di sini..."></textarea>
+    <button class="btn-next mt-2" onclick="cekAyoPahami1()">Periksa Output</button>
+    <div id="feedbackAyo1" class="mt-3"></div>
+
+  </div>
 </div>
 
 
@@ -105,18 +111,19 @@ echo $mobil->getMerk();</code></pre>
   <div class="quiz-header">
     <h1>AYO PAHAMI!</h1><br>
     <p>Petunjuk:</p>
-    <ol>
+    <ol> 
       <li>Perhatikan kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
       <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan.</li>
       <li>Pastikan setiap baris dan struktur penulisan sesuai dengan contoh (termasuk titik koma, kurung, dll).</li>
       <li>Tekan tombol <code>RUN</code> di dalam editor untuk menjalankan program.</li>
-      <li>Perhatikan hasil keluaran di bawah editor. Apa yang ditampilkan?</li>
+      <li>Amati hasil output program, lalu masukkan hasilnya pada kolom di bawahnya untuk memeriksa output sudah benar atau belum.</li>
+      <li>Tekan tombol <strong>Periksa Output</strong> untuk mengecek jawabanmu.</li>
     </ol>
   </div>
 
-  <div class="text-start mb-3">
+  <!-- <div class="text-start mb-3">
     <a href="{{ route('ayoPahami.besar3') }}" class="btn-besar">🔎 LIHAT VERSI LEBIH BESAR</a>
-  </div>
+  </div> -->
 
   <div class="ayo-pahami-grid">
     <div class="kode-diketik">
@@ -143,9 +150,16 @@ echo PembantuMatematika::kubus(3);</code></pre>
     </div>
   </div>
 
-  <p class="mt-3">
-    Method <code>kuadrat()</code> dan <code>kubus()</code> dideklarasikan sebagai method statis dan dapat langsung dipanggil dengan <code>PembantuMatematika::kuadrat(4)</code> tanpa perlu membuat objek terlebih dahulu.
-  </p>
+  <div class="mt-4">
+    <label for="outputMahasiswa" class="form-label">Masukkan output yang kamu lihat dari program di atas:</label>
+    <small class="text-muted d-block mb-2" style="font-style: italic;">
+    *Tulis output sama persis seperti yang kamu lihat di bagian [Output] diatas.<br>
+    *Jika output menunjukkan pesan error, cukup tulis <strong>"Error"</strong> saja di kolom ini.
+  </small>
+    <textarea id="outputAyo2" class="form-control" rows="4" placeholder="Tulis output di sini..."></textarea>
+    <button class="btn-next mt-2" onclick="cekAyoPahami2()">Periksa Output</button>
+    <div id="feedbackAyo2" class="mt-3"></div>
+  </div>
 </div>
 
 
@@ -156,18 +170,19 @@ echo PembantuMatematika::kubus(3);</code></pre>
   <div class="quiz-header">
     <h1>AYO PAHAMI!</h1><br>
     <p>Petunjuk:</p>
-    <ol>
+    <ol> 
       <li>Perhatikan kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
       <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan.</li>
       <li>Pastikan setiap baris dan struktur penulisan sesuai dengan contoh (termasuk titik koma, kurung, dll).</li>
       <li>Tekan tombol <code>RUN</code> di dalam editor untuk menjalankan program.</li>
-      <li>Perhatikan hasil keluaran di bawah editor. Apa yang ditampilkan?</li>
+      <li>Amati hasil output program, lalu masukkan hasilnya pada kolom di bawahnya untuk memeriksa output sudah benar atau belum.</li>
+      <li>Tekan tombol <strong>Periksa Output</strong> untuk mengecek jawabanmu.</li>
     </ol>
   </div>
 
-  <div class="text-start mb-3">
+  <!-- <div class="text-start mb-3">
     <a href="{{ route('ayoPahami.besar4') }}" class="btn-besar">🔎 LIHAT VERSI LEBIH BESAR</a>
-  </div>
+  </div> -->
 
   <div class="ayo-pahami-grid">
     <div class="kode-diketik">
@@ -194,9 +209,16 @@ class Anjing extends Hewan {
     </div>
   </div>
 
-  <p class="mt-3">
-    Dalam contoh ini, method <code>getNama()</code> di dalam class <code>Hewan</code> dideklarasikan sebagai <code>final</code>, sehingga class <code>Anjing</code> tidak diperbolehkan untuk menggantinya (override).
-  </p>
+  <div class="mt-4">
+    <label for="outputMahasiswa" class="form-label">Masukkan output yang kamu lihat dari program di atas:</label>
+    <small class="text-muted d-block mb-2" style="font-style: italic;">
+    *Tulis output sama persis seperti yang kamu lihat di bagian [Output] diatas.<br>
+    *Jika output menunjukkan pesan error, cukup tulis <strong>"Error"</strong> saja di kolom ini.
+  </small>
+    <textarea id="outputAyo3" class="form-control" rows="4" placeholder="Tulis output di sini..."></textarea>
+    <button class="btn-next mt-2" onclick="cekAyoPahami3()">Periksa Output</button>
+    <div id="feedbackAyo3" class="mt-3"></div>
+  </div>
 </div>
 
 
@@ -224,18 +246,19 @@ class Anjing extends Hewan {
   <div class="quiz-header">
     <h1>AYO PAHAMI!</h1><br>
     <p>Petunjuk:</p>
-    <ol>
+    <ol> 
       <li>Perhatikan kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
       <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan.</li>
       <li>Pastikan setiap baris dan struktur penulisan sesuai dengan contoh (termasuk titik koma, kurung, dll).</li>
       <li>Tekan tombol <code>RUN</code> di dalam editor untuk menjalankan program.</li>
-      <li>Perhatikan hasil keluaran di bawah editor. Apa yang ditampilkan?</li>
+      <li>Amati hasil output program, lalu masukkan hasilnya pada kolom di bawahnya untuk memeriksa output sudah benar atau belum.</li>
+      <li>Tekan tombol <strong>Periksa Output</strong> untuk mengecek jawabanmu.</li>
     </ol>
   </div>
 
-  <div class="text-start mb-3">
+  <!-- <div class="text-start mb-3">
     <a href="{{ route('ayoPahami.besar5') }}" class="btn-besar">🔎 LIHAT VERSI LEBIH BESAR</a>
-  </div>
+  </div> -->
 
   <div class="ayo-pahami-grid">
     <div class="kode-diketik">
@@ -275,13 +298,15 @@ $rekening->setor(1000);
     </div>
   </div>
 
-  <div class="mt-3">
-    <p>Pada contoh di atas:</p>
-    <ul>
-      <li><strong><code>setor()</code> bersifat public</strong> sehingga dapat diakses di luar class.</li>
-      <li><strong><code>tarik()</code> bersifat protected</strong> hanya bisa dipanggil dari dalam class atau subclass.</li>
-      <li><strong><code>catatTransaksi()</code> bersifat private</strong> sehingga hanya bisa dipanggil di dalam class RekeningBank.</li>
-    </ul>
+  <div class="mt-4">
+    <label for="outputMahasiswa" class="form-label">Masukkan output yang kamu lihat dari program di atas:</label>
+    <small class="text-muted d-block mb-2" style="font-style: italic;">
+    *Tulis output sama persis seperti yang kamu lihat di bagian [Output] diatas.<br>
+    *Jika output menunjukkan pesan error, cukup tulis <strong>"Error"</strong> saja di kolom ini.
+  </small>
+    <textarea id="outputAyo4" class="form-control" rows="4" placeholder="Tulis output di sini..."></textarea>
+    <button class="btn-next mt-2" onclick="cekAyoPahami4()">Periksa Output</button>
+    <div id="feedbackAyo4" class="mt-3"></div>
   </div>
 </div>
 
@@ -295,18 +320,19 @@ $rekening->setor(1000);
   <div class="quiz-header">
     <h1>AYO PAHAMI!</h1><br>
     <p>Petunjuk:</p>
-    <ol>
+    <ol> 
       <li>Perhatikan kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
       <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan.</li>
       <li>Pastikan setiap baris dan struktur penulisan sesuai dengan contoh (termasuk titik koma, kurung, dll).</li>
       <li>Tekan tombol <code>RUN</code> di dalam editor untuk menjalankan program.</li>
-      <li>Perhatikan hasil keluaran di bawah editor. Apa yang ditampilkan?</li>
+      <li>Amati hasil output program, lalu masukkan hasilnya pada kolom di bawahnya untuk memeriksa output sudah benar atau belum.</li>
+      <li>Tekan tombol <strong>Periksa Output</strong> untuk mengecek jawabanmu.</li>
     </ol>
   </div>
 
-  <div class="text-start mb-3">
+  <!-- <div class="text-start mb-3">
     <a href="{{ route('ayoPahami.besar6') }}" class="btn-besar">🔎 LIHAT VERSI LEBIH BESAR</a>
-  </div>
+  </div> -->
 
   <div class="ayo-pahami-grid">
     <div class="kode-diketik">
@@ -337,9 +363,16 @@ $karyawan->berikanTugas($tugas);</code></pre>
     </div>
   </div>
 
-  <p class="mt-3">
-    Dalam contoh ini, method <code>berikanTugas()</code> hanya menerima objek dari class <code>Tugas</code>, sehingga pemanggilan dengan tipe data lain akan menyebabkan error.
-  </p>
+  <div class="mt-4">
+    <label for="outputMahasiswa" class="form-label">Masukkan output yang kamu lihat dari program di atas:</label>
+    <small class="text-muted d-block mb-2" style="font-style: italic;">
+    *Tulis output sama persis seperti yang kamu lihat di bagian [Output] diatas.<br>
+    *Jika output menunjukkan pesan error, cukup tulis <strong>"Error"</strong> saja di kolom ini.
+  </small>
+    <textarea id="outputAyo5" class="form-control" rows="4" placeholder="Tulis output di sini..."></textarea>
+    <button class="btn-next mt-2" onclick="cekAyoPahami5()">Periksa Output</button>
+    <div id="feedbackAyo5" class="mt-3"></div>
+  </div>
 </div>
 ```
 
@@ -353,18 +386,19 @@ Contoh:
   <div class="quiz-header">
     <h1>AYO PAHAMI!</h1><br>
     <p>Petunjuk:</p>
-    <ol>
+    <ol> 
       <li>Perhatikan kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
       <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan.</li>
       <li>Pastikan setiap baris dan struktur penulisan sesuai dengan contoh (termasuk titik koma, kurung, dll).</li>
       <li>Tekan tombol <code>RUN</code> di dalam editor untuk menjalankan program.</li>
-      <li>Perhatikan hasil keluaran di bawah editor. Apa yang ditampilkan?</li>
+      <li>Amati hasil output program, lalu masukkan hasilnya pada kolom di bawahnya untuk memeriksa output sudah benar atau belum.</li>
+      <li>Tekan tombol <strong>Periksa Output</strong> untuk mengecek jawabanmu.</li>
     </ol>
   </div>
 
-  <div class="text-start mb-3">
+  <!-- <div class="text-start mb-3">
     <a href="{{ route('ayoPahami.besar7') }}" class="btn-besar">🔎 LIHAT VERSI LEBIH BESAR</a>
-  </div>
+  </div> -->
 
   <div class="ayo-pahami-grid">
     <div class="kode-diketik">
@@ -395,11 +429,19 @@ echo "Buku yang diperoleh: " . $buku->judul;</code></pre>
     </div>
   </div>
 
-  <p class="mt-3">
-    Di sini, method <code>ambilBuku()</code> harus mengembalikan objek dari class <code>Buku</code>. Jika method ini mengembalikan tipe data lain, PHP akan menghasilkan error.
-  </p>
+  <div class="mt-4">
+    <label for="outputMahasiswa" class="form-label">Masukkan output yang kamu lihat dari program di atas:</label>
+    <small class="text-muted d-block mb-2" style="font-style: italic;">
+    *Tulis output sama persis seperti yang kamu lihat di bagian [Output] diatas.<br>
+    *Jika output menunjukkan pesan error, cukup tulis <strong>"Error"</strong> saja di kolom ini.
+  </small>
+    <textarea id="outputAyo6" class="form-control" rows="4" placeholder="Tulis output di sini..."></textarea>
+    <button class="btn-next mt-2" onclick="cekAyoPahami6()">Periksa Output</button>
+    <div id="feedbackAyo6" class="mt-3"></div>
+  </div>
 </div>
   </div>
+  
 
   
 <!--  LATIHAN -->
@@ -420,7 +462,320 @@ echo "Buku yang diperoleh: " . $buku->judul;</code></pre>
   <div id="feedback-b21" class="feedback d-none"></div>
 </div>
 
+```
+  </div>
+</div>
+
+<div class="pagination">
+<a href="./b22-mendeklarasikanp"
+   id="btnSelanjutnya"
+   class="next"
+   style="pointer-events: {{ $selesai ? 'auto' : 'none' }}; opacity: {{ $selesai ? '1' : '0.5' }};"
+   {{ $selesai ? '' : 'disabled' }}>
+  Selanjutnya &raquo;
+</a>
+</div>
+
+
+
+
+
+
 <script>
+let ayoPahamiBerhasil = [false, false, false, false, false, false]; // 6 soal Ayo Pahami di B21
+let sudahLatihan = false;
+let progressTerkirim = false;
+
+function cekKelayakanAksesGabunganB21() {
+  const semuaSelesai = ayoPahamiBerhasil.every(val => val === true);
+
+  if (semuaSelesai && sudahLatihan && !progressTerkirim) {
+    progressTerkirim = true;
+    kirimProgressHalaman("b21-mendeklarasikanm");
+
+    const tombol = document.getElementById("btnSelanjutnya");
+    if (tombol) {
+      tombol.style.pointerEvents = "auto";
+      tombol.style.opacity = 1;
+      tombol.removeAttribute("disabled");
+    }
+  }
+}
+
+
+  
+// CEK OUTPUT AYO PAHAMI
+function cekAyoPahami1() {
+  const jawaban = document.getElementById('outputAyo1').value.trim();
+  const kunci = 'Toyota';
+  const feedback = document.getElementById('feedbackAyo1');
+
+  if (jawaban === kunci) {
+    feedback.innerHTML = `
+    <div class="alert alert-success">
+      ✅ <strong>Selamat!</strong> Output kamu sudah sesuai.<br>
+      Kamu berhasil memahami cara mendefinisikan class, membuat object, menetapkan nilai properti, dan mengaksesnya melalui method dalam OOP PHP.<br>
+      Silakan lanjutkan ke latihan berikutnya!
+    </div>
+
+    <div class="mt-3 p-3 rounded" style="background-color: #f0faff; border-left: 6px solid #3ac4f1;">
+      <h5 class="fw-bold mb-2 text-primary">🔍 Penjelasan Kode Program</h5>
+      <ul style="padding-left: 20px;">
+        <li><strong>Baris 2</strong>: Mendefinisikan class <code>Mobil</code>.</li>
+        <li><strong>Baris 3</strong>: Menambahkan properti publik <code>$merk</code> dengan nilai awal kosong.</li>
+        <li><strong>Baris 5–7</strong>: Mendefinisikan method <code>getMerk()</code> untuk mengembalikan nilai <code>$this->merk</code>.</li>
+        <li><strong>Baris 9–11</strong>: Mendefinisikan method <code>setMerk()</code> untuk menetapkan nilai baru ke <code>$merk</code>.</li>
+        <li><strong>Baris 14</strong>: Membuat object baru dari class <code>Mobil</code>.</li>
+        <li><strong>Baris 15</strong>: Menetapkan nilai <code>"Toyota"</code> ke properti <code>$merk</code> melalui method <code>setMerk()</code>.</li>
+        <li><strong>Baris 16</strong>: Menampilkan nilai <code>$merk</code> melalui method <code>getMerk()</code> yang menghasilkan output <code>Toyota</code>.</li>
+      </ul>
+      <p class="mt-3 mb-0">
+        💡 <strong>Kesimpulan:</strong> Pada contoh di atas, method <code>getMerk()</code> dan <code>setMerk()</code> menggunakan <code>$this</code> untuk mengakses dan mengubah properti <code>$merk</code> pada objek yang sedang digunakan.
+      </p>
+    </div>
+    `;
+    ayoPahamiBerhasil[0] = true;
+  } else {
+    feedback.innerHTML = `<div class="alert alert-warning">
+      ⚠️ <strong>Jawaban belum tepat.</strong><br>
+      Coba periksa kembali:
+      <ul style="margin-top:5px;">
+        <li>Apakah <strong>kode program</strong> yang kamu ketik sudah benar, tanpa salah huruf, tanda baca, atau spasi yang keliru?</li>
+        <li>Apakah <strong>output</strong> yang kamu salin sudah persis sama seperti hasil yang muncul, termasuk huruf kapital dan urutan karakter?</li>
+      </ul>
+      Pastikan untuk menyalin dengan teliti. Kamu bisa tekan tombol <code>RUN</code> lagi dan salin ulang outputnya jika perlu.
+    </div>`;
+    ayoPahamiBerhasil[0] = false;
+  }
+
+  cekKelayakanAksesGabunganB21();
+}
+
+
+function cekAyoPahami2() {
+  const jawaban = document.getElementById('outputAyo2').value.trim();
+  const kunci = '1627';
+  const feedback = document.getElementById('feedbackAyo2');
+
+  if (jawaban === kunci) {
+    feedback.innerHTML = `
+    <div class="alert alert-success">
+      ✅ <strong>Selamat!</strong> Output kamu sudah sesuai.<br>
+      Kamu telah berhasil memahami cara mendeklarasikan dan menggunakan <strong>method statis</strong> dalam PHP.<br>
+      Method statis bisa dipanggil langsung dari nama class tanpa harus membuat objek terlebih dahulu.
+    </div>
+
+    <div class="mt-3 p-3 rounded" style="background-color: #f0faff; border-left: 6px solid #3ac4f1;">
+      <h5 class="fw-bold mb-2 text-primary">🔍 Penjelasan Kode Program</h5>
+      <ul style="padding-left: 20px;">
+        <li><strong>Baris 2</strong>: Mendefinisikan class <code>PembantuMatematika</code>.</li>
+        <li><strong>Baris 3–5</strong>: Mendeklarasikan method statis <code>kuadrat()</code> untuk menghitung hasil pangkat dua dari angka.</li>
+        <li><strong>Baris 7–9</strong>: Mendeklarasikan method statis <code>kubus()</code> untuk menghitung pangkat tiga dari angka.</li>
+        <li><strong>Baris 13</strong>: Memanggil method <code>kuadrat(4)</code> langsung dari class tanpa membuat objek → hasilnya <code>16</code>.</li>
+        <li><strong>Baris 14</strong>: Memanggil method <code>kubus(3)</code> → hasilnya <code>27</code>.</li>
+      </ul>
+      <p class="mt-3 mb-0">
+        💡 <strong>Kesimpulan:</strong> Method <code>kuadrat()</code> dan <code>kubus()</code> dideklarasikan sebagai method statis dan dapat langsung dipanggil dengan <code>PembantuMatematika::kuadrat(4)</code> tanpa perlu membuat objek terlebih dahulu.
+      </p>
+    </div>
+    `;
+    ayoPahamiBerhasil[1] = true;
+  } else {
+    feedback.innerHTML = `<div class="alert alert-warning">
+      ⚠️ <strong>Jawaban belum tepat.</strong><br>
+      Coba periksa kembali:
+      <ul style="margin-top:5px;">
+        <li>Apakah <strong>kode program</strong> yang kamu ketik sudah benar, tanpa salah huruf, tanda baca, atau spasi yang keliru?</li>
+        <li>Apakah <strong>output</strong> yang kamu salin sudah persis sama seperti hasil yang muncul, termasuk huruf kapital dan urutan karakter?</li>
+      </ul>
+      Pastikan untuk menyalin dengan teliti. Kamu bisa tekan tombol <code>RUN</code> lagi dan salin ulang outputnya jika perlu.
+    </div>`;
+    ayoPahamiBerhasil[1] = false;
+  }
+
+  cekKelayakanAksesGabunganB21();
+}
+
+
+function cekAyoPahami3() {
+  const jawaban = document.getElementById('outputAyo3').value.trim();
+  const kunci = 'Error';
+  const feedback = document.getElementById('feedbackAyo3');
+
+  if (jawaban === kunci) {
+    feedback.innerHTML = `
+    <div class="alert alert-success">
+      ✅ <strong>Benar!</strong> Kamu berhasil memahami aturan penggunaan method <code>final</code> dalam pewarisan class.<br>
+      Program menghasilkan <strong>error</strong> karena method <code>getNama()</code> yang dideklarasikan sebagai <code>final</code> di class <code>Hewan</code> tidak boleh dioverride oleh class <code>Anjing</code>.
+    </div>
+
+    <div class="mt-3 p-3 rounded" style="background-color: #f0faff; border-left: 6px solid #3ac4f1;">
+      <h5 class="fw-bold mb-2 text-primary">🔍 Penjelasan Kode Program</h5>
+      <ul style="padding-left: 20px;">
+        <li><strong>Baris 2</strong>: Mendefinisikan class <code>Hewan</code> dengan properti <code>$nama</code>.</li>
+        <li><strong>Baris 5–7</strong>: Method <code>getNama()</code> ditandai sebagai <code>final</code>, artinya tidak boleh dioverride.</li>
+        <li><strong>Baris 10</strong>: Mendefinisikan class <code>Anjing</code> sebagai turunan dari <code>Hewan</code>.</li>
+        <li><strong>Baris 11–13</strong>: Class <code>Anjing</code> mencoba mendeklarasikan ulang method <code>getNama()</code> → ini menyebabkan error.</li>
+      </ul>
+      <p class="mt-3 mb-0">
+        💡 <strong>Kesimpulan:</strong> Dalam contoh ini, method <code>getNama()</code> di dalam class <code>Hewan</code> dideklarasikan sebagai <code>final</code>, sehingga class <code>Anjing</code> tidak diperbolehkan untuk menggantinya (override).
+      </p>
+    </div>
+    `;
+    ayoPahamiBerhasil[2] = true;
+  } else {
+    feedback.innerHTML = `<div class="alert alert-warning">
+      ⚠️ <strong>Jawaban belum tepat.</strong><br>
+      Coba periksa kembali:
+      <ul style="margin-top:5px;">
+        <li>Apakah <strong>kode program</strong> yang kamu ketik sudah benar, tanpa salah huruf, tanda baca, atau spasi yang keliru?</li>
+        <li>Apakah <strong>output</strong> yang kamu salin sudah persis sama seperti hasil yang muncul, termasuk huruf kapital dan urutan karakter?</li>
+      </ul>
+      Pastikan untuk menyalin dengan teliti. Kamu bisa tekan tombol <code>RUN</code> lagi dan salin ulang outputnya jika perlu.
+    </div>`;
+    ayoPahamiBerhasil[2] = false;
+  }
+
+  cekKelayakanAksesGabunganB21();
+}
+
+
+function cekAyoPahami4() {
+  const jawaban = document.getElementById('outputAyo4').value.trim();
+  const kunci = 'Transaksi berhasil. Saldo saat ini: 1000';
+  const feedback = document.getElementById('feedbackAyo4');
+
+  if (jawaban === kunci) {
+    feedback.innerHTML = `
+    <div class="alert alert-success">
+      ✅ <strong>Selamat!</strong> Output kamu sudah sesuai.<br>
+      Kamu berhasil memahami <strong>modifier akses</strong> seperti <code>public</code>, <code>protected</code>, dan <code>private</code> dalam class PHP.<br>
+      Selain itu, kamu juga telah memahami bagaimana sebuah method bisa memanggil method lain dalam class yang sama.
+    </div>
+
+    <div class="mt-3 p-3 rounded" style="background-color: #f0faff; border-left: 6px solid #3ac4f1;">
+      <h5 class="fw-bold mb-2 text-primary">🔍 Penjelasan Kode Program</h5>
+      <ul style="padding-left: 20px;">
+        <li><strong>Baris 2</strong>: Membuat class <code>RekeningBank</code> dengan properti <code>$saldo</code>.</li>
+        <li><strong>Baris 5–8</strong>: Method <code>setor()</code> bersifat <code>public</code>, dapat diakses dari luar class.</li>
+        <li><strong>Baris 10–17</strong>: Method <code>tarik()</code> bersifat <code>protected</code>, hanya bisa diakses dari dalam class atau turunannya.</li>
+        <li><strong>Baris 19–21</strong>: Method <code>catatTransaksi()</code> bersifat <code>private</code>, hanya bisa dipanggil dari dalam class.</li>
+        <li><strong>Baris 24</strong>: Membuat objek baru dari class <code>RekeningBank</code>.</li>
+        <li><strong>Baris 25</strong>: Memanggil method <code>setor(1000)</code> → saldo bertambah, dan method <code>catatTransaksi()</code> mencetak informasi saldo.</li>
+      </ul>
+      <p class="mt-3 mb-0">
+        💡 <strong>Kesimpulan:</strong> Akses modifier digunakan untuk mengontrol akses terhadap properti dan method. Contoh ini menunjukkan bagaimana method <code>private</code> dan <code>protected</code> menjaga keamanan internal class, sementara method <code>public</code> digunakan sebagai antarmuka luar class.
+      </p>
+    </div>
+    `;
+    ayoPahamiBerhasil[3] = true;
+  } else {
+    feedback.innerHTML = `<div class="alert alert-warning">
+      ⚠️ <strong>Jawaban belum tepat.</strong><br>
+      Coba periksa kembali:
+      <ul style="margin-top:5px;">
+        <li>Apakah <strong>kode program</strong> yang kamu ketik sudah benar, tanpa salah huruf, tanda baca, atau spasi yang keliru?</li>
+        <li>Apakah <strong>output</strong> yang kamu salin sudah persis sama seperti hasil yang muncul, termasuk huruf kapital dan urutan karakter?</li>
+      </ul>
+      Pastikan untuk menyalin dengan teliti. Kamu bisa tekan tombol <code>RUN</code> lagi dan salin ulang outputnya jika perlu.
+    </div>`;
+    ayoPahamiBerhasil[3] = false;
+  }
+
+  cekKelayakanAksesGabunganB21();
+}
+
+
+function cekAyoPahami5() {
+  const jawaban = document.getElementById('outputAyo5').value.trim();
+  const kunci = 'Tugas diberikan: Menganalisis data keuangan';
+  const feedback = document.getElementById('feedbackAyo5');
+
+  if (jawaban === kunci) {
+    feedback.innerHTML = `
+    <div class="alert alert-success">
+      ✅ <strong>Selamat!</strong> Output kamu sudah sesuai.<br>
+      Kamu telah berhasil memahami <strong>type hinting pada parameter</strong> method di PHP, serta cara menggunakan class sebagai parameter antar objek.
+    </div>
+
+    <div class="mt-3 p-3 rounded" style="background-color: #f0faff; border-left: 6px solid #3ac4f1;">
+      <h5 class="fw-bold mb-2 text-primary">🔍 Penjelasan Kode Program</h5>
+      <ul style="padding-left: 20px;">
+        <li><strong>Baris 2–6</strong>: Mendefinisikan class <code>Karyawan</code> dan method <code>berikanTugas()</code> yang menerima parameter bertipe <code>Tugas</code>.</li>
+        <li><strong>Baris 8–14</strong>: Mendefinisikan class <code>Tugas</code> dengan properti <code>deskripsi</code> dan constructor untuk menetapkan nilainya.</li>
+        <li><strong>Baris 16</strong>: Membuat objek <code>Tugas</code> baru dengan deskripsi "Menganalisis data keuangan".</li>
+        <li><strong>Baris 17</strong>: Membuat objek <code>Karyawan</code>.</li>
+        <li><strong>Baris 18</strong>: Memanggil method <code>berikanTugas()</code> dengan parameter objek <code>Tugas</code> → mencetak deskripsi tugas.</li>
+      </ul>
+      <p class="mt-3 mb-0">
+        💡 <strong>Kesimpulan:</strong> Dalam contoh ini, method <code>berikanTugas()</code> hanya menerima objek dari class <code>Tugas</code>, sehingga pemanggilan dengan tipe data lain akan menyebabkan error.
+      </p>
+    </div>
+    `;
+    ayoPahamiBerhasil[4] = true;
+  } else {
+    feedback.innerHTML = `<div class="alert alert-warning">
+      ⚠️ <strong>Jawaban belum tepat.</strong><br>
+      Coba periksa kembali:
+      <ul style="margin-top:5px;">
+        <li>Apakah <strong>kode program</strong> yang kamu ketik sudah benar, tanpa salah huruf, tanda baca, atau spasi yang keliru?</li>
+        <li>Apakah <strong>output</strong> yang kamu salin sudah persis sama seperti hasil yang muncul, termasuk huruf kapital dan urutan karakter?</li>
+      </ul>
+      Pastikan untuk menyalin dengan teliti. Kamu bisa tekan tombol <code>RUN</code> lagi dan salin ulang outputnya jika perlu.
+    </div>`;
+    ayoPahamiBerhasil[4] = false;
+  }
+
+  cekKelayakanAksesGabunganB21();
+}
+
+
+function cekAyoPahami6() {
+  const jawaban = document.getElementById('outputAyo6').value.trim();
+  const kunci = 'Buku yang diperoleh: Pemrograman PHP';
+  const feedback = document.getElementById('feedbackAyo6');
+
+  if (jawaban === kunci) {
+    feedback.innerHTML = `
+    <div class="alert alert-success">
+      ✅ <strong>Selamat!</strong> Output kamu sudah sesuai.<br>
+      Kamu berhasil memahami bagaimana cara menggunakan <strong>type hinting untuk return type</strong> dalam method PHP, dan bagaimana class bisa mengembalikan objek class lain.
+    </div>
+
+    <div class="mt-3 p-3 rounded" style="background-color: #f0faff; border-left: 6px solid #3ac4f1;">
+      <h5 class="fw-bold mb-2 text-primary">🔍 Penjelasan Kode Program</h5>
+      <ul style="padding-left: 20px;">
+        <li><strong>Baris 2–6</strong>: Mendefinisikan class <code>Perpustakaan</code> dan method <code>ambilBuku()</code> dengan <strong>return type</strong> <code>Buku</code>.</li>
+        <li><strong>Baris 8–14</strong>: Mendefinisikan class <code>Buku</code> dengan properti <code>$judul</code> dan constructor untuk menetapkannya.</li>
+        <li><strong>Baris 16</strong>: Membuat objek <code>Perpustakaan</code>.</li>
+        <li><strong>Baris 17</strong>: Memanggil method <code>ambilBuku()</code> yang mengembalikan objek <code>Buku</code> dengan judul "Pemrograman PHP".</li>
+        <li><strong>Baris 18</strong>: Menampilkan judul buku melalui properti <code>$buku->judul</code> → menghasilkan output akhir.</li>
+      </ul>
+      <p class="mt-3 mb-0">
+        💡 <strong>Kesimpulan:</strong> Di sini, method <code>ambilBuku()</code> harus mengembalikan objek dari class <code>Buku</code>. Jika method ini mengembalikan tipe data lain, PHP akan menghasilkan error.
+      </p>
+    </div>
+    `;
+    ayoPahamiBerhasil[5] = true;
+  } else {
+    feedback.innerHTML = `<div class="alert alert-warning">
+      ⚠️ <strong>Jawaban belum tepat.</strong><br>
+      Coba periksa kembali:
+      <ul style="margin-top:5px;">
+        <li>Apakah <strong>kode program</strong> yang kamu ketik sudah benar, tanpa salah huruf, tanda baca, atau spasi yang keliru?</li>
+        <li>Apakah <strong>output</strong> yang kamu salin sudah persis sama seperti hasil yang muncul, termasuk huruf kapital dan urutan karakter?</li>
+      </ul>
+
+      Pastikan untuk menyalin dengan teliti. Kamu bisa tekan tombol <code>RUN</code> lagi dan salin ulang outputnya jika perlu.
+    </div>`;
+    ayoPahamiBerhasil[5] = false;
+  }
+
+  cekKelayakanAksesGabunganB21();
+}
+
+
+// LATIHAN
 const barisKodeB21 = [
   { nomor: 1, isi: '} // penutup class Produk' },
   { nomor: 2, isi: 'public function getNama() {' },
@@ -498,13 +853,10 @@ cekBtnB21.addEventListener('click', () => {
     feedbackB21.innerHTML = '🎉 Jawaban kamu benar! Program PHP-nya sudah tersusun dengan tepat.';
     cekBtnB21.textContent = 'Jawaban Benar';
     cekBtnB21.className = 'btn-next';
-    kirimProgressHalaman("b21-mendeklarasikanm");
-    const tombol = document.getElementById("btnSelanjutnya");
-    if (tombol) {
-      tombol.style.pointerEvents = "auto";
-      tombol.style.opacity = 1;
-      tombol.removeAttribute("disabled");
-    }
+    
+    sudahLatihan = true;
+    cekKelayakanAksesGabunganB21();
+
   } else {
     feedbackB21.classList.add('incorrect');
     feedbackB21.innerHTML = '❌ Masih salah, coba urutkan ulang dengan cermat.';
@@ -518,36 +870,21 @@ resetBtnB21.addEventListener('click', () => {
     feedbackB21.className = 'feedback d-none';
   }
 });
-
-@if($selesai)
-window.addEventListener('DOMContentLoaded', () => {
-  const tombol = document.getElementById("btnSelanjutnya");
-  if (tombol) {
-    tombol.style.pointerEvents = "auto";
-    tombol.style.opacity = 1;
-    tombol.removeAttribute("disabled");
-  }
-});
-@endif
-
 document.addEventListener('DOMContentLoaded', tampilkanAcakB21);
+
 </script>
 
-
-```
-
-  </div>
-</div>
-
-<div class="pagination">
-  <a href="./b22-mendeklarasikanp"
-     id="btnSelanjutnya"
-     class="next"
-     style="pointer-events: none; opacity: 0.5;">
-    Selanjutnya &raquo;
-  </a>
-</div>
-
-
+@if($selesai)
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const tombol = document.getElementById("btnSelanjutnya");
+    if (tombol) {
+      tombol.style.pointerEvents = "auto";
+      tombol.style.opacity = 1;
+      tombol.removeAttribute("disabled");
+    }
+  });
+</script>
+@endif
 
 @endsection

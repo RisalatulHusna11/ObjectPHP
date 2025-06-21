@@ -82,21 +82,22 @@ echo $hewan2->getTipe(); // Output: Singa</code></pre>
   <div class="quiz-header">
     <h1>AYO PAHAMI!</h1><br>
     <p>Petunjuk:</p>
-    <ol>
+    <ol> 
       <li>Perhatikan kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
       <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan.</li>
       <li>Pastikan setiap baris dan struktur penulisan sesuai dengan contoh (termasuk titik koma, kurung, dll).</li>
       <li>Tekan tombol <code>RUN</code> di dalam editor untuk menjalankan program.</li>
-      <li>Perhatikan hasil keluaran di bawah editor. Apa yang ditampilkan?</li>
+      <li>Amati hasil output program, lalu masukkan hasilnya pada kolom di bawahnya untuk memeriksa output sudah benar atau belum.</li>
+      <li>Tekan tombol <strong>Periksa Output</strong> untuk mengecek jawabanmu.</li>
     </ol>
   </div>
-<div>
-    <div class="text-start mb-3">
-  <a href="{{ route('ayoPahami.besar') }}" class="btn-besar">🔎 LIHAT VERSI LEBIH BESAR</a>
-</div>
+<!-- 
+  <div class="text-start mb-3">
+    <a href="{{ route('ayoPahami.besar') }}" class="btn-besar">🔎 MODE LAYAR PENUH</a>
+  </div> -->
 
-<div class="ayo-pahami-grid">
-  <div class="kode-diketik">
+  <div class="ayo-pahami-grid">
+    <div class="kode-diketik">
       <div class="kode-instruksi" oncopy="return false" oncut="return false" oncontextmenu="return false">
 <pre><code>&lt;?php
 class Pengguna {
@@ -125,8 +126,17 @@ $pengguna->simpanPengguna();</code></pre>
     </div>
   </div>
 
-  <p class="mt-3">Dari contoh di atas, kita bisa melihat bagaimana property dari sebuah object dapat diakses dan diubah, serta bagaimana method dalam class dijalankan untuk menampilkan suatu proses. Fungsi <code>print_r()</code> membantu menampilkan isi object dan memudahkan proses debugging.</p>
-</div>
+  <div class="mt-4">
+    <label for="outputMahasiswa" class="form-label">Masukkan output yang kamu lihat dari program di atas:</label>
+    <small class="text-muted d-block mb-2" style="font-style: italic;">
+    *Jika output menunjukkan pesan error, cukup tulis <strong>"Error"</strong> saja di kolom ini.
+  </small>
+    <textarea id="outputMahasiswa" class="form-control" rows="4" placeholder="Tulis output di sini (tulis sama persis seperti yang kamu lihat di bagian [Output] diatas)..."></textarea>
+
+    <button onclick="cekOutputAyoPahami()" class="btn-next">Periksa Output</button>
+
+    <div id="feedbackAyoPahami" class="mt-3"></div>
+  </div>
 </div>
   </div>
   </div>
@@ -177,7 +187,13 @@ $mobil-><span class="drop-zone" id="drop2">___</span>();
 
 
 
+
 <script>
+
+let sudahAyoPahami = false;
+let sudahLatihan = false;
+let progressTerkirim = false;
+
 let draggedItem = null;
 
 document.querySelectorAll('.drag-item').forEach(item => {
@@ -212,14 +228,17 @@ function cekDragJawaban() {
   if (drop1 === '$mobil->merk' && drop2 === 'nyalakanMesin') {
     feedback.classList.add('correct');
     feedback.innerHTML = '🎉 Jawaban kamu benar! Kode sudah lengkap dan sesuai.';
-    kirimProgressHalaman('b14-mengaksesp&m');
+    sudahLatihan = true;
+    cekKelayakanAksesGabungan();
   } else {
     feedback.classList.add('incorrect');
-    feedback.innerHTML = '❌ Masih salah, pastikan kamu memilih potongan kode yang sesuai.';
+    feedback.innerHTML = '❌ Masih salah. Coba lagi!';
   }
 
   feedback.classList.remove('d-none');
 }
+
+
 
 function resetDragJawaban() {
   document.getElementById('drop1').textContent = '___';
@@ -229,40 +248,137 @@ function resetDragJawaban() {
   document.getElementById('feedbackDrag').className = 'feedback d-none';
 }
 
-// function kirimProgressHalaman(namaHalaman) {
-//   fetch("{{ route('progress.simpan') }}", {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
-//     },
-//     body: JSON.stringify({ halaman: namaHalaman })
-//   })
-//   .then(res => res.json())
-//   .then(data => {
-//     console.log('✅ Progress berhasil dikirim:', data);
-//     const tombol = document.getElementById('btnSelanjutnya');
-//     if (tombol) {
-//       tombol.style.pointerEvents = 'auto';
-//       tombol.style.opacity = 1;
-//       tombol.removeAttribute('disabled');
-//     }
-//   })
-//   .catch(err => {
-//     console.error('❌ Gagal kirim progress:', err);
-//   });
-// }
 
-@if($selesai)
-window.addEventListener('DOMContentLoaded', () => {
-  const tombol = document.getElementById("btnSelanjutnya");
-  if (tombol) {
-    tombol.style.pointerEvents = "auto";
-    tombol.style.opacity = 1;
-    tombol.removeAttribute("disabled"); 
+function cekOutputAyoPahami() {
+  const jawaban = document.getElementById('outputMahasiswa').value.trim();
+  const feedback = document.getElementById('feedbackAyoPahami');
+
+  const jawabanBenar = `Pengguna Object
+(
+    [nama] => 
+    [password] => 
+)
+<br>Pengguna Object
+(
+    [nama] => Alice
+    [password] => secret123
+)
+<br>Data pengguna telah disimpan.`;
+
+  const benar = jawaban === jawabanBenar;
+
+  if (benar) {
+  feedback.innerHTML = `
+  <div class="alert alert-success">
+    ✅ <strong>Selamat!</strong> Output kamu sudah sesuai.<br>
+    Kamu berhasil memahami cara mendefinisikan class, membuat object, mengakses properti, serta menjalankan method dalam OOP PHP.<br>
+    Perhatikan juga bagaimana <code>print_r()</code> digunakan untuk menampilkan isi objek.<br>
+    Silakan lanjutkan ke latihan berikutnya!
+  </div>
+
+  <div class="mt-3 p-3 rounded" style="background-color: #f0faff; border-left: 6px solid #3ac4f1;">
+    <h5 class="fw-bold mb-2 text-primary">🔍 Penjelasan Kode Program</h5>
+    <ul style="padding-left: 20px;">
+      <li><strong>Baris 2</strong>: Mendefinisikan sebuah class bernama <code>Pengguna</code>.</li>
+      <li><strong>Baris 3</strong>: Menambahkan dua properti publik: <code>$nama</code> dan <code>$password</code>.</li>
+      <li><strong>Baris 5–7</strong>: Membuat method <code>simpanPengguna()</code> yang menampilkan pesan "Data pengguna telah disimpan."</li>
+      <li><strong>Baris 10</strong>: Membuat objek baru dari class <code>Pengguna</code> dan menyimpannya dalam variabel <code>$pengguna</code>.</li>
+      <li><strong>Baris 11</strong>: Menampilkan isi awal object <code>$pengguna</code> dengan <code>print_r()</code> (semua properti masih kosong).</li>
+      <li><strong>Baris 12</strong>: Menambahkan baris baru pada output.</li>
+      <li><strong>Baris 14–15</strong>: Mengisi properti <code>nama</code> dengan nilai "Alice" dan <code>password</code> dengan "secret123".</li>
+      <li><strong>Baris 16</strong>: Menampilkan kembali isi object yang kini sudah memiliki nilai di propertinya.</li>
+      <li><strong>Baris 17</strong>: Menambahkan baris baru lagi di output.</li>
+      <li><strong>Baris 19</strong>: Memanggil method <code>simpanPengguna()</code> untuk mencetak pesan dari dalam class.</li>
+    </ul>
+    <p class="mt-3 mb-0">
+      💡 <strong>Kesimpulan:</strong> Dari contoh di atas, kita bisa melihat bagaimana property dari sebuah object dapat diakses dan diubah, serta bagaimana method dalam class dijalankan untuk menampilkan suatu proses. Fungsi <code>print_r()</code> membantu menampilkan isi object dan memudahkan proses debugging.
+    </p>
+  </div>
+`;
+sudahAyoPahami = true;
+cekKelayakanAksesGabungan();
+} else {
+  feedback.innerHTML = `<div class="alert alert-warning">
+    ⚠️ <strong>Jawaban belum tepat.</strong><br>
+    Coba periksa kembali:
+    <ul style="margin-top:5px;">
+      <li>Apakah <strong>kode program</strong> yang kamu ketik sudah benar, tanpa salah huruf, tanda baca, atau spasi yang keliru?</li>
+      <li>Apakah <strong>output</strong> yang kamu salin sudah persis sama seperti hasil yang muncul, termasuk urutan baris dan formatnya?</li>
+    </ul>
+    Pastikan untuk menyalin dengan teliti. Kamu bisa tekan tombol <code>RUN</code> lagi dan salin ulang outputnya jika perlu.
+  </div>`;
+}
+}
+
+
+
+function kirimProgressHalaman(namaHalaman) {
+  fetch("{{ route('progress.simpan') }}", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+    },
+    body: JSON.stringify({ halaman: namaHalaman })
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log('✅ Progress berhasil dikirim:', data);
+  })
+  .catch(err => {
+    console.error('❌ Gagal kirim progress:', err);
+  });
+}
+
+function cekKelayakanAkses() {
+  fetch("{{ url('/progress/cek') }}", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+    },
+    body: JSON.stringify({ halaman: ['b14-mengaksesp&m', 'b14-latihan'] })
+  })
+  .then(res => res.json())
+  .then(data => {
+    const selesai = data.selesai || [];
+
+    const sudahDariServerAyoPahami = selesai.includes('b14-mengaksesp&m');
+    const sudahDariServerLatihan = selesai.includes('b14-latihan');
+
+    const tombol = document.getElementById("btnSelanjutnya");
+
+    if (sudahDariServerAyoPahami && sudahDariServerLatihan && tombol) {
+      tombol.style.pointerEvents = "auto";
+      tombol.style.opacity = 1;
+      tombol.removeAttribute("disabled");
+    }
+
+    // Sinkronkan variabel lokal jika progress sudah ada sebelumnya
+    if (sudahDariServerAyoPahami) sudahAyoPahami = true;
+    if (sudahDariServerLatihan) sudahLatihan = true;
+  })
+  .catch(err => {
+    console.error("❌ Gagal cek kelayakan akses:", err);
+  });
+}
+
+
+document.addEventListener('DOMContentLoaded', cekKelayakanAkses);
+
+function cekKelayakanAksesGabungan() {
+  if (sudahAyoPahami && sudahLatihan && !progressTerkirim) {
+    kirimProgressHalaman('b14-mengaksesp&m'); // kirim hanya sekali
+    progressTerkirim = true;
+
+    const tombol = document.getElementById("btnSelanjutnya");
+    if (tombol) {
+      tombol.style.pointerEvents = "auto";
+      tombol.style.opacity = 1;
+      tombol.removeAttribute("disabled");
+    }
   }
-});
-@endif
+}
 
 </script>
 
@@ -279,6 +395,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 @endphp
+
 
 <div class="pagination">
   <a href="./b13-membuatobject" class="prev">&laquo; Sebelumnya</a>

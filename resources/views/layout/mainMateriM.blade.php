@@ -67,6 +67,7 @@
     .navbar-brand:hover {
       color: #EDE2FF;
     }
+    
     .btn-keluar-iobject {
   background-color: #ffffff;
   color: #6f42c1;
@@ -151,7 +152,6 @@
       font-size: 0.9rem;
       border-top: 1px solid #e5e7eb;
     }
-
 
     /* AYO PAHAMI */
     .ayo-pahami-wrapper {

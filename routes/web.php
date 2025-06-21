@@ -70,6 +70,7 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
 // ROLE DOSEN DAN MAHASISWA BISA AKSES
 Route::middleware(['auth', 'role:mahasiswa,dosen'])->group(function () {
     Route::get('/progress/percentage', [ProgressController::class, 'getProgressPercentage'])->name('progress.percentage');
+    Route::post('/progress/cek', [ProgressController::class, 'cek'])->name('progress.cek');
     
     Route::get('/b15-pkuis', function () {return view('b15-pkuis');});
     Route::get('/b210-pkuis', function () {return view('b210-pkuis');});
