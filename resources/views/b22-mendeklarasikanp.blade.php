@@ -95,10 +95,6 @@ echo $mobilSaya->infoMobil();</code></pre>
     <button class="btn-next mt-2" onclick="cekAyoPahami1()">Periksa Output</button>
     <div id="feedbackAyo1" class="mt-3"></div>
   </div>
-
-  <!-- <p class="mt-3">
-    Pada contoh di atas, kita memiliki properti publik ($nama dan $warna) yang dapat diakses dari luar class, dan properti privat ($kecepatan) yang hanya dapat diakses melalui method dalam class itu sendiri.
-  </p> -->
 </div>
 
 
@@ -153,10 +149,6 @@ echo $mobilSaya->infoMobil();</code></pre>
     <textarea id="outputAyo2" class="form-control" rows="4" placeholder="Tulis output di sini..."></textarea>
     <button class="btn-next mt-2" onclick="cekAyoPahami2()">Periksa Output</button>
     <div id="feedbackAyo2" class="mt-3"></div>
-
-  <!-- <p class="mt-3">
-    Pada contoh ini, jika kita tidak menetapkan nilai untuk properti <code>nama</code>, <code>warna</code>, dan <code>kecepatan</code>, mereka akan memiliki nilai default yang telah ditetapkan dalam class.
-  </p> -->
 </div>
 ```
 
@@ -217,10 +209,6 @@ echo "Jumlah Mobil: " . Mobil::jumlahMobil();</code></pre>
     <button class="btn-next mt-2" onclick="cekAyoPahami3()">Periksa Output</button>
     <div id="feedbackAyo3" class="mt-3"></div>
   </div>
-
-  <!-- <p class="mt-3">
-    Dalam contoh ini, kita menggunakan properti <code>static</code> <code>$jumlahMobil</code> untuk menghitung jumlah object <code>Mobil</code> yang telah dibuat. Static property ini tidak terkait dengan objek individu, melainkan dengan class itu sendiri.
-  </p> -->
 </div>
 ```
 
@@ -270,10 +258,6 @@ echo $pengguna1->nama;</code></pre>
     <button class="btn-next mt-2" onclick="cekAyoPahami4()">Periksa Output</button>
     <div id="feedbackAyo4" class="mt-3"></div>
   </div>
-
-  <!-- <p class="mt-3">
-    Pada contoh ini, kita langsung menetapkan properti <code>nama</code> di luar class <code>Pengguna</code>. Meskipun kode ini berfungsi, mendeklarasikan properti secara implisit bisa menyebabkan masalah jika ada kesalahan penulisan atau kebingungannya.
-  </p> -->
 </div>
 
 
@@ -339,10 +323,6 @@ $pengguna->biografi = "Biografi baru"; // Menyimpan data baru</code></pre>
     <button class="btn-next mt-2" onclick="cekAyoPahami5()">Periksa Output</button>
     <div id="feedbackAyo5" class="mt-3"></div>
   </div>
-
-  <!-- <p class="mt-3">
-    Dalam contoh ini, kita menggunakan method magis <code>__get()</code> dan <code>__set()</code> untuk mengelola akses ke properti <code>biografi</code>, yang tidak dideklarasikan sebelumnya. Ini memungkinkan kita untuk menangani data secara dinamis, seperti menarik dan menyimpan informasi dari sumber eksternal (misalnya database).
-  </p> -->
 </div>
 
   </div>
@@ -430,7 +410,7 @@ function cekAyoPahami1() {
         <li><strong>Baris 34</strong>: Menampilkan hasil gabungan dari properti melalui method <code>infoMobil()</code>. Karena <code>kecepatan</code> tidak disetel, maka tampil kosong.</li>
       </ul>
       <p class="mt-3 mb-0">
-        💡 <strong>Kesimpulan:</strong> Contoh ini menunjukkan perbedaan antara properti publik (dapat diakses langsung atau melalui method publik) dan properti privat yang hanya bisa diakses dari dalam class. Method <code>infoMobil()</code> digunakan untuk menyajikan informasi terstruktur kepada pengguna.
+        💡 <strong>Kesimpulan:</strong> Contoh ini menunjukkan perbedaan antara properti publik (dapat diakses langsung atau melalui method publik) dan properti privat yang hanya bisa diakses dari dalam class. Method <code>infoMobil()</code> digunakan untuk menyajikan informasi terstruktur kepada pengguna. Pada contoh di atas, kita memiliki properti publik ($nama dan $warna) yang dapat diakses dari luar class, dan properti privat ($kecepatan) yang hanya dapat diakses melalui method dalam class itu sendiri.
       </p>
     </div>
     `;
@@ -474,7 +454,7 @@ function cekAyoPahami2() {
         <li><strong>Baris 13</strong>: Memanggil method <code>infoMobil()</code> yang menampilkan nilai-nilai default dari properti.</li>
       </ul>
       <p class="mt-3 mb-0">
-        💡 <strong>Kesimpulan:</strong> Memberikan nilai default pada properti memungkinkan object memiliki data awal meskipun belum diberi nilai eksplisit. Ini membantu dalam mengurangi error dan memastikan stabilitas object saat diakses.
+        💡 <strong>Kesimpulan:</strong> Memberikan nilai default pada properti memungkinkan object memiliki data awal meskipun belum diberi nilai eksplisit. Ini membantu dalam mengurangi error dan memastikan stabilitas object saat diakses.Pada contoh ini, jika kita tidak menetapkan nilai untuk properti <code>nama</code>, <code>warna</code>, dan <code>kecepatan</code>, mereka akan memiliki nilai default yang telah ditetapkan dalam class.
       </p>
     </div>
     `;
@@ -518,7 +498,7 @@ function cekAyoPahami3() {
         <li><strong>Baris 17</strong>: Menampilkan jumlah total mobil yang telah dibuat, yaitu 2.</li>
       </ul>
       <p class="mt-3 mb-0">
-        💡 <strong>Kesimpulan:</strong> Properti statis digunakan untuk menyimpan data yang berbagi antar seluruh instance dari sebuah class. Dalam contoh ini, properti <code>$jumlahMobil</code> melacak berapa banyak object yang dibuat.
+        💡 <strong>Kesimpulan:</strong> Properti statis digunakan untuk menyimpan data yang berbagi antar seluruh instance dari sebuah class. Dalam contoh ini, properti <code>$jumlahMobil</code> melacak berapa banyak object yang dibuat. Kita menggunakan properti <code>static</code> <code>$jumlahMobil</code> untuk menghitung jumlah object <code>Mobil</code> yang telah dibuat. Static property ini tidak terkait dengan objek individu, melainkan dengan class itu sendiri.
       </p>
     </div>
     `;
@@ -561,7 +541,7 @@ function cekAyoPahami4() {
         <li><strong>Baris 6</strong>: Menampilkan nilai dari properti <code>nama</code>, yaitu <code>Alice</code>.</li>
       </ul>
       <p class="mt-3 mb-0">
-        💡 <strong>Kesimpulan:</strong> PHP memperbolehkan penambahan properti baru secara implisit pada objek. Namun, pendekatan ini dapat menyebabkan bug jika nama properti salah ketik. Oleh karena itu, deklarasi properti sebaiknya dilakukan secara eksplisit di dalam class.
+        💡 <strong>Kesimpulan:</strong> PHP memperbolehkan penambahan properti baru secara implisit pada objek. Namun, pendekatan ini dapat menyebabkan bug jika nama properti salah ketik. Oleh karena itu, deklarasi properti sebaiknya dilakukan secara eksplisit di dalam class. Pada contoh ini, kita langsung menetapkan properti <code>nama</code> di luar class <code>Pengguna</code>. Meskipun kode ini berfungsi, mendeklarasikan properti secara implisit bisa menyebabkan masalah jika ada kesalahan penulisan atau kebingungannya.
       </p>
     </div>
     `;
@@ -607,7 +587,7 @@ function cekAyoPahami5() {
         <li><strong>Baris 20</strong>: Menetapkan nilai baru "Biografi baru" ke properti <code>biografi</code> yang akan diproses oleh <code>__set()</code>.</li>
       </ul>
       <p class="mt-3 mb-0">
-        💡 <strong>Kesimpulan:</strong> Method <code>__get()</code> dan <code>__set()</code> memungkinkan penanganan properti yang tidak dideklarasikan secara eksplisit. Hal ini sangat berguna ketika berinteraksi dengan data dinamis, seperti hasil query database atau field fleksibel.
+        💡 <strong>Kesimpulan:</strong> Method <code>__get()</code> dan <code>__set()</code> memungkinkan penanganan properti yang tidak dideklarasikan secara eksplisit. Hal ini sangat berguna ketika berinteraksi dengan data dinamis, seperti hasil query database atau field fleksibel. Dalam contoh ini, kita menggunakan method magis <code>__get()</code> dan <code>__set()</code> untuk mengelola akses ke properti <code>biografi</code>, yang tidak dideklarasikan sebelumnya. Ini memungkinkan kita untuk menangani data secara dinamis, seperti menarik dan menyimpan informasi dari sumber eksternal (misalnya database).
       </p>
     </div>
     `;
