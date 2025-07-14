@@ -81,7 +81,7 @@ Route::middleware(['auth', 'role:mahasiswa,dosen'])->group(function () {
 
     Route::get('/b16-kuis', function () {
         $user = Auth::user();
-        $kkm = $user->dosen->kkm ?? 70;
+        $kkm = \App\Models\Kkm::where('dosen_id', $user->dosen_id)->value('kkm') ?? 70;
 
         $result = \App\Models\Result::where('user_id', $user->id)->first();
         $nilai = $result?->kuis_1;
@@ -95,7 +95,7 @@ Route::middleware(['auth', 'role:mahasiswa,dosen'])->group(function () {
 
     Route::get('/b211-kuis', function () {
         $user = Auth::user();
-        $kkm = $user->dosen->kkm ?? 70;
+        $kkm = \App\Models\Kkm::where('dosen_id', $user->dosen_id)->value('kkm') ?? 70;
 
         $result = \App\Models\Result::where('user_id', $user->id)->first();
         $nilai = $result?->kuis_2;
@@ -109,7 +109,7 @@ Route::middleware(['auth', 'role:mahasiswa,dosen'])->group(function () {
 
     Route::get('/b33-kuis', function () {
     $user = Auth::user();
-    $kkm = $user->dosen->kkm ?? 70;
+    $kkm = \App\Models\Kkm::where('dosen_id', $user->dosen_id)->value('kkm') ?? 70;
 
     $result = \App\Models\Result::where('user_id', $user->id)->first();
     $nilai = $result?->kuis_3;
@@ -123,7 +123,7 @@ Route::middleware(['auth', 'role:mahasiswa,dosen'])->group(function () {
 
 Route::get('/b45-kuis', function () {
     $user = Auth::user();
-    $kkm = $user->dosen->kkm ?? 70;
+    $kkm = \App\Models\Kkm::where('dosen_id', $user->dosen_id)->value('kkm') ?? 70;
 
     $result = Result::where('user_id', $user->id)->first();
     $nilai = $result?->kuis_4;
@@ -137,7 +137,7 @@ Route::get('/b45-kuis', function () {
 
 Route::get('/b53-kuis', function () {
     $user = Auth::user();
-    $kkm = $user->dosen->kkm ?? 70;
+    $kkm = \App\Models\Kkm::where('dosen_id', $user->dosen_id)->value('kkm') ?? 70;
 
     $result = Result::where('user_id', $user->id)->first();
     $nilai = $result?->kuis_5;
@@ -151,7 +151,7 @@ Route::get('/b53-kuis', function () {
 
 Route::get('/b62-eval', function () {
     $user = Auth::user();
-    $kkm = $user->dosen->kkm ?? 70;
+    $kkm = \App\Models\Kkm::where('dosen_id', $user->dosen_id)->value('kkm') ?? 70;
 
     $result = Result::where('user_id', $user->id)->first();
     $nilai = $result?->evaluasi;

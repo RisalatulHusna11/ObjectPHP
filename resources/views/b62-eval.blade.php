@@ -77,7 +77,7 @@ function mulaiTimer() {
     timerEl.textContent = `${m}:${s}`;
     if (waktu <= 0) {
       clearInterval(timerInterval);
-      selesaiKuis();
+      prosesSelesai();
     }
   }, 1000);
 }

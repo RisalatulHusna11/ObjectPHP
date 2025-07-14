@@ -285,7 +285,6 @@ window.prosesSelesai = function () {
   const totalSoal = soalData.length;
   const skorFinal = Math.round((skorBenar / totalSoal) * 100);
 
-  // Simpan ke localStorage
   const hasil = {
     benar: skorBenar.toFixed(2),
     total: totalSoal,
@@ -293,7 +292,44 @@ window.prosesSelesai = function () {
   };
   localStorage.setItem('hasilKuis', JSON.stringify(hasil));
 
-  // Kirim ke server via fetch
+  // ✅ Buat refleksi
+  let refleksi = [];
+
+  soalData.forEach((soal, i) => {
+    const jwb = jawaban[i];
+    let benar = false;
+
+    if (soal.tipe === "isian" || soal.tipe === "drag-drop-isian") {
+      if (Array.isArray(jwb) && Array.isArray(soal.jawaban)) {
+        benar = soal.jawaban.every((val, idx) => (jwb[idx] || '').trim() === val.trim());
+      }
+    } else if (soal.tipe === "drag-drop-urutan") {
+      benar = Array.isArray(jwb) &&
+              jwb.length === soal.jawaban.length &&
+              jwb.every((val, idx) => val.trim() === soal.jawaban[idx].trim());
+    } else if (soal.tipe === "isian-urut") {
+      const urutanUser = jwb.split(/\s+/).map(x => parseInt(x) - 1);
+      const benarUrut = urutanUser.every((val, idx) => {
+        const dariPotongan = (soal.potongan[val] || "").replace(/\s+/g, "").replace(/;$/, "");
+        const dariJawaban = (soal.jawaban[idx] || "").replace(/\s+/g, "").replace(/;$/, "");
+        return dariPotongan === dariJawaban;
+      });
+      benar = benarUrut;
+    }
+
+    refleksi.push({
+      tipe: soal.tipe,
+      jawaban: jwb,
+      benar: benar
+    });
+  });
+
+  if (!jawaban || jawaban.length === 0) {
+    alert("Jawaban tidak ditemukan, mohon pastikan semua soal telah dijawab.");
+    return;
+  }
+
+  // ✅ Kirim ke server
   fetch('/simpan-nilai-kuis', {
     method: 'POST',
     headers: {
@@ -304,9 +340,12 @@ window.prosesSelesai = function () {
       kuis_ke: 3,
       skor: skorFinal,
       jawaban_json: {
-      benar: skorBenar,
-      salah: totalSoal - skorBenar
-    }
+        benar: skorBenar,
+        salah: totalSoal - skorBenar,
+        tipe: 'kuis_3',
+        jawaban: jawaban,
+        refleksi: refleksi  // <== tambahkan ini!
+      }
     })
   })
   .then(res => res.json())
@@ -322,6 +361,7 @@ window.prosesSelesai = function () {
     alert("Gagal menyimpan nilai. Silakan coba lagi.");
   });
 };
+
 
 function cekJawabanBenar() {
   let totalNilai = 0;

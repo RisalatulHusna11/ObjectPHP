@@ -161,14 +161,30 @@
   <div class="nilai-card nilai-tertinggi">
     <h6><i class="bi bi-graph-up-arrow"></i> NILAI TERTINGGI</h6>
     @foreach ($nilaiTertinggi as $key => $val)
-      <p>{{ ucfirst(str_replace('_', ' ', $key)) }}: {{ is_numeric($val) ? $val : '-' }}</p>
+      <p>
+        {{ ucfirst(str_replace('_', ' ', $key)) }}: {{ is_numeric($val) ? $val : '-' }}
+        @if (!empty($namaTertinggi[$key]))
+          <br>
+          <small style="color:rgb(222, 243, 255);">
+            👤 {{ implode(', ', $namaTertinggi[$key]) }}
+          </small>
+        @endif
+      </p>
     @endforeach
   </div>
 
   <div class="nilai-card nilai-terendah">
     <h6><i class="bi bi-graph-down-arrow"></i> NILAI TERENDAH</h6>
     @foreach ($nilaiTerendah as $key => $val)
-      <p>{{ ucfirst(str_replace('_', ' ', $key)) }}: {{ is_numeric($val) ? $val : '-' }}</p>
+      <p>
+        {{ ucfirst(str_replace('_', ' ', $key)) }}: {{ is_numeric($val) ? $val : '-' }}
+        @if (!empty($namaTerendah[$key]))
+          <br>
+          <small style="color:rgb(252, 223, 223)">
+            👤 {{ implode(', ', $namaTerendah[$key]) }}
+          </small>
+        @endif
+      </p>
     @endforeach
   </div>
 </div>
@@ -181,5 +197,6 @@
     });
   }
 </script>
+
 
 @endsection

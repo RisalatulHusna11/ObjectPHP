@@ -72,4 +72,15 @@ class User extends Authenticatable
     return $this->belongsTo(User::class, 'user_id');
 }
 
+public function kkm()
+{
+    return $this->hasOne(\App\Models\Kkm::class, 'dosen_id');
+}
+
+public function riwayatKuis()
+{
+    return $this->hasMany(RiwayatKuis::class);
+}
+
+
 }

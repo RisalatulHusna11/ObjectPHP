@@ -316,47 +316,77 @@ function cekJawabanBenar() {
 }
 
 window.prosesSelesai = function () {
-  const skorBenar = cekJawabanBenar(); // pastikan ini fungsi yang sudah kamu buat
+  const skorBenar = cekJawabanBenar();
   const totalSoal = soalData.length;
-  const skor2 = Math.round((skorBenar / totalSoal) * 100);
+  const skorAkhir = Math.round((skorBenar / totalSoal) * 100);
+  const salah = totalSoal - skorBenar;
 
-  // Simpan ke localStorage (untuk ditampilkan di halaman hasil)
-  const hasil = {
-    benar: skorBenar.toFixed(2),
-    total: totalSoal,
-    skor2
-  };
-  localStorage.setItem('hasilKuis', JSON.stringify(hasil));
+  // Refleksi jawaban per soal
+  const refleksi = soalData.map((soal, i) => {
+    const jwb = jawaban[i];
+    const kunci = soal.jawaban;
+    const tipe = soal.tipe;
+    let benar = false;
 
-  // Kirim ke server via fetch
-  fetch('/simpan-nilai-kuis', { 
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-    },
-    body: JSON.stringify({
-      kuis_ke: 5, // GANTI sesuai nomor kuisnya (1–5)
-      skor: skor2,
-      jawaban_json: {
-      benar: skorBenar,
-      salah: totalSoal - skorBenar
+    if ((tipe === "isian" || tipe === "drag-drop-isian") && Array.isArray(jwb) && Array.isArray(kunci)) {
+      benar = kunci.every((val, idx) => (jwb[idx] || "").trim() === val.trim());
+    } else if (tipe === "isian-urut") {
+      const userUrut = jwb.split(/\s+/).map(x => parseInt(x.trim()) - 1);
+      benar = userUrut.every((val, idx) => soal.potongan[val]?.trim() === soal.jawaban[idx]?.trim());
+    } else if (tipe === "drag-drop-urutan") {
+      const userArr = Array.isArray(jwb) ? jwb : [];
+      const expected = soal.jawaban;
+      benar = userArr.every((val, idx) => val.trim() === expected[idx]?.trim());
     }
-    })
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.status === 'ok') {
-      window.location.href = "/b54-hkuis"; // GANTI sesuai halaman hasil kuis
-    } else {
-      alert("Gagal menyimpan nilai. Silakan coba lagi.");
-    }
-  })
-  .catch(err => {
-    console.error("Gagal:", err);
-    alert("Gagal menyimpan nilai. Silakan coba lagi.");
+
+    return {
+      soal: i + 1,
+      tipe: tipe,
+      benar: benar
+    };
   });
-};
+
+  const jawaban_json = {
+    kuis_5: {
+      benar: skorBenar,
+      salah: salah,
+      jawaban: jawaban
+    },
+    refleksi: refleksi
+  };
+
+  fetch('/simpan-nilai-kuis', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+  },
+  body: JSON.stringify({
+    kuis_ke: 5,
+    skor: skorAkhir,
+    jawaban_json: {
+      benar: skorBenar,
+      salah: salah,
+      jawaban: jawaban,
+      refleksi: refleksi
+    }
+  })
+})
+.then(res => res.json())
+.then(data => {
+  if (data.status === 'ok') {
+    localStorage.removeItem('kuis5-jawaban');
+    window.location.href = "/b54-hkuis";
+  } else {
+    alert("Gagal menyimpan nilai. Status: " + data.status);
+  }
+})
+.catch(err => {
+  console.error("Gagal:", err);
+  alert("Terjadi kesalahan saat mengirim data.");
+});
+}
+
 
 function tampilkanModal() {
   if (jawaban.includes(null)) {

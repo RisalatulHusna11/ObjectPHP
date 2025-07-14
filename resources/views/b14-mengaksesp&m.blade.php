@@ -81,15 +81,23 @@ echo $hewan2->getTipe(); // Output: Singa</code></pre>
   <div class="quiz-card mt-5 ayo-pahami-wrapper">
   <div class="quiz-header">
     <h1>AYO PAHAMI!</h1><br>
-    <p>Petunjuk:</p>
-    <ol> 
-      <li>Perhatikan kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
-      <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan.</li>
-      <li>Pastikan setiap baris dan struktur penulisan sesuai dengan contoh (termasuk titik koma, kurung, dll).</li>
-      <li>Tekan tombol <code>RUN</code> di dalam editor untuk menjalankan program.</li>
-      <li>Amati hasil output program, lalu masukkan hasilnya pada kolom di bawahnya untuk memeriksa output sudah benar atau belum.</li>
-      <li>Tekan tombol <strong>Periksa Output</strong> untuk mengecek jawabanmu.</li>
-    </ol>
+    <p class="quiz-intro">
+  Ikuti langkah-langkah berikut untuk memahami dan mempraktikkan konsep penting dalam pemrograman PHP berbasis objek.
+</p>
+<ol>
+  <li>Baca dan pahami kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
+  <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan sesuai urutan dan struktur aslinya.</li>
+  <li>Pastikan setiap detail penulisan seperti titik koma (<code>;</code>), tanda kurung, dan indentasi sesuai dengan contoh.</li>
+  <li>Setelah selesai mengetik, klik tombol <code>RUN</code> untuk menjalankan kode.</li>
+  <li>Perhatikan hasil output program yang muncul.</li>
+  <li>Salin dan tuliskan output tersebut ke dalam kolom yang tersedia di bawah.</li>
+  <li>Terakhir, klik tombol <strong>Periksa Output</strong> untuk mengecek apakah hasil output kamu sudah benar.</li>
+</ol>
+
+<p class="mt-3">
+  💡 <strong>Catatan:</strong> Aktivitas <em>Ayo Pahami</em> ini merupakan <u>syarat untuk dapat mengakses halaman selanjutnya</u>. Pastikan output yang kamu masukkan sudah benar agar kamu dapat melanjutkan ke materi berikutnya.
+</p>
+
   </div>
 <!-- 
   <div class="text-start mb-3">
@@ -142,15 +150,23 @@ $pengguna->simpanPengguna();</code></pre>
   </div>
 
 
-
+<!-- LATIHAN -->
 <div class="quiz-card">
   <div class="quiz-header">
     <h1>LATIHAN</h1>
     <p>Ayo buktikan pemahamanmu!</p>
-    <p>
-      Lengkapilah potongan kode berikut ini untuk mengakses dan memanggil <strong>property</strong> serta <strong>method</strong> dari sebuah object! <br>
-      Isilah bagian kosong (___) dengan <strong>potongan kode yang sesuai</strong> agar program menampilkan merk kendaraan dan menjalankan method <code>nyalakanMesin()</code>.
-    </p>
+    <p class="quiz-intro">
+  Lengkapilah potongan kode PHP berikut dengan benar menggunakan metode <strong>drag-and-drop</strong> (seret dan lepas).<br>
+  Terdapat dua bagian kosong yang harus kamu isi dengan potongan kode yang tersedia di bawahnya. Klik dan tahan potongan kode yang kamu pilih, lalu seret ke area kosong bertanda <code>___</code> untuk mengisinya.<br><br>
+
+  Setelah seluruh bagian kode terisi, klik tombol <strong>PERIKSA</strong> untuk mengecek apakah jawabanmu sudah benar.<br>
+  Jika terdapat kesalahan, kamu akan mendapatkan umpan balik, dan kamu dapat mencoba kembali.<br>
+  Untuk mengulang atau mengatur ulang isian yang sudah kamu buat, klik tombol <strong>RESET</strong> agar area kosong kembali kosong dan kamu bisa menyusun ulang jawaban dari awal.<br><br>
+
+  💡 <strong>Catatan:</strong> Latihan ini merupakan syarat untuk membuka akses ke halaman selanjutnya. Pastikan kamu menyelesaikannya dengan benar agar dapat melanjutkan ke materi berikutnya.
+</p>
+
+
   </div>
 
   <div class="kode-box">
@@ -407,18 +423,3 @@ function cekKelayakanAksesGabungan() {
 </a>
 </div>
 @endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

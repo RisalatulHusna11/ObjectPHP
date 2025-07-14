@@ -400,8 +400,10 @@ function prosesSelesai() {
     jawaban_json: {
       evaluasi: {
         benar: skorBenar,
-        salah: totalSoal - skorBenar
-      }
+        salah: totalSoal - skorBenar,
+      tipe: 'evaluasi'
+      },
+  refleksi: jawaban
     }
   })
 })

@@ -5,7 +5,8 @@
 <h4 class="mb-3">Pengaturan KKM</h4>
 
 @php
-  $kkmSaatIni = auth()->user()->kkm ?? 70;
+  use App\Models\Kkm;
+  $kkmSaatIni = Kkm::where('dosen_id', auth()->id())->value('kkm') ?? 70;
 @endphp
 
 <div class="mb-3">

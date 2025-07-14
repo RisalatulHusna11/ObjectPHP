@@ -17,7 +17,7 @@ class ResultController extends Controller
             'skor' => 'required|numeric|min:0|max:100',
         ]);
 
-        $kkm = $user->dosen->kkm ?? 70;
+        $kkm = \App\Models\Kkm::where('dosen_id', $user->dosen_id)->value('kkm') ?? 70;
         $kuisKe = $request->kuis_ke;
 
         // Menentukan nama kolom
@@ -57,17 +57,39 @@ class ResultController extends Controller
         $result->rata_rata = $jumlah > 0 ? round($nilaiTotal / $jumlah, 2) : null;
         
         if ($request->has('jawaban_json')) {
-            $jawabanBaru = $request->input('jawaban_json');
-            $jsonLama = json_decode($result->jawaban_json, true) ?? [];
-            $jsonLama[$kolom] = $jawabanBaru;
-            if ($kolom === 'evaluasi' && isset($jawabanBaru['evaluasi'])) {
-                $jsonLama[$kolom] = $jawabanBaru['evaluasi'];
-            }
+    $jawabanBaru = $request->input('jawaban_json');
+    $jsonLama = json_decode($result->jawaban_json, true) ?? [];
 
-            $result->jawaban_json = json_encode($jsonLama);
-        }
-        
+    $jsonLama[$kolom] = [
+        'benar' => $jawabanBaru['benar'] ?? 0,
+        'salah' => $jawabanBaru['salah'] ?? 0,
+        'jawaban' => $jawabanBaru['jawaban'] ?? []
+    ];
+
+    // SIMPAN JUGA REFLEKSI untuk semua kuis (jika tersedia)
+if (isset($jawabanBaru['refleksi'])) {
+    $jsonLama['refleksi'] = $jawabanBaru['refleksi'];
+}
+
+    $result->jawaban_json = json_encode($jsonLama);
+}
+
+
+        \Log::info(request()->all());
+
         $result->save();
+
+        
+        \App\Models\RiwayatKuis::create([
+    'user_id' => $user->id,
+    'tipe_kuis' => $kolom,
+    'benar' => $request->input('jawaban_json.benar') ?? 0,
+    'salah' => $request->input('jawaban_json.salah') ?? 0,
+    'nilai' => $request->skor,
+    'waktu_selesai' => now(),
+    'jawaban' => $request->input('jawaban_json.jawaban') ?? [] 
+]);
+
 
         return response()->json(['status' => 'ok']);
     }
@@ -77,7 +99,7 @@ class ResultController extends Controller
     {
         $userId = auth()->id();
         $result = Result::where('user_id', $userId)->first();
-        $kkm = auth()->user()->dosen->kkm ?? 70;
+        $kkm = \App\Models\Kkm::where('dosen_id', auth()->user()->dosen_id)->value('kkm') ?? 70;
 
         return view('b17-hkuis', compact('result', 'kkm'));
     }
@@ -86,7 +108,7 @@ class ResultController extends Controller
     {
         $userId = auth()->id();
         $result = \App\Models\Result::where('user_id', $userId)->first();
-        $kkm = auth()->user()->dosen->kkm ?? 70;
+        $kkm = \App\Models\Kkm::where('dosen_id', auth()->user()->dosen_id)->value('kkm') ?? 70;
 
         return view('b212-hkuis', compact('result', 'kkm'));
     }
@@ -95,7 +117,7 @@ class ResultController extends Controller
     {
         $userId = auth()->id();
         $result = \App\Models\Result::where('user_id', $userId)->first();
-        $kkm = auth()->user()->dosen->kkm ?? 70;
+        $kkm = \App\Models\Kkm::where('dosen_id', auth()->user()->dosen_id)->value('kkm') ?? 70;
 
         return view('b34-hkuis', compact('result', 'kkm'));
     }
@@ -104,7 +126,7 @@ class ResultController extends Controller
     {
         $userId = auth()->id();
         $result = \App\Models\Result::where('user_id', $userId)->first();
-        $kkm = auth()->user()->dosen->kkm ?? 70;
+        $kkm = \App\Models\Kkm::where('dosen_id', auth()->user()->dosen_id)->value('kkm') ?? 70;
 
         return view('b46-hkuis', compact('result', 'kkm'));
     }
@@ -113,7 +135,7 @@ class ResultController extends Controller
     {
         $userId = auth()->id();
         $result = \App\Models\Result::where('user_id', $userId)->first();
-        $kkm = auth()->user()->dosen->kkm ?? 70;
+        $kkm = \App\Models\Kkm::where('dosen_id', auth()->user()->dosen_id)->value('kkm') ?? 70;
 
         return view('b54-hkuis', compact('result', 'kkm'));
     }
@@ -122,7 +144,7 @@ class ResultController extends Controller
     {
         $userId = auth()->id();
         $result = \App\Models\Result::where('user_id', $userId)->first();
-        $kkm = auth()->user()->dosen->kkm ?? 70;
+        $kkm = \App\Models\Kkm::where('dosen_id', auth()->user()->dosen_id)->value('kkm') ?? 70;
 
         return view('b63-heval', compact('result', 'kkm'));
     }

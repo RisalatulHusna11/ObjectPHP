@@ -28,16 +28,23 @@ $selesai = ProgressMahasiswa::where('user_id', auth()->id())->where('halaman', '
 <div class="quiz-card mt-5 ayo-pahami-wrapper">
   <div class="quiz-header">
     <h1>AYO PAHAMI!</h1><br>
-    <p>Petunjuk:</p>
-    <ol> 
-      <li>Perhatikan kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
-      <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan.</li>
-      <li>Pastikan setiap baris dan struktur penulisan sesuai dengan contoh (termasuk titik koma, kurung, dll).</li>
-      <li>Tekan tombol <code>RUN</code> di dalam editor untuk menjalankan program.</li>
-      <li>Amati hasil output program, lalu masukkan hasilnya pada kolom di bawahnya untuk memeriksa output sudah benar atau belum.</li>
-
-      <li>Tekan tombol <strong>Periksa Output</strong> untuk mengecek jawabanmu.</li>
+    <p class="quiz-intro">
+      Ikuti langkah-langkah berikut untuk memahami dan mempraktikkan konsep penting dalam pemrograman PHP berbasis objek.
+    </p>
+    <ol>
+      <li>Baca dan pahami kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
+      <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan sesuai urutan dan struktur aslinya.</li>
+      <li>Pastikan setiap detail penulisan seperti titik koma (<code>;</code>), tanda kurung, dan indentasi sesuai dengan contoh.</li>
+      <li>Setelah selesai mengetik, klik tombol <code>RUN</code> untuk menjalankan kode.</li>
+      <li>Perhatikan hasil output program yang muncul.</li>
+      <li>Salin dan tuliskan output tersebut ke dalam kolom yang tersedia di bawah.</li>
+      <li>Terakhir, klik tombol <strong>Periksa Output</strong> untuk mengecek apakah hasil output kamu sudah benar.</li>
     </ol>
+
+    <p class="mt-3">
+      💡 <strong>Catatan:</strong> Aktivitas <em>Ayo Pahami</em> ini merupakan <u>syarat untuk dapat mengakses halaman selanjutnya</u>. Pastikan output yang kamu masukkan sudah benar agar kamu dapat melanjutkan ke materi berikutnya.
+    </p>
+
   </div>
 
   <div class="ayo-pahami-grid">
@@ -105,15 +112,23 @@ echo $mobilSaya->infoMobil();</code></pre>
 <div class="quiz-card mt-5 ayo-pahami-wrapper">
   <div class="quiz-header">
     <h1>AYO PAHAMI!</h1><br>
-    <p>Petunjuk:</p>
-    <ol> 
-      <li>Perhatikan kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
-      <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan.</li>
-      <li>Pastikan setiap baris dan struktur penulisan sesuai dengan contoh (termasuk titik koma, kurung, dll).</li>
-      <li>Tekan tombol <code>RUN</code> di dalam editor untuk menjalankan program.</li>
-      <li>Amati hasil output program, lalu masukkan hasilnya pada kolom di bawahnya untuk memeriksa output sudah benar atau belum.</li>
-      <li>Tekan tombol <strong>Periksa Output</strong> untuk mengecek jawabanmu.</li>
+    <p class="quiz-intro">
+      Ikuti langkah-langkah berikut untuk memahami dan mempraktikkan konsep penting dalam pemrograman PHP berbasis objek.
+    </p>
+    <ol>
+      <li>Baca dan pahami kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
+      <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan sesuai urutan dan struktur aslinya.</li>
+      <li>Pastikan setiap detail penulisan seperti titik koma (<code>;</code>), tanda kurung, dan indentasi sesuai dengan contoh.</li>
+      <li>Setelah selesai mengetik, klik tombol <code>RUN</code> untuk menjalankan kode.</li>
+      <li>Perhatikan hasil output program yang muncul.</li>
+      <li>Salin dan tuliskan output tersebut ke dalam kolom yang tersedia di bawah.</li>
+      <li>Terakhir, klik tombol <strong>Periksa Output</strong> untuk mengecek apakah hasil output kamu sudah benar.</li>
     </ol>
+
+    <p class="mt-3">
+      💡 <strong>Catatan:</strong> Aktivitas <em>Ayo Pahami</em> ini merupakan <u>syarat untuk dapat mengakses halaman selanjutnya</u>. Pastikan output yang kamu masukkan sudah benar agar kamu dapat melanjutkan ke materi berikutnya.
+    </p>
+
   </div>
 
   <div class="ayo-pahami-grid">
@@ -159,15 +174,23 @@ echo $mobilSaya->infoMobil();</code></pre>
 <div class="quiz-card mt-5 ayo-pahami-wrapper">
   <div class="quiz-header">
     <h1>AYO PAHAMI!</h1><br>
-    <p>Petunjuk:</p>
-    <ol> 
-      <li>Perhatikan kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
-      <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan.</li>
-      <li>Pastikan setiap baris dan struktur penulisan sesuai dengan contoh (termasuk titik koma, kurung, dll).</li>
-      <li>Tekan tombol <code>RUN</code> di dalam editor untuk menjalankan program.</li>
-      <li>Amati hasil output program, lalu masukkan hasilnya pada kolom di bawahnya untuk memeriksa output sudah benar atau belum.</li>
-      <li>Tekan tombol <strong>Periksa Output</strong> untuk mengecek jawabanmu.</li>
+    <p class="quiz-intro">
+      Ikuti langkah-langkah berikut untuk memahami dan mempraktikkan konsep penting dalam pemrograman PHP berbasis objek.
+    </p>
+    <ol>
+      <li>Baca dan pahami kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
+      <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan sesuai urutan dan struktur aslinya.</li>
+      <li>Pastikan setiap detail penulisan seperti titik koma (<code>;</code>), tanda kurung, dan indentasi sesuai dengan contoh.</li>
+      <li>Setelah selesai mengetik, klik tombol <code>RUN</code> untuk menjalankan kode.</li>
+      <li>Perhatikan hasil output program yang muncul.</li>
+      <li>Salin dan tuliskan output tersebut ke dalam kolom yang tersedia di bawah.</li>
+      <li>Terakhir, klik tombol <strong>Periksa Output</strong> untuk mengecek apakah hasil output kamu sudah benar.</li>
     </ol>
+
+    <p class="mt-3">
+      💡 <strong>Catatan:</strong> Aktivitas <em>Ayo Pahami</em> ini merupakan <u>syarat untuk dapat mengakses halaman selanjutnya</u>. Pastikan output yang kamu masukkan sudah benar agar kamu dapat melanjutkan ke materi berikutnya.
+    </p>
+
   </div>
 
 
@@ -219,15 +242,23 @@ echo "Jumlah Mobil: " . Mobil::jumlahMobil();</code></pre>
 <div class="quiz-card mt-5 ayo-pahami-wrapper">
   <div class="quiz-header">
     <h1>AYO PAHAMI!</h1><br>
-    <p>Petunjuk:</p>
-    <ol> 
-      <li>Perhatikan kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
-      <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan.</li>
-      <li>Pastikan setiap baris dan struktur penulisan sesuai dengan contoh (termasuk titik koma, kurung, dll).</li>
-      <li>Tekan tombol <code>RUN</code> di dalam editor untuk menjalankan program.</li>
-      <li>Amati hasil output program, lalu masukkan hasilnya pada kolom di bawahnya untuk memeriksa output sudah benar atau belum.</li>
-      <li>Tekan tombol <strong>Periksa Output</strong> untuk mengecek jawabanmu.</li>
+    <p class="quiz-intro">
+      Ikuti langkah-langkah berikut untuk memahami dan mempraktikkan konsep penting dalam pemrograman PHP berbasis objek.
+    </p>
+    <ol>
+      <li>Baca dan pahami kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
+      <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan sesuai urutan dan struktur aslinya.</li>
+      <li>Pastikan setiap detail penulisan seperti titik koma (<code>;</code>), tanda kurung, dan indentasi sesuai dengan contoh.</li>
+      <li>Setelah selesai mengetik, klik tombol <code>RUN</code> untuk menjalankan kode.</li>
+      <li>Perhatikan hasil output program yang muncul.</li>
+      <li>Salin dan tuliskan output tersebut ke dalam kolom yang tersedia di bawah.</li>
+      <li>Terakhir, klik tombol <strong>Periksa Output</strong> untuk mengecek apakah hasil output kamu sudah benar.</li>
     </ol>
+
+    <p class="mt-3">
+      💡 <strong>Catatan:</strong> Aktivitas <em>Ayo Pahami</em> ini merupakan <u>syarat untuk dapat mengakses halaman selanjutnya</u>. Pastikan output yang kamu masukkan sudah benar agar kamu dapat melanjutkan ke materi berikutnya.
+    </p>
+
   </div>
 
 
@@ -268,15 +299,23 @@ echo $pengguna1->nama;</code></pre>
 <div class="quiz-card mt-5 ayo-pahami-wrapper">
   <div class="quiz-header">
     <h1>AYO PAHAMI!</h1><br>
-    <p>Petunjuk:</p>
-    <ol> 
-      <li>Perhatikan kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
-      <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan.</li>
-      <li>Pastikan setiap baris dan struktur penulisan sesuai dengan contoh (termasuk titik koma, kurung, dll).</li>
-      <li>Tekan tombol <code>RUN</code> di dalam editor untuk menjalankan program.</li>
-      <li>Amati hasil output program, lalu masukkan hasilnya pada kolom di bawahnya untuk memeriksa output sudah benar atau belum.</li>
-      <li>Tekan tombol <strong>Periksa Output</strong> untuk mengecek jawabanmu.</li>
+    <p class="quiz-intro">
+      Ikuti langkah-langkah berikut untuk memahami dan mempraktikkan konsep penting dalam pemrograman PHP berbasis objek.
+    </p>
+    <ol>
+      <li>Baca dan pahami kode program PHP yang ditampilkan di kotak sebelah kiri.</li>
+      <li>Ketik ulang seluruh baris kode tersebut ke dalam editor di sebelah kanan sesuai urutan dan struktur aslinya.</li>
+      <li>Pastikan setiap detail penulisan seperti titik koma (<code>;</code>), tanda kurung, dan indentasi sesuai dengan contoh.</li>
+      <li>Setelah selesai mengetik, klik tombol <code>RUN</code> untuk menjalankan kode.</li>
+      <li>Perhatikan hasil output program yang muncul.</li>
+      <li>Salin dan tuliskan output tersebut ke dalam kolom yang tersedia di bawah.</li>
+      <li>Terakhir, klik tombol <strong>Periksa Output</strong> untuk mengecek apakah hasil output kamu sudah benar.</li>
     </ol>
+
+    <p class="mt-3">
+      💡 <strong>Catatan:</strong> Aktivitas <em>Ayo Pahami</em> ini merupakan <u>syarat untuk dapat mengakses halaman selanjutnya</u>. Pastikan output yang kamu masukkan sudah benar agar kamu dapat melanjutkan ke materi berikutnya.
+    </p>
+
   </div>
 
 
@@ -331,9 +370,21 @@ $pengguna->biografi = "Biografi baru"; // Menyimpan data baru</code></pre>
 <div class="quiz-card">
   <div class="quiz-header">
     <h1>LATIHAN</h1>
-    <p>Untuk menguji seberapa paham kamu tentang materi <strong>deklarasi properti</strong> dalam PHP, susunlah potongan-potongan kode berikut menjadi urutan kode PHP yang benar!</p>
-    <p><strong>Petunjuk:</strong> Tulis jawabanmu berupa urutan angka, dipisah dengan spasi. Contoh format jawaban yang benar: <code>1 5 4 2 3 6</code></p>
-    <p><em><strong>Catatan:</strong> Terdapat dua baris dengan kurung kurawal tutup <code>}</code>. Untuk membantumu menyusun, perhatikan komentar di sampingnya yang menunjukkan penutup blok mana (method atau class).</em></p>
+    <p class="quiz-intro">
+  Susunlah potongan-potongan kode berikut agar membentuk program PHP yang benar dalam mendeklarasikan <strong>property</strong> dan <strong>method</strong> di dalam sebuah class.<br>
+  Bacalah setiap baris kode dengan cermat, lalu tuliskan urutan nomornya sesuai logika struktur program PHP.<br><br>
+
+  Ketik jawabanmu berupa deretan angka, dipisahkan dengan spasi, pada kolom yang tersedia.<br>
+  <strong>Contoh format penulisan jawaban yang benar:</strong> <code>4 3 1 2 5 6</code><br><br>
+
+  Perhatikan juga posisi tanda kurung kurawal <code>}</code> dan komentar di sampingnya, karena ini akan membantumu memahami blok mana yang ditutup (method atau class).<br><br>
+
+  Setelah yakin dengan urutannya, klik tombol <strong>Cek Jawaban</strong> untuk melihat apakah susunanmu sudah tepat.<br>
+  Jika masih salah, kamu dapat memperbaiki dan mencoba kembali. Untuk menghapus jawaban dan mengulang dari awal, klik tombol <strong>Reset</strong>.<br><br>
+
+  💡 <strong>Catatan:</strong> Latihan ini merupakan <u>syarat untuk membuka halaman selanjutnya</u>. Pastikan kamu menyusunnya dengan benar agar dapat lanjut ke materi berikutnya.
+</p>
+
   </div>
 
   <ul class="list-group mb-3">
@@ -610,27 +661,35 @@ function cekAyoPahami5() {
 }
 
 
-
+// LATIHAN
 const jawabanBenarProperti = "4 3 1 2 5 6";
 
 document.getElementById('cekJawabanProperti').addEventListener('click', () => {
+  // Ambil dan rapikan input jawaban dari pengguna
   const input = document.getElementById('input-jawaban').value.trim().replace(/\s+/g, ' ');
+
   const feedback = document.getElementById('feedbackProperti');
   feedback.className = 'feedback';
 
-  sudahLatihan = true; // ✅ Ini tetap
-  cekKelayakanAksesGabunganB22(); // ✅ Ini yang akan aktifkan tombol jika semua sudah selesai
+  // Tandai latihan sebagai selesai dan cek kelayakan akses halaman berikutnya
+  sudahLatihan = true;
+  cekKelayakanAksesGabunganB22();
 
+  // Cek apakah urutan jawaban sesuai dengan kunci
   if (input === jawabanBenarProperti) {
+    // Tampilkan umpan balik benar
     feedback.classList.add('correct');
     feedback.textContent = '🎉 Jawaban kamu benar! Kode sudah tersusun dengan tepat.';
   } else {
+    // Tampilkan umpan balik salah
     feedback.classList.add('incorrect');
     feedback.textContent = '❌ Jawaban masih salah. Perhatikan kembali urutan logika program.';
   }
 
+  // Tampilkan area feedback
   feedback.classList.remove('d-none');
 });
+
 
 
 document.getElementById('resetJawabanProperti').addEventListener('click', () => {

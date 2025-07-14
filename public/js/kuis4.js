@@ -214,7 +214,7 @@ function prosesSelesai() {
   const totalSoal = soalData.length;
   const skorFinal = Math.round((skorBenar / totalSoal) * 100);
 
-  // Simpan ke localStorage
+  // Simpan sementara ke localStorage
   const hasil = {
     benar: skorBenar.toFixed(2),
     total: totalSoal,
@@ -222,7 +222,26 @@ function prosesSelesai() {
   };
   localStorage.setItem("hasilKuis", JSON.stringify(hasil));
 
-  // Kirim ke server via fetch
+  // Refleksi per soal (benar/salah)
+  const refleksi = soalData.map((soal, i) => {
+    const jwb = jawaban[i];
+    let benar = false;
+
+    if (soal.tipe === "isian" || soal.tipe === "drag-drop-isian") {
+      if (Array.isArray(jwb) && Array.isArray(soal.jawaban)) {
+        benar = soal.jawaban.every((val, idx) => (jwb[idx] || "").trim() === val.trim());
+      }
+    } else if (soal.tipe === "isian-urut") {
+      const userUrut = jwb.split(/\s+/).map(x => soal.potongan[parseInt(x) - 1] || "");
+      const benarUrut = userUrut.map(s => s.replace(/\/\/.*$/, "").trim());
+      const kunciUrut = soal.jawaban.map(s => s.replace(/\/\/.*$/, "").trim());
+      benar = JSON.stringify(benarUrut) === JSON.stringify(kunciUrut);
+    }
+
+    return { soal: i + 1, benar };
+  });
+
+  // Kirim ke server
   fetch('/simpan-nilai-kuis', {
     method: 'POST',
     headers: {
@@ -230,27 +249,32 @@ function prosesSelesai() {
       'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
     },
     body: JSON.stringify({
-      kuis_ke: 4, // KUIS 4
+      kuis_ke: 4,
       skor: skorFinal,
       jawaban_json: {
-      benar: skorBenar,
-      salah: totalSoal - skorBenar
-    }
+        kuis_4: {
+          benar: skorBenar,
+          salah: totalSoal - skorBenar,
+          jawaban: jawaban
+        },
+        refleksi: refleksi
+      }
     })
   })
   .then(res => res.json())
   .then(data => {
     if (data.status === 'ok' || data.status === 'kkm_met') {
-      window.location.href = "/b46-hkuis"; // halaman hasil kuis 4
+      window.location.href = "/b46-hkuis";
     } else {
       alert("Gagal menyimpan nilai. Silakan coba lagi.");
     }
   })
   .catch(err => {
-    console.error("Gagal:", err);
+    console.error("❌ Gagal kirim:", err);
     alert("Terjadi kesalahan saat menyimpan nilai.");
   });
 }
+
 
 
 function tampilkanModal() {

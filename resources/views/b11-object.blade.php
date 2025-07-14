@@ -112,7 +112,14 @@
             <div class="quiz-card mt-5">
               <div class="quiz-header">
                 <h1>LATIHAN</h1>
-                <p class="quiz-intro">Jawablah pertanyaan berikut untuk menguji pemahamanmu. Kamu dapat mencoba lagi hingga jawabanmu benar!</p>
+                <p class="quiz-intro">
+                  Bacalah setiap pertanyaan pilihan ganda dengan cermat, lalu klik salah satu jawaban yang menurutmu paling tepat.<br>
+                  Gunakan tombol <strong>Lanjut</strong> untuk berpindah ke soal berikutnya, dan tombol <strong>Kembali</strong> jika ingin meninjau ulang jawaban sebelumnya.<br>
+                  Setelah semua soal dijawab, klik tombol <strong>Periksa Jawaban</strong> untuk menampilkan refleksi atas pilihanmu.<br>
+                  Jika masih terdapat jawaban yang salah, kamu dapat mengulangi latihan ini hingga semua jawaban benar untuk membuka akses ke halaman selanjutnya.
+                </p>
+
+
               </div>
               <div id="quiz-container"></div>
               <div class="d-flex justify-content-between">
@@ -122,163 +129,206 @@
             </div>
 
             <script>
-              const quizData = [
-                {
-                  question: "1. Istilah untuk satuan kode dalam OOP yang menggabungkan data dan fungsi disebut ….",
-                  options: ["Array", "Function", "Object", "Class", "Variable"],
-                  answer: 3,
-                  feedback: [
-                    "Array adalah struktur data, bukan unit utama dalam OOP.",
-                    "Function hanya berisi logika, bukan struktur menyeluruh.",
-                    "Object adalah hasil dari class, bukan unit utama.",
-                    "🎉 Tepat sekali! Class menyatukan data dan fungsi dalam OOP.",
-                    "Variable menyimpan data saja, tidak mencakup fungsi."
-                  ]
-                },
-                {
-                  question: "2. Alasan OOP lebih mudah dipelihara dibandingkan pendekatan prosedural adalah …",
-                  options: [
-                    "OOP tidak butuh fungsi.",
-                    "OOP menyatukan semua logika dalam satu tempat.",
-                    "Setiap object bertanggung jawab atas bagiannya sendiri.",
-                    "OOP lebih cepat dieksekusi.",
-                    "OOP selalu menggunakan file terpisah."
-                  ],
-                  answer: 2,
-                  feedback: [
-                    "Hmm, bukan itu! Fungsi tetap dibutuhkan dalam OOP.",
-                    "Belum tepat. Justru logika dibagi dalam object, bukan disatukan.",
-                    "🎉 Benar sekali! Ini yang membuat OOP mudah dipelihara.",
-                    "Kecepatan bukan alasan utama OOP unggul.",
-                    "Struktur file bisa bervariasi, tapi bukan alasan utama."
-                  ]
-                },
-                {
-                  question: "3. Object-Oriented Programming (OOP) merupakan paradigma pemrograman yang berfokus pada …",
-                  options: [
-                    "Pembuatan fungsi-fungsi independen.",
-                    "Pemrosesan data dengan perintah berulang.",
-                    "Penggabungan data dan fungsi dalam satu entitas.",
-                    "Penggunaan array untuk menyimpan seluruh informasi.",
-                    "Penulisan kode prosedural yang terstruktur."
-                  ],
-                  answer: 2,
-                  feedback: [
-                    "Coba lagi! Itu lebih cocok untuk procedural programming.",
-                    "Belum benar. Ini ciri dari pendekatan prosedural.",
-                    "🎉 Yes! Ini inti dari pendekatan OOP!",
-                    "Array hanya struktur data, bukan inti dari OOP.",
-                    "Prosedural dan OOP adalah pendekatan berbeda."
-                  ]
-                }
-              ];
+const quizData = [
+  {
+    question: "1. Istilah untuk satuan kode dalam OOP yang menggabungkan data dan fungsi disebut ….",
+    options: ["Array", "Function", "Object", "Class", "Variable"],
+    answer: 3,
+    feedback: [
+      "Array adalah struktur data, bukan unit utama dalam OOP.",
+      "Function hanya berisi logika, bukan struktur menyeluruh.",
+      "Object adalah hasil dari class, bukan unit utama.",
+      "🎉 Tepat sekali! Class menyatukan data dan fungsi dalam OOP.",
+      "Variable menyimpan data saja, tidak mencakup fungsi."
+    ]
+  },
+  {
+    question: "2. Alasan OOP lebih mudah dipelihara dibandingkan pendekatan prosedural adalah …",
+    options: [
+      "OOP tidak butuh fungsi.",
+      "OOP menyatukan semua logika dalam satu tempat.",
+      "Setiap object bertanggung jawab atas bagiannya sendiri.",
+      "OOP lebih cepat dieksekusi.",
+      "OOP selalu menggunakan file terpisah."
+    ],
+    answer: 2,
+    feedback: [
+      "Hmm, bukan itu! Fungsi tetap dibutuhkan dalam OOP.",
+      "Belum tepat. Justru logika dibagi dalam object, bukan disatukan.",
+      "🎉 Benar sekali! Ini yang membuat OOP mudah dipelihara.",
+      "Kecepatan bukan alasan utama OOP unggul.",
+      "Struktur file bisa bervariasi, tapi bukan alasan utama."
+    ]
+  },
+  {
+    question: "3. Object-Oriented Programming (OOP) merupakan paradigma pemrograman yang berfokus pada …",
+    options: [
+      "Pembuatan fungsi-fungsi independen.",
+      "Pemrosesan data dengan perintah berulang.",
+      "Penggabungan data dan fungsi dalam satu entitas.",
+      "Penggunaan array untuk menyimpan seluruh informasi.",
+      "Penulisan kode prosedural yang terstruktur."
+    ],
+    answer: 2,
+    feedback: [
+      "Coba lagi! Itu lebih cocok untuk procedural programming.",
+      "Belum benar. Ini ciri dari pendekatan prosedural.",
+      "🎉 Yes! Ini inti dari pendekatan OOP!",
+      "Array hanya struktur data, bukan inti dari OOP.",
+      "Prosedural dan OOP adalah pendekatan berbeda."
+    ]
+  }
+];
 
-              let currentQuestion = 0;
+let currentQuestion = 0;
+let jawabanUser = Array(quizData.length).fill(null);
 
-              function renderQuestion() {
-                const q = quizData[currentQuestion];
-                const container = document.getElementById("quiz-container");
-                const nextBtn = document.getElementById("nextBtn");
-                const backBtn = document.getElementById("backBtn");
-                nextBtn.classList.add("d-none");
-                backBtn.classList.toggle("d-none", currentQuestion === 0);
+function renderQuestion() {
+  const q = quizData[currentQuestion];
+  const container = document.getElementById("quiz-container");
+  const nextBtn = document.getElementById("nextBtn");
+  const backBtn = document.getElementById("backBtn");
 
-                let html = `<div class='quiz-title'>Pertanyaan ${currentQuestion+1} dari ${quizData.length}</div>`;
-                html += `<p>${q.question}</p>`;
-                q.options.forEach((opt, index) => {
-                  html += `<div class="option" onclick="selectOption(this, ${index})">${String.fromCharCode(65+index)}. ${opt}</div>`;
-                });
-                html += `<div id="feedback"></div>`;
-                container.innerHTML = html;
-              }
+  nextBtn.innerText = (currentQuestion === quizData.length - 1) ? "Periksa Jawaban" : "Lanjut";
+  nextBtn.classList.toggle("d-none", jawabanUser[currentQuestion] === null);
+  backBtn.classList.toggle("d-none", currentQuestion === 0);
 
-              function selectOption(el, index) {
-                const q = quizData[currentQuestion];
-                const options = document.querySelectorAll(".option");
-                options.forEach(opt => opt.onclick = null);
+  let html = `<div class='quiz-title'>Pertanyaan ${currentQuestion + 1} dari ${quizData.length}</div>`;
+  html += `<p>${q.question}</p>`;
+  q.options.forEach((opt, index) => {
+    const selected = jawabanUser[currentQuestion] === index ? 'selected' : '';
+    html += `<div class="option ${selected}" onclick="selectOption(this, ${index})">${String.fromCharCode(65 + index)}. ${opt}</div>`;
+  });
 
-                if (index === q.answer) {
-                  el.classList.add("correct");
-                  document.getElementById("feedback").innerHTML = `<div class='feedback correct'>✔ Selamat! ${q.feedback[index]}</div>`;
-                  document.getElementById("nextBtn").classList.remove("d-none");
-                } else {
-                  el.classList.add("incorrect");
-                  document.getElementById("feedback").innerHTML = `<div class='feedback incorrect'>✘ Coba lagi ya! ${q.feedback[index]}</div>`;
-                  options.forEach((opt, i) => {
-                    if (!opt.classList.contains("correct") && !opt.classList.contains("incorrect")) {
-                      opt.onclick = () => selectOption(opt, i);
-                    }
-                  });
-                }
-              }
-
-              document.getElementById("nextBtn").addEventListener("click", () => {
-                currentQuestion++;
-                if (currentQuestion < quizData.length) {
-                  renderQuestion();
-                } else {
-                  document.getElementById("quiz-container").innerHTML = `<div class='quiz-title text-success'>🎉 Semua soal telah selesai! Kamu luar biasa!</div>`;
-                  document.getElementById("nextBtn").classList.add("d-none");
-                  document.getElementById("backBtn").classList.add("d-none");
-                  kirimProgressHalaman("b11-object");
-                }
-              });
-
-              document.getElementById("backBtn").addEventListener("click", () => {
-                if (currentQuestion > 0) {
-                  currentQuestion--;
-                  renderQuestion();
-                }
-              });
-
-              renderQuestion();
-
-              $(document).ready(function(){
-        var currentLocation = window.location.href;
-        if(currentLocation.slice(-1) === "/") {
-            currentLocation = currentLocation.slice(0, -1);
-        }
-        $('.pagination a').filter(function() {
-            return this.href === currentLocation;
-        }).addClass('active');
-    });
-
-    
-// function kirimProgressHalaman(namaHalaman) {
-//   fetch("{{ route('progress.simpan') }}", {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
-//     },
-//     body: JSON.stringify({ halaman: namaHalaman })
-//   })
-//   .then(res => res.json())
-//   .then(data => {
-//     console.log('✅ Progress berhasil dikirim:', data);
-
-//     // 🔥 GUNAKAN getElementById, BUKAN querySelector class
-//     const tombol = document.getElementById('btnSelanjutnya');
-//     if (tombol) {
-//       tombol.style.pointerEvents = 'auto';
-//       tombol.style.opacity = 1;
-//       tombol.removeAttribute('disabled');
-//     }
-//   })
-//   .catch(err => {
-//     console.error('❌ Gagal kirim progress:', err);
-//   });
-// }
-
-const tombol = document.getElementById('btnSelanjutnya');
-if (tombol) {
-  tombol.style.pointerEvents = 'auto';
-  tombol.style.opacity = 1;
+  container.innerHTML = html;
 }
 
+function selectOption(el, index) {
+  jawabanUser[currentQuestion] = index;
 
+  const options = document.querySelectorAll(".option");
+  options.forEach(opt => opt.classList.remove("selected"));
+  el.classList.add("selected");
 
-            </script>
+  document.getElementById("nextBtn").classList.remove("d-none");
+}
+
+document.getElementById("nextBtn").addEventListener("click", () => {
+  if (currentQuestion < quizData.length - 1) {
+    currentQuestion++;
+    renderQuestion();
+  } else {
+    tampilkanRefleksi();
+  }
+});
+
+document.getElementById("backBtn").addEventListener("click", () => {
+  if (currentQuestion > 0) {
+    currentQuestion--;
+    renderQuestion();
+  }
+});
+
+function tampilkanRefleksi() {
+  const container = document.getElementById("quiz-container");
+  let benar = 0;
+
+  let html = `<h4 class='mb-4 fw-bold'>🔎 Refleksi Jawaban</h4>`;
+
+  quizData.forEach((q, i) => {
+    const userIndex = jawabanUser[i];
+    const isBenar = userIndex === q.answer;
+    if (isBenar) benar++;
+
+    const statusBadge = isBenar ? 'success' : 'danger';
+    const statusText = isBenar ? '✅ Benar' : '❌ Salah';
+
+    html += `
+      <div class="accordion-item mb-3 border rounded shadow-sm">
+        <h6 class="accordion-header p-3 bg-light">
+          Soal ${i + 1} - <span class="badge bg-${statusBadge}">${statusText}</span>
+        </h6>
+        <div class="accordion-body p-3">
+          <p><strong>Pertanyaan:</strong><br>${q.question}</p>
+          <p><strong>Jawabanmu:</strong><br>${q.options[userIndex] ?? "<i>Belum dijawab</i>"}</p>
+          <p><strong>Feedback:</strong><br>${q.feedback[userIndex] ?? "<i>Tidak tersedia</i>"}</p>
+        </div>
+      </div>
+    `;
+  });
+
+  const total = quizData.length;
+
+  html = `<div class="alert alert-${
+    benar === total ? 'success' : 'warning'
+  } fw-bold">${benar === total
+      ? '🎉 Semua jawaban kamu benar! Keren banget! Kamu bisa lanjut ke materi berikutnya.'
+      : '😅 Masih ada jawaban yang belum tepat. Yuk ulangi lagi agar lebih paham!'
+    }</div>` + html;
+
+  html += `
+    <div class="mt-4 text-center">
+      ${
+        benar === total
+          ? ''
+          : `<button id = "btn-danger" class="btn btn-danger" onclick="resetKuis()">Ulangi Latihan</button>`
+      }
+    </div>
+  `;
+
+  container.innerHTML = html;
+  document.getElementById("nextBtn").classList.add("d-none");
+  document.getElementById("backBtn").classList.add("d-none");
+
+  if (benar === total) {
+    kirimProgressHalaman("b11-object");
+
+    const tombol = document.getElementById('btnSelanjutnya');
+    if (tombol) {
+      tombol.style.pointerEvents = 'auto';
+      tombol.style.opacity = 1;
+      tombol.removeAttribute('disabled');
+    }
+  }
+}
+
+function resetKuis() {
+  currentQuestion = 0;
+  jawabanUser = Array(quizData.length).fill(null);
+  renderQuestion();
+}
+
+function kirimProgressHalaman(namaHalaman) {
+  fetch("{{ route('progress.simpan') }}", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+    },
+    body: JSON.stringify({ halaman: namaHalaman })
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log('✅ Progress berhasil dikirim:', data);
+    })
+    .catch(err => {
+      console.error('❌ Gagal kirim progress:', err);
+    });
+}
+
+renderQuestion();
+
+$(document).ready(function () {
+  var currentLocation = window.location.href;
+  if (currentLocation.slice(-1) === "/") {
+    currentLocation = currentLocation.slice(0, -1);
+  }
+  $('.pagination a').filter(function () {
+    return this.href === currentLocation;
+  }).addClass('active');
+});
+</script>
+
 
     <!-- PAGINATION -->
   <div class="pagination">

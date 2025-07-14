@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Barang;
+use App\Models\Kkm;
 use App\Models\Result;
+use App\Models\RiwayatKuis;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
@@ -86,13 +87,25 @@ public function dosen()
     $rataPerKuis = [];
     $nilaiTertinggi = [];
     $nilaiTerendah = [];
+    $namaTertinggi = [];
+    $namaTerendah = [];
 
     foreach ($fields as $field) {
         $nilaiField = $results->pluck($field)->filter(fn($v) => $v !== null);
-        
+
+        // Rata-rata, maksimum, minimum
         $rataPerKuis[$field] = $nilaiField->count() ? round($nilaiField->avg(), 2) : null;
         $nilaiTertinggi[$field] = $nilaiField->count() ? $nilaiField->max() : null;
         $nilaiTerendah[$field] = $nilaiField->count() ? $nilaiField->min() : null;
+
+        // Nama-nama mahasiswa yang memiliki nilai tersebut
+        $namaTertinggi[$field] = $results->filter(fn($r) => $r->$field == $nilaiTertinggi[$field])
+            ->pluck('nama')
+            ->toArray();
+
+        $namaTerendah[$field] = $results->filter(fn($r) => $r->$field == $nilaiTerendah[$field])
+            ->pluck('nama')
+            ->toArray();
     }
 
     // Hitung nilai kumulatif dari rata_rata
@@ -112,9 +125,12 @@ public function dosen()
         'rataNilai',
         'rataPerKuis',
         'nilaiTertinggi',
-        'nilaiTerendah'
+        'nilaiTerendah',
+        'namaTertinggi',
+        'namaTerendah'
     ));
 }
+
 
 
 
@@ -375,49 +391,39 @@ public function showDataNilai(Request $request)
 
 public function detailNilai(Request $request, $id)
 {
-    $tipe = $request->get('tipe'); // contoh: kuis_1, kuis_2, evaluasi
-    $result = Result::where('user_id', $id)->first();
+    $tipe = $request->get('tipe'); // kuis_1, kuis_2, evaluasi, dll
     $user = User::findOrFail($id);
 
-    if (!$result || !$tipe) {
+    if (!$tipe) {
         return response()->json([
             'nama' => $user->name,
             'riwayat' => []
         ]);
     }
 
-    $json = json_decode($result->jawaban_json ?? '{}', true);
-    $data = $json[$tipe] ?? null;
+    // Ambil semua riwayat kuis dari tabel baru
+    $riwayat = RiwayatKuis::where('user_id', $user->id)
+        ->where('tipe_kuis', $tipe)
+        ->orderBy('created_at', 'asc')
+        ->get();
 
-    // handle jika data kosong
-    if (!$data || !isset($data['benar']) || !isset($data['salah'])) {
-        return response()->json([
-            'nama' => $user->name,
-            'riwayat' => [[
-                'tanggal' => '-',
-                'waktu' => '-',
-                'benar' => '-',
-                'salah' => '-',
-                'skor' => '-',
-                'tuntas' => '-',
-            ]]
-        ]);
-    }
+    $kkm = \App\Models\Kkm::where('dosen_id', $user->dosen_id)->value('kkm') ?? 70;
 
-    // ambil nilai dari kolom terkait
-    $skor = $result->$tipe ?? 0;
-    $kkm = $user->kkm ?? 70;
+    $data = $riwayat->map(function ($item) use ($kkm) {
+        return [
+            'tanggal' => \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y'),
+            'waktu' => \Carbon\Carbon::parse($item->created_at)->translatedFormat('H:i') . ' WITA',
+            'tipe' => strtoupper(str_replace('_', ' ', $item->tipe_kuis)),
+            'benar' => $item->benar,
+            'salah' => $item->salah,
+            'skor' => $item->nilai,
+            'tuntas' => intval($item->nilai) >= intval($kkm)
+        ];
+    });
 
     return response()->json([
         'nama' => $user->name,
-        'riwayat' => [[
-            'tanggal' => \Carbon\Carbon::parse($result->updated_at)->translatedFormat('l, d F Y'),
-            'waktu'   => \Carbon\Carbon::parse($result->updated_at)->translatedFormat('H:i') . ' WITA',
-            'benar'   => $data['benar'],
-            'salah'   => $data['salah'],
-            'skor'    => $skor,
-            'tuntas'  => $skor >= $kkm,
-        ]]
+        'riwayat' => $data
     ]);
 }
 
@@ -474,19 +480,15 @@ public function aturKKM(Request $request)
         'kkm' => 'required|integer|min:0|max:100'
     ]);
 
-    $dosen = Auth::user();
-    $kkmBaru = $request->kkm;
+    $dosenId = auth()->id();
 
-    // Simpan ke dosen
-    $dosen->kkm = $kkmBaru;
-    $dosen->save();
+    // Update jika sudah ada, atau buat baru jika belum ada
+    Kkm::updateOrCreate(
+        ['dosen_id' => $dosenId], // syarat pencarian
+        ['kkm' => $request->kkm]  // data yang akan disimpan
+    );
 
-    // Update seluruh mahasiswa yang memiliki dosen_id ini
-    \App\Models\User::where('role', 'mahasiswa')
-        ->where('dosen_id', $dosen->id)
-        ->update(['kkm' => $kkmBaru]);
-
-    return back()->with('success', 'KKM berhasil diperbarui untuk Anda dan seluruh mahasiswa Anda.');
+    return back()->with('success', 'KKM berhasil diperbarui.');
 }
 
 public function exportNilaiPDF()

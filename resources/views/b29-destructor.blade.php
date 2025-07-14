@@ -81,6 +81,7 @@ unset($rumah);
 </div>
 </div>
 
+<!-- LATIHAN -->
 <div class="quiz-card">
   <div class="quiz-header">
     <h1>LATIHAN</h1>
@@ -139,6 +140,7 @@ $file = new FileSementara("data_tmp.txt");
 <script>
 let draggedItem = null;
 
+// Menyimpan item yang sedang di-drag dan menambahkan efek visual
 document.querySelectorAll('.drag-item').forEach(item => {
   item.addEventListener('dragstart', () => {
     draggedItem = item;
@@ -150,30 +152,35 @@ document.querySelectorAll('.drag-item').forEach(item => {
   });
 });
 
+// Menangani aksi drop ke zona kosong dengan menyisipkan teks item yang dipilih
 document.querySelectorAll('.drop-zone').forEach(zone => {
   zone.addEventListener('dragover', e => e.preventDefault());
   zone.addEventListener('drop', e => {
     e.preventDefault();
     if (draggedItem) {
-      zone.textContent = draggedItem.dataset.value;
-      zone.dataset.value = draggedItem.dataset.value;
+      zone.textContent = draggedItem.dataset.value; // tampilkan nilai ke zona
+      zone.dataset.value = draggedItem.dataset.value; // simpan nilai untuk validasi
     }
   });
 });
 
 function cekDragJawaban() {
+  // Ambil semua nilai dari zona drop
   const d1 = document.getElementById('drop1').dataset.value || '';
   const d2 = document.getElementById('drop2').dataset.value || '';
   const d3 = document.getElementById('drop3').dataset.value || '';
   const d4 = document.getElementById('drop4').dataset.value || '';
+
   const feedback = document.getElementById('feedbackDrag');
   feedback.className = 'feedback';
 
+  // Periksa apakah semua jawaban benar
   if (d1 === '__construct' && d2 === 'namaFile' && d3 === '__destruct' && d4 === 'unset') {
     feedback.classList.add('correct');
     feedback.innerHTML = '🎉 Jawaban kamu benar! Destructor sudah dipanggil dengan benar.';
-    kirimProgressHalaman("b29-destructor");
+    kirimProgressHalaman("b29-destructor"); // simpan progres halaman
 
+    // Aktifkan tombol Selanjutnya
     const tombol = document.getElementById("btnSelanjutnya");
     if (tombol) {
       tombol.style.pointerEvents = "auto";
@@ -181,12 +188,14 @@ function cekDragJawaban() {
       tombol.removeAttribute("disabled");
     }
   } else {
+    // Jika salah, tampilkan umpan balik kesalahan
     feedback.classList.add('incorrect');
     feedback.innerHTML = '❌ Masih salah, periksa lagi isianmu ya.';
   }
 
-  feedback.classList.remove('d-none');
+  feedback.classList.remove('d-none'); // tampilkan feedback
 }
+
 
 function resetDragJawaban() {
   ['drop1', 'drop2', 'drop3', 'drop4'].forEach(id => {

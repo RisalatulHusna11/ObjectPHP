@@ -59,7 +59,12 @@
   background-color: #f8d7da;
   color: #842029;
 }
-.btn-next, .btn-back {
+.btn-next, .btn-back{
+  margin-top: 20px;
+  background-color: #6f42c1;
+  color: white;
+}
+#btn-danger{
   margin-top: 20px;
   background-color: #6f42c1;
   color: white;
@@ -67,4 +72,15 @@
 .btn-back {
   background-color: #adb5bd;
   margin-right: 10px;
+}
+
+
+.option.selected {
+  background-color: #e0f7fa;
+  font-weight: bold;
+  border: 1px solid #00acc1;
+}
+
+.accordion-item {
+  border-radius: 8px;
 }

@@ -307,6 +307,7 @@
               <th>No.</th>
               <th>Tanggal</th>
               <th>Waktu</th>
+              <th>Kuis</th>
               <th>Jawaban Benar</th>
               <th>Jawaban Salah</th>
               <th>Nilai</th>
@@ -344,6 +345,7 @@
             <td>${i + 1}</td>
             <td>${d.tanggal}</td>
             <td>${d.waktu}</td>
+            <td>${d.tipe}</td>
             <td>${d.benar}</td>
             <td>${d.salah}</td>
             <td>${d.skor}</td>

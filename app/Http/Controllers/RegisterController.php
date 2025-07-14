@@ -56,7 +56,7 @@ if ($existingNim) {
 }
 
 
-       $kkm = $dosen->kkm ?? 70;
+       
 
 $user = User::create([
     'name'     => $validated['namaInput'],
@@ -64,8 +64,7 @@ $user = User::create([
     'password' => bcrypt($validated['passwordInput']),
     'role'     => 'mahasiswa',
     'nim'      => $validated['nimInput'],
-    'dosen_id' => $dosen->id,
-    'kkm'      => $kkm,
+    'dosen_id' => $dosen->id
 ]);
 
     }

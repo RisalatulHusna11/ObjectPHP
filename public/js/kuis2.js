@@ -5,21 +5,28 @@ const kkm = metaKKM ? parseInt(metaKKM.content) : 70;
 
 const soalData = [
   {
-    nomor: 1,
-    tipe: "drag-drop-urutan",
-    instruksi: "Susunlah potongan-potongan kode berikut agar menjadi program PHP yang benar. Program ini harus mendefinisikan class bernama Verifikasi, yang memiliki sebuah konstanta bernama MINIMUM_UMUR dengan nilai 17, dan mencetak konstanta tersebut.",
-    potongan: [
-      "const MINIMUM_UMUR = 17;",
-      "class Verifikasi {",
-      "echo Verifikasi::MINIMUM_UMUR;",
-      "}",
-    ],
-    jawaban: ["class Verifikasi {", "const MINIMUM_UMUR = 17;", "}", "echo Verifikasi::MINIMUM_UMUR;"]
-  },
+  nomor: 1,
+  tipe: "drag-drop-urutan", // Menandakan tipe soal adalah menyusun potongan kode dengan sistem drag-and-drop
+instruksi: "Susunlah potongan-potongan kode berikut agar membentuk program PHP yang lengkap dan benar.<br><br>Program ini menggunakan sebuah <strong>class</strong> bernama <code>Verifikasi</code> yang berisi <strong>konstanta</strong> <code>MINIMUM_UMUR</code> dengan nilai <code>17</code>. Setelah class didefinisikan, program akan menampilkan nilai konstanta tersebut menggunakan <em>scope resolution operator</em> (<code>::</code>).<br><br><em>Cara menjawab:</em> Klik dua kali pada potongan kode, lalu <strong>seret ke posisi yang sesuai</strong> menggunakan fitur <em>drag-and-drop</em>. Susun hingga urutan kode membentuk struktur program PHP yang benar.",
+
+  potongan: [
+    "const MINIMUM_UMUR = 17;",           // Potongan kode yang akan diacak di UI
+    "class Verifikasi {",                 // Semua potongan ini akan ditampilkan acak untuk disusun ulang
+    "echo Verifikasi::MINIMUM_UMUR;",
+    "}",
+  ],
+
+  jawaban: [
+    "class Verifikasi {",                 // Urutan jawaban benar yang akan digunakan untuk pengecekan
+    "const MINIMUM_UMUR = 17;",
+    "}",
+    "echo Verifikasi::MINIMUM_UMUR;"
+  ]
+},
   {
     nomor: 2,
     tipe: "drag-drop-isian",
-    instruksi: "Lengkapilah bagian kosong agar program dapat berjalan dengan benar. Gunakan nama class: Dokumen, dan method tampil() yang mencetak: Dokumen dicetak.. Lengkapi bagian yang kosong agar output tersebut tercetak ketika objek $laporan dipanggil.",
+    instruksi: "Lengkapilah bagian-bagian kosong pada kode program berikut agar dapat berjalan dengan benar.<br><br>Program ini terdiri dari sebuah <strong>interface</strong> bernama <code>Cetak</code> dan sebuah <strong>class</strong> bernama <code>Dokumen</code> yang mengimplementasikan interface tersebut. Lengkapi bagian kosong dengan <strong>kata kunci</strong> atau <strong>nama method</strong> yang tepat agar program dapat mencetak teks <code>Dokumen dicetak.</code><br><br><em>Cara menjawab:</em> Klik dua kali pada potongan kata di bawah, lalu <strong>seret ke dalam kotak kosong</strong> yang sesuai.",
     kode: `interface Cetak {
     public function tampil();
 }
@@ -36,7 +43,7 @@ $laporan->___();`,
   {
     nomor: 3,
     tipe: "isian",
-    instruksi: "Lengkapilah bagian kosong pada class berikut agar setiap kali object dibuat, nilai static property $jumlah bertambah 1.",
+    instruksi: "Lengkapilah bagian-bagian kosong pada class berikut agar program dapat menghitung berapa banyak object yang telah dibuat.<br><br>Class <code>Penghitung</code> memiliki <strong>static property</strong> bernama <code>$jumlah</code>. Setiap kali object baru dibuat, nilai <code>$jumlah</code> akan bertambah 1. Nilai ini kemudian ditampilkan melalui method <code>tampilkan()</code>.<br><br><em>Cara menjawab:</em> Isilah bagian kosong yang tersedia dengan <strong>kata kunci</strong> atau <strong>nama class</strong> yang sesuai agar program dapat berjalan dengan benar.",
     kode: `class Penghitung {
     public static $jumlah = 0;
     public function __construct() {
@@ -53,10 +60,14 @@ $laporan->___();`,
   nomor: 4,
   tipe: "isian-urut",
   instruksi: `
-    Susun potongan kode berikut agar menjadi program PHP yang benar. Buat sebuah class bernama <code>Hewan</code> dengan properti <code>$jenis</code> bernilai "Kucing" dan sebuah method <code>info()</code> yang mencetak.
+Susunlah potongan-potongan kode berikut agar menjadi program PHP yang benar dan dapat dijalankan.<br><br>
+Kamu akan membuat sebuah <strong>class</strong> bernama <code>Hewan</code> dengan <strong>properti</strong> <code>$jenis</code> bernilai <code>"Kucing"</code>, serta sebuah <strong>method</strong> <code>info()</code> yang mengembalikan informasi jenis hewan tersebut.<br><br>
 
-    <p><em><strong>Catatan:</strong> Terdapat tiga baris dengan kurung kurawal tutup <code>}</code>. Untuk membantumu menyusun, perhatikan komentar di sampingnya yang menunjukkan penutup blok mana (<code>method</code> atau <code>class</code>).</em></p>
-  `,
+<em><strong>Petunjuk:</strong> Terdapat tiga baris dengan kurung kurawal tutup <code>}</code>. Perhatikan komentar yang menyertainya untuk mengetahui penutup blok mana (<code>method</code> atau <code>class</code>). Susun urutannya secara logis agar program dapat berjalan tanpa error.</em><br><br>
+
+<em><strong>Cara menjawab:</strong> Ketik urutan angka dari baris-baris kode sesuai susunan program PHP yang benar. Gunakan spasi sebagai pemisah. Contoh penulisan: <code>1 3 2 4 5</code>.</em>
+`
+,
   potongan: [
     "echo (new Hewan())->info();",
     "public $jenis = \"Kucing\";",
@@ -84,10 +95,13 @@ $laporan->___();`,
   nomor: 5,
   tipe: "isian-urut",
   instruksi: `
-    Susunlah potongan kode berikut agar menjadi program PHP yang benar. Class <code>Rekening</code> memiliki properti <code>$saldo</code> dengan nilai 5000 dan sebuah method <code>lihatSaldo()</code> yang mencetak.
+Susun potongan-potongan kode berikut agar menjadi program PHP yang benar.<br><br>
+Kamu akan membuat sebuah <strong>class</strong> bernama <code>Rekening</code> yang memiliki <strong>properti</strong> <code>$saldo</code> dengan nilai <code>5000</code>, serta sebuah <strong>method</strong> <code>lihatSaldo()</code> yang mengembalikan teks saldo.<br><br>
 
-    <p><em><strong>Catatan:</strong> Terdapat tiga baris dengan kurung kurawal tutup <code>}</code>. Untuk membantumu menyusun, perhatikan komentar di sampingnya yang menunjukkan penutup blok mana (<code>function</code> atau <code>class</code>).</em></p>
-  `,
+<em><strong>Catatan:</strong> Terdapat tiga baris dengan kurung kurawal tutup <code>}</code>. Untuk membantumu menyusun, perhatikan komentar di sampingnya yang menunjukkan penutup blok mana (<code>function</code> atau <code>class</code>).</em><br><br>
+
+<em><strong>Cara menjawab:</strong> Ketik urutan angka dari baris-baris kode sesuai susunan program PHP yang benar. Gunakan spasi sebagai pemisah. Contoh penulisan: <code>1 3 2 4 5</code>.</em>
+`,
   potongan: [
     "echo $akun->lihatSaldo();",
     "class Rekening {",
@@ -290,29 +304,53 @@ function cekJawabanBenar() {
     const jwb = jawaban[i];
     if (!jwb) return;
 
+    // Mengecek apakah tipe soal adalah drag and drop dengan urutan
     if (soal.tipe === "drag-drop-urutan") {
+
+      // Memastikan panjang jawaban sama dengan kunci, 
+      // dan setiap elemen jawaban sesuai urutan dengan kunci jawaban
       const benarUrutan = jwb.length === soal.jawaban.length &&
         jwb.every((val, idx) => val.trim() === soal.jawaban[idx].trim());
+
+      // Jika urutan benar, tambahkan 1 poin ke total nilai
       if (benarUrutan) totalNilai += 1;
     }
 
+    
+    // Mengecek apakah tipe soal adalah "drag-drop-isian" atau "isian"
     else if (soal.tipe === "drag-drop-isian" || soal.tipe === "isian") {
+
+      // Memastikan bahwa baik jawaban pengguna (jwb) maupun kunci jawaban (soal.jawaban) berupa array
       if (Array.isArray(jwb) && Array.isArray(soal.jawaban)) {
-        let benar = 0;
+        let benar = 0; // Variabel penghitung jawaban yang benar
+
+        // Melakukan perulangan untuk membandingkan setiap elemen jawaban
         for (let k = 0; k < soal.jawaban.length; k++) {
+          // Jika jawaban pengguna pada indeks ke-k sama (setelah di-trim) dengan kunci jawaban, tambahkan ke jumlah benar
           if ((jwb[k] || '').trim() === soal.jawaban[k].trim()) {
             benar++;
           }
         }
-        totalNilai += benar / soal.jawaban.length; // skor parsial
+
+        // Menambahkan skor parsial ke total nilai (proporsional terhadap jumlah jawaban yang benar)
+        totalNilai += benar / soal.jawaban.length;
       }
     }
 
+
+    // Mengecek apakah tipe soal adalah isian-urut (jawaban berupa urutan angka)
     else if (soal.tipe === "isian-urut") {
+
+      // Mengubah input pengguna menjadi array indeks (misalnya: input "3 1 2" menjadi [2, 0, 1])
       const userUrut = jwb.split(/\s+/).map(i => parseInt(i.trim()) - 1);
+
+      // Mengecek apakah urutan potongan sesuai dengan kunci jawaban
       const benarUrut = userUrut.every((val, idx) => soal.potongan[val]?.trim() === soal.jawaban[idx]?.trim());
+
+      // Jika benar, tambahkan skor
       if (benarUrut) totalNilai += 1;
     }
+
   });
 
   return totalNilai;
@@ -337,6 +375,37 @@ window.prosesSelesai = function () {
   };
   localStorage.setItem('hasilKuis', JSON.stringify(hasil));
 
+  let refleksi = [];
+
+soalData.forEach((soal, i) => {
+  const jwb = jawaban[i];
+  let benar = false;
+
+  if (soal.tipe === "isian" || soal.tipe === "drag-drop-isian") {
+    if (Array.isArray(jwb) && Array.isArray(soal.jawaban)) {
+      benar = soal.jawaban.every((val, idx) => (jwb[idx] || '').trim() === val.trim());
+    }
+  } else if (soal.tipe === "drag-drop-urutan") {
+    benar = Array.isArray(jwb) &&
+            jwb.length === soal.jawaban.length &&
+            jwb.every((val, idx) => val.trim() === soal.jawaban[idx].trim());
+  } else if (soal.tipe === "isian-urut") {
+    const userUrut = jwb.split(/\s+/).map(i => parseInt(i.trim()) - 1);
+    benar = userUrut.every((val, idx) => soal.potongan[val]?.trim() === soal.jawaban[idx]?.trim());
+  }
+
+  refleksi.push({
+    tipe: soal.tipe,
+    jawaban: jwb,
+    benar: benar
+  });
+});
+
+if (!jawaban || jawaban.length === 0) {
+  alert("Jawaban tidak ditemukan, mohon pastikan semua soal telah dijawab.");
+  return;
+}
+
   // Kirim ke server via fetch
   fetch('/simpan-nilai-kuis', { 
     method: 'POST',
@@ -349,7 +418,10 @@ window.prosesSelesai = function () {
       skor: skor2,
       jawaban_json: {
       benar: skorBenar,
-      salah: totalSoal - skorBenar
+      salah: totalSoal - skorBenar,
+      tipe: 'kuis_2',
+      jawaban: jawaban,
+      refleksi: refleksi
     }
     })
   })

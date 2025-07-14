@@ -460,6 +460,21 @@
 }
 
 
+  .refleksi-jawaban .accordion-button {
+    background-color: #f1f5f9;
+    transition: background-color 0.3s ease;
+  }
+
+  .refleksi-jawaban .accordion-button:hover {
+    background-color: #e2e8f0;
+  }
+
+  .refleksi-jawaban .list-group-item {
+    transition: background-color 0.3s ease;
+  }
+
+
+
 
 
 /* RESPONSIF */

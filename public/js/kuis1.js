@@ -6,8 +6,11 @@ const kkm = metaKKM ? parseInt(metaKKM.content) : 70;
 
 const soalData = [
   {
+    // Nomor urut soal
     nomor: 1,
+    // Teks pertanyaan yang akan ditampilkan ke pengguna
     pertanyaan: "Istilah yang digunakan untuk mendeskripsikan cetak biru dari sebuah object dalam OOP adalah …",
+    // Daftar opsi jawaban (dalam bentuk array string)
     opsi: ["Object", "Method", "Property", "Class", "Trait"]
   },
   {
@@ -63,14 +66,17 @@ let waktu = 30 * 60;
 let timerInterval;
 
 function tampilkanSoal(index) {
-  const soal = soalData[index];
+  const soal = soalData[index]; // Ambil data soal berdasarkan indeks
   const container = document.getElementById('soal-container');
+
+  // Bangun elemen HTML untuk menampilkan soal dan opsi jawaban
   container.innerHTML = `
     <div class="soal-box">
       <h5>SOAL ${soal.nomor}</h5>
-      <p>${soal.pertanyaan.replace(/\n/g, '<br>')}</p>
+      <p>${soal.pertanyaan.replace(/\n/g, '<br>')}</p> <!-- Ganti newline jadi <br> agar format tetap terjaga -->
       ${soal.opsi.map((o, i) => `
         <label class="opsi-item">
+          <!-- Setiap opsi berupa radio button, onchange akan simpan jawaban -->
           <input type="radio" name="soal-${soal.nomor}" value="${i}" onchange="simpanJawaban(${index}, ${i})" ${jawaban[index] === i ? 'checked' : ''}>
           ${o}
         </label>`).join('')}
@@ -165,7 +171,9 @@ function selesaiKuis() {
     skor: skorFinal,
     jawaban_json: {
       benar: skorBenar,
-      salah: totalSoal - skorBenar
+      salah: totalSoal - skorBenar,
+      tipe: 'kuis_1',
+      jawaban: jawaban 
     }
   })
   })

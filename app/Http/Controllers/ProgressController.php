@@ -27,16 +27,24 @@ class ProgressController extends Controller
     }
 
 
-    public function getProgressPercentage()
-    {
-        $totalHalaman = 25; 
-        $userId = auth()->id();
-        $selesai = ProgressMahasiswa::where('user_id', $userId)->count();
+public function getProgressPercentage()
+{
+    // <!-- Total halaman materi yang tersedia -->
+    $totalHalaman = 25; 
 
-        $progressPercentage = round(($selesai / $totalHalaman) * 100);
+    // <!-- Ambil ID pengguna yang sedang login -->
+    $userId = auth()->id();
 
-        return response()->json(['progress' => $progressPercentage]);
-    }
+    // <!-- Hitung jumlah halaman yang telah diselesaikan oleh pengguna -->
+    $selesai = ProgressMahasiswa::where('user_id', $userId)->count();
+
+    // <!-- Hitung persentase progres pembelajaran -->
+    $progressPercentage = round(($selesai / $totalHalaman) * 100);
+
+    // <!-- Kembalikan persentase dalam format JSON untuk ditampilkan di frontend -->
+    return response()->json(['progress' => $progressPercentage]);
+}
+
 
     public function cek(Request $request)
 {

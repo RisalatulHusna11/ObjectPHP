@@ -2,22 +2,31 @@
 
 @section('container')
 
-   <section id="home" class="grid-container1">
-        <div class="textBox" >
-            <h2>MEDIA PEMBELAJARAN INTERAKTIF</h2>
-            <h2 style="font-size: 28px;">OBJECT-ORIENTED PROGRAMMING PHP</h2>
-            <h5>
-    Media ini menyediakan lingkungan pembelajaran interaktif untuk mempelajari konsep Object-Oriented Programming (OOP) menggunakan PHP. Materi disusun bagi pengguna yang telah memahami dasar-dasar pemrograman, cakupan materi pada media ini dimulai dari pengenalan objek hingga topik lanjutan seperti anonymous classes, introspection, dan serialization.
-</h5>
+   <!-- SECTION BERANDA / LANDING PAGE UTAMA -->
+<section id="home" class="grid-container1">
 
+  <!-- BAGIAN KIRI: Deskripsi singkat media pembelajaran -->
+  <div class="textBox">
+    <h2>MEDIA PEMBELAJARAN INTERAKTIF</h2>
+    <h2 style="font-size: 28px;">OBJECT-ORIENTED PROGRAMMING PHP</h2>
 
-            <a class="btn btn-success" href="./b00-peta"><< Mulai Belajar</a>
-            <a class="btn btn-success" href="./login">Login ke i-ObjectPHP >></a>
-        </div>
-        <div class="gambar">
-            <img class="scrool" src="images/gambar.png" alt="Gambar Awal">
-        </div>
-    </section>
+    <!-- Paragraf penjelasan tujuan media -->
+    <h5>
+      Media ini menyediakan lingkungan pembelajaran interaktif untuk mempelajari konsep Object-Oriented Programming (OOP) menggunakan PHP. Materi disusun bagi pengguna yang telah memahami dasar-dasar pemrograman, cakupan materi pada media ini dimulai dari pengenalan objek hingga topik lanjutan seperti anonymous classes, introspection, dan serialization.
+    </h5>
+
+    <!-- Tombol aksi utama: navigasi ke halaman awal belajar dan login -->
+    <a class="btn btn-success" href="./b00-peta"><< Mulai Belajar</a>
+    <a class="btn btn-success" href="./login">Login ke i-ObjectPHP >></a>
+  </div>
+
+  <!-- BAGIAN KANAN: Ilustrasi visual untuk memperkuat identitas media -->
+  <div class="gambar">
+    <img class="scrool" src="images/gambar.png" alt="Gambar Awal">
+  </div>
+
+</section>
+
 
     <section id="features" class="fitur">
         <div class="textBox2">

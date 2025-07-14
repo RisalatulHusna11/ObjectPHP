@@ -1,5 +1,6 @@
 @php
   use App\Models\ProgressMahasiswa;
+  use App\Models\Kkm;
 
   $user = auth()->user();
   $totalHalaman = 25;
@@ -11,6 +12,9 @@
 
   $progressPersen = round(($jumlahSelesai / $totalHalaman) * 100);
 
+  // Ambil nilai KKM dari tabel kkm berdasarkan dosen mahasiswa
+  $kkm = Kkm::where('dosen_id', $user->dosen_id)->value('kkm') ?? 70;
+
   function linkAktif($pattern) {
     return request()->is($pattern) ? 'active' : '';
   }
@@ -19,6 +23,7 @@
     return request()->is($pattern) ? 'show' : '';
   }
 @endphp
+
 
 <!doctype html>
 <html lang="en">
@@ -29,12 +34,13 @@
 
   <link rel="icon" type="image/png" href="{{ asset('images/logo3.png') }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <meta name="kkm" content="{{ auth()->user()->kkm ?? 70 }}">
+  <meta name="kkm" content="{{ $kkm }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/codemirror.min.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vs.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="{{ asset('css/kuis.css') }}">
   <link href="{{ asset('/css/latihan-block.css') }}" rel="stylesheet">
@@ -292,12 +298,18 @@
         <div class="collapse {{ collapseAktif('b1*') }}" id="babA">
           <ul class="nav flex-column ms-3">
             <li class="nav-item">
+              <!-- Mengecek apakah halaman sebelumnya (b00-peta) sudah diselesaikan oleh user -->
               @sudahSelesai('b00-peta')
-              <a class="nav-link {{ linkAktif('b11-object') }}" href="{{ url('b11-object') }}">1. Object</a>
+              
+              <!-- Jika sudah selesai, tampilkan link aktif ke halaman "b11-object" -->
+                <a class="nav-link {{ linkAktif('b11-object') }}" href="{{ url('b11-object') }}">1. Object</a>
+              
               @else
-              <a class="nav-link locked" href="#">1. Object <i class="bi bi-lock"></i></a>
+              <!-- Jika belum selesai, tampilkan link dalam keadaan terkunci (tidak bisa diklik) -->
+                <a class="nav-link locked" href="#">1. Object <i class="bi bi-lock"></i></a>
               @endsudahSelesai
             </li>
+
             <li class="nav-item">
               @sudahSelesai('b11-object')
               <a class="nav-link {{ linkAktif('b12-terminologi') }}" href="{{ url('b12-terminologi') }}">2. Terminologi</a>

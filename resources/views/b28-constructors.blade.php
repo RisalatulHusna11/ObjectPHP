@@ -165,6 +165,7 @@ echo $produk2->infoProduk();
 
 </div>
 
+<!-- LATIHAN -->
 <div class="quiz-card">
   <div class="quiz-header">
     <h1>LATIHAN</h1>
@@ -220,6 +221,7 @@ echo $laptopBaru-><input type="text" class="input-fill auto" id="input3" placeho
 
 <script>
 function cekIsian() {
+  // Kunci jawaban untuk masing-masing input
   const jawaban = {
     input1: 'ram',
     input2: 'parent',
@@ -228,12 +230,15 @@ function cekIsian() {
 
   let benar = true;
 
+  // Periksa setiap input apakah sesuai dengan kunci
   for (const id in jawaban) {
     const input = document.getElementById(id);
     const nilai = input.value.trim();
     if (nilai === jawaban[id]) {
+      // Tandai input benar dengan warna hijau
       input.style.borderColor = 'green';
     } else {
+      // Tandai input salah dengan warna merah
       input.style.borderColor = 'red';
       benar = false;
     }
@@ -241,23 +246,29 @@ function cekIsian() {
 
   const feedback = document.getElementById('feedbackIsian');
   feedback.className = 'feedback';
+
   if (benar) {
+    // Jika semua jawaban benar, tampilkan feedback positif
     feedback.classList.add('correct');
     feedback.innerHTML = '🎉 Jawaban kamu benar! Constructor dan method sudah digunakan dengan tepat.';
-  kirimProgressHalaman("b28-constructors");
 
-  const tombol = document.getElementById("btnSelanjutnya");
-  if (tombol) {
-    tombol.style.pointerEvents = "auto";
-    tombol.style.opacity = 1;
-    tombol.removeAttribute("disabled");
-  }
+    kirimProgressHalaman("b28-constructors");
+
+    const tombol = document.getElementById("btnSelanjutnya");
+    if (tombol) {
+      tombol.style.pointerEvents = "auto";
+      tombol.style.opacity = 1;
+      tombol.removeAttribute("disabled");
+    }
   } else {
+    // Jika ada jawaban salah, tampilkan feedback korektif
     feedback.classList.add('incorrect');
     feedback.innerHTML = '❌ Masih ada jawaban yang salah. Silakan periksa kembali inputmu.';
   }
+
   feedback.classList.remove('d-none');
 }
+
 
 function resetIsian() {
   ['input1', 'input2', 'input3'].forEach(id => {

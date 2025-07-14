@@ -46,7 +46,13 @@ ${$object}->mulaiMesin();</code></pre>
 <div class="quiz-card">
   <div class="quiz-header">
     <h1>LATIHAN</h1>
-    <p>Perhatikan potongan kode PHP berikut. Susunlah baris-baris tersebut agar membentuk program PHP yang benar untuk membuat sebuah object!</p>
+    <p class="quiz-intro">
+  Seret dan susun baris-baris kode PHP di bawah ini hingga membentuk program yang benar untuk membuat sebuah <em>object</em> dari class.<br>
+  Klik dan tahan setiap baris, lalu pindahkan ke posisi yang menurutmu tepat.<br>
+  Setelah semua baris tersusun sesuai urutan yang benar, klik tombol <strong>Cek Jawaban</strong> untuk melihat hasilnya.<br>
+  Jika urutan masih salah, kamu dapat memperbaikinya dan mencoba kembali. Jika jawaban benar, kamu dapat melanjutkan ke materi berikutnya.
+</p>
+
   </div>
 
   <ul id="list-kode" class="list-group mb-3"></ul>
@@ -126,53 +132,40 @@ const resetBtn = document.getElementById('resetJawaban');
 const feedback = document.getElementById('feedback');
 
 cekBtn.addEventListener('click', () => {
+  // Ambil urutan baris kode hasil drag and drop
   const urutan = [...document.querySelectorAll('#list-kode li')].map(li => parseInt(li.dataset.nomor));
+
+  // Bandingkan dengan jawaban benar
   const benar = JSON.stringify(urutan) === JSON.stringify(jawabanBenar);
+
   feedback.className = 'feedback';
+
   if (benar) {
+    // Tampilkan umpan balik benar dan simpan progres
     feedback.classList.add('correct');
     feedback.innerHTML = '🎉 Jawaban kamu benar! Kode sudah tersusun dengan tepat.';
     cekBtn.textContent = 'Jawaban Benar';
-    cekBtn.className = 'btn-next';
-    resetBtn.classList.add('btn-ulang-aktif'); // warna tombol Ulang aktif
-    kirimProgressHalaman("b13-membuatobject"); // SIMPAN PROGRESS
+    resetBtn.classList.add('btn-ulang-aktif'); // aktifkan tombol ulang
+    kirimProgressHalaman("b13-membuatobject");
   } else {
+    // Tampilkan umpan balik salah
     feedback.classList.add('incorrect');
     feedback.innerHTML = '❌ Masih salah, coba cek kembali urutannya ya!';
   }
+
+  // Tampilkan area feedback
   feedback.classList.remove('d-none');
 });
 
+
 resetBtn.addEventListener('click', () => {
   if (feedback.classList.contains('correct')) {
+    // Mengacak ulang urutan baris kode untuk percobaan baru
     tampilkanAcak();
+    // Menyembunyikan umpan balik sebelumnya
     feedback.className = 'feedback d-none';
   }
 });
-
-// function kirimProgressHalaman(namaHalaman) {
-//       fetch("{{ route('progress.simpan') }}", {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
-//         },
-//         body: JSON.stringify({ halaman: namaHalaman })
-//       })
-//       .then(res => res.json())
-//       .then(data => {
-//         console.log('✅ Progress berhasil dikirim:', data);
-//         const tombol = document.getElementById('btnSelanjutnya');
-//         if (tombol) {
-//           tombol.style.pointerEvents = 'auto';
-//           tombol.style.opacity = 1;
-//           tombol.removeAttribute('disabled');
-//         }
-//       })
-//       .catch(err => {
-//         console.error('❌ Gagal kirim progress:', err);
-//       });
-//     }
 
     @if($selesai)
     window.addEventListener('DOMContentLoaded', () => {

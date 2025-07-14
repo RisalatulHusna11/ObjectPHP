@@ -74,7 +74,7 @@
               <p>Kamu bisa mulai belajar dengan membuka menu Materi. Halaman akan terbuka secara berurutan berdasarkan progresmu.</p>
               <ul>
                 <li>Setiap halaman berisi penjelasan materi, ilustrasi, dan latihan.</li>
-                <li>Tombol <b>"Selanjutnya"</b> akan aktif jika kamu menyelesaikan latihan di halaman tersebut.</li>
+                <li>Tombol <b>"Selanjutnya"</b> akan aktif jika kamu menyelesaikan latihan dan fitur "Ayo Pahami!" di halaman tersebut.</li>
                 <li>Progress disimpan secara otomatis setelah kamu menyelesaikan halaman.</li>
               </ul>
             </div>
@@ -90,7 +90,7 @@
           <div id="collapse3" class="accordion-collapse collapse">
             <div class="accordion-body">
               <p>Progress belajarmu akan otomatis tercatat saat menyelesaikan halaman materi. Kamu dapat melihat progres ini di sidebar mahasiswa (bagian kiri dalam bentuk persentase dan daftar halaman yang telah dibuka)</p>
-              <p>Halaman berikutnya akan terbuka jika halaman sebelumnya sudah selesai dan progresnya tersimpan.</p>
+              <p>Halaman berikutnya akan terbuka jika halaman sebelumnya sudah selesai (berhasil mengerjakan latihan dan "Ayo Pahami!" dengan benar) dan progresnya tersimpan.</p>
             </div>
           </div>
         </div>
@@ -156,7 +156,7 @@
           </h2>
           <div id="collapse7" class="accordion-collapse collapse">
             <div class="accordion-body">
-              <p>Di bagian <b>Ayo Pahami!</b>, kamu bisa menuliskan kode PHP langsung ke dalam editor dan menekan tombol <b>RUN</b> untuk melihat hasilnya.</p>
+              <p>Di bagian <b>Ayo Pahami!</b>, kamu bisa menuliskan kode PHP langsung ke dalam editor dan menekan tombol <b>RUN</b> untuk melihat hasilnya. Dan kamu harus mengisi kolom untuk penginputan hasil yang akan melakukan pemeriksaan pada hasil dari kode program yang sudah kamu jalankan, apakah sudah benar atau belum.</p>
               <p>Tips:</p>
               <ul>
                 <li>Pastikan penulisan sintaks benar, gunakan tanda titik koma ";" di akhir baris</li>
