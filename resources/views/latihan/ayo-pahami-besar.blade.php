@@ -9,7 +9,7 @@ class Pengguna {
   function simpanPengguna() {
     echo "Data pengguna telah disimpan.";
   }
-}
+} 
 
 $pengguna = new Pengguna;
 print_r($pengguna);
@@ -29,9 +29,14 @@ $pengguna->simpanPengguna();</code></pre>
     </div>
   </div> 
 
-  <br>
-  <p class="penjelasan">
-  Dari contoh di atas, kita bisa melihat bagaimana property dari sebuah object dapat diakses dan diubah, serta bagaimana method dalam class dijalankan untuk menampilkan suatu proses. Fungsi <code>print_r()</code> membantu menampilkan isi object dan memudahkan proses debugging.
-</p> 
+  <div class="mt-4">
+    <label for="outputMahasiswa" class="form-label">Masukkan output yang kamu lihat dari program di atas:</label>
+    <textarea id="outputMahasiswa" class="form-control" rows="4" placeholder="Tulis output di sini..."></textarea>
 
+    <button onclick="cekOutputAyoPahami()" class="btn-next">Periksa Output</button>
+
+    <div id="feedbackAyoPahami" class="mt-3"></div>
+  </div> 
+
+<script src="/js/ayo-pahami1.js"></script>
 @endsection

@@ -39,7 +39,7 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
 
     Route::get('/d13-data-nilai', function () {return view('d13-data-nilai');});
     Route::get('/d13-data-nilai', [DashboardController::class, 'showDataNilai'])->name('dashboard.showDataNilai');
-    Route::get('/nilai/{id}/detail', [DashboardController::class, 'detailNilai'])->name('dashboard.detailNilai');
+    // Route::get('/nilai/{id}/detail', [DashboardController::class, 'detailNilai'])->name('dashboard.detailNilai');
     Route::get('/nilai/{user_id}/detail', [DashboardController::class, 'detailNilai'])->name('dashboard.detailNilai');
     Route::get('/export-nilai-pdf', [DashboardController::class, 'exportNilaiPDF'])->name('nilai.exportPdf');
     Route::get('/export-csv', [DashboardController::class, 'exportNilaiCSV'])->name('nilai.exportCsv');
